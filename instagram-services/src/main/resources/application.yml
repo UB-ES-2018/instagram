@@ -1,0 +1,19 @@
+spring:
+    datasource:
+        url: jdbc:mysql://172.16.0.30:3306/tram?useTimezone=true&serverTimezone=UTC
+        username: root
+        password: root
+        driver-class-name: com.mysql.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: none
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+                show_sql: true
+                format_sql: true
+                use_sql_comments: true
+
+application:
+    version: 1.0.0
