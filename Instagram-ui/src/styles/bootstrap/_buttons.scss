@@ -137,6 +137,23 @@ fieldset[disabled] a.btn {
   }
 }
 
+//
+// Custom block
+//
+
+.btn-block-custom {
+  display: block;
+  width: 100%;
+  color: #FFFFFF;
+  font-weight: bold;
+  background-color: $primary;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
 // Specificity overrides
 input[type="submit"],
 input[type="reset"],
