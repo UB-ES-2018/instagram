@@ -8,6 +8,7 @@ https://www.udemy.com/iniciando-con-containers-en-docker/learn/v4/t/lecture/7191
 
 
 //// INSTALL GRADLE
+
 	sudo add-apt-repository ppa:cwchien/gradle
 	sudo apt-get update
 	sudo apt upgrade gradle
