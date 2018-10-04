@@ -1,13 +1,20 @@
 <html>
     <body style="background-color: #F8F8F8">
-        <br>
-        <br>
-        
         <div class="row justify-content-md-center">
-            <img class="phone-image" style="vertical-align: middle; width: 12cm; height: 18cm;" src="assets/images/register-test.JPG" />    
-            <div class="col-md-2">       
-    
-                <div style="width: 9cm; text-align: center" class="jumbotron">
+            <div class="column" style="width: 21%; vertical-align: bottom;">
+                <img class="phone-image" 
+                    style="vertical-align: middle; 
+                    width: 11cm; height: 16cm; 
+                    position:absolute;
+                    top:0;
+                    bottom:0;
+                    margin:auto;" 
+                    src="assets/images/phoneSliders/backgroundPhones.png" />   
+            </div>
+            
+            <div class="column" style="width: 21%">       
+                <br>
+                <div style="width: 9cm; text-align: center; margin-bottom: 10px; padding: 15px;" class="jumbotron">
                     <img class="user-avatar" src="assets/images/logo.png" width="225px" />
                     
                     <p>
@@ -43,7 +50,7 @@
                             </div>
     
                             <p>
-                                <a href="javascript:void(0)" class="btn btn-block-custom btn-sm" role="button">Siguiente</a>
+                                <a href="javascript:void(0)" class="btn btn-block-custom btn-sm" role="button" [routerLink]="['/dashboard']">Siguiente</a>
                             </p>
                             <span style="font-size: 13.5px;">
                                 Al registrarte, aceptas nuestras <b>Condiciones</b>. 
@@ -54,12 +61,18 @@
                     </form>
     
                 </div>
-                <div style="width: 9cm; height: 2cm" class="jumbotron">
-                        <span style="color: black; font-size: 13.5px">¿Tienes una cuenta? Entrar</span>
+                <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px;" class="jumbotron">
+                        <span style="color: black; font-size: 13.5px">¿Tienes una cuenta? <a [routerLink]="['/login']">Entrar</a></span>
                 </div>
                 <span>Descarga la aplicación</span>
+                <div class="row">
+                        <img class="user-avatar" src="assets/images/banners/bannerApple.png" style=" width: 3cm; height: 1cm;"/>
+                        &nbsp;
+                        <img class="user-avatar" src="assets/images/banners/bannerGoogle.png" style=" width: 3cm; height: 1cm;"/>
+                        &nbsp;
+                        <img class="user-avatar" src="assets/images/banners/bannerMicrosoft.png" style=" width: 3cm; height: 1cm;"/>
+                </div>
             </div>
         </div>
     </body>
-    
 </html>
