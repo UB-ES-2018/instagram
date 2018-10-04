@@ -1,11 +1,8 @@
+
 <div>
-  <div>
-    <a> 123 </a><!--logo-->
-    <input /><!--buscador-->
-    <a> FEED </a><!--feed-->
-    <a>EXPLORE </a><!--explore-->
-    <a>PROFILE</a><!--profile-->
-  
-  
-  </div>
+  <a> Instagram </a><!--logo-->
+  <input (keydown.enter)="onKeydown($event)" id="buscador"/><!--buscador-->
+  <i class="fas fa-heart" routerLink="/feed"></i><!--feed-->
+  <i class="far fa-compass" routerLink="/explore"></i><!--explore-->
+  <i class="far fa-user" routerLink="/profileID"></i><!--profile-->
 </div>

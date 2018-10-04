@@ -4,6 +4,8 @@ import { SecuredComponent } from './secured.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SecuredRoutingModule } from './secured-routing.module';
+import { FeedComponent } from './feed/feed.component';
+import { ExploreComponent } from './explore/explore.component';
 
 const components = [SecuredComponent, LayoutComponent, ProfileComponent];
 
@@ -12,7 +14,7 @@ const components = [SecuredComponent, LayoutComponent, ProfileComponent];
     CommonModule,
     SecuredRoutingModule
   ],
-  declarations: [components],
+  declarations: [components, FeedComponent, ExploreComponent],
   exports: [components]
 })
 export class SecuredModule { }
