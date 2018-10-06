@@ -3,11 +3,14 @@ package instagram.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
+import instagram.controller.UserController;
 import instagram.exception.BusinessException;
 import instagram.exception.ErrorCodes;
 import instagram.model.User;
@@ -16,6 +19,7 @@ import instagram.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
+	private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -31,16 +35,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User addUser(String username, String password, String email ) throws BusinessException {
+	public User addUser(String username, String password, String email,String name ) throws BusinessException {
 		User user = new User();
 
 		if (userExists(username)) {
 			throw new BusinessException(ErrorCodes.USERNAME_EXISTS);
 		}
-
+		if(emailExists(email)) {
+			throw new BusinessException(ErrorCodes.EMAIL_EXISTS);
+		}
+		
+		user.setName(name);
 		user.setUsername(username);
 		user.setPassword(password);
-		user.setEmail(username);
+		user.setEmail(email);
 
 		userRepository.save(user);
 
@@ -49,6 +57,10 @@ public class UserServiceImpl implements UserService {
 
 	private boolean userExists(String username) {
 		User user = userRepository.findOneByUsername(username);
+		return user != null;
+	}
+	private boolean emailExists(String email) {
+		User user = userRepository.findOneByEmail(email);
 		return user != null;
 	}
 
