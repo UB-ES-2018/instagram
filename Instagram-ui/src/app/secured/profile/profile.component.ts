@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProfileService } from '../shared/profile.service';
+import { Profile } from '../shared/models/profile.model';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   profileID: string;
-  constructor(private router: ActivatedRoute) { }
+  profile: Profile;
+  constructor(private router: ActivatedRoute, private profileService: ProfileService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -17,6 +20,10 @@ export class ProfileComponent implements OnInit {
         // fer servir authService per posar-te el teu
       }
       console.log('visiting ' + this.profileID + '\'s profile');
+    });
+    this.profileService.getProfile(this.profileID).subscribe(profile => {
+      this.profile = profile;
+      console.log('profile: ' + JSON.stringify(profile));
     });
   }
 

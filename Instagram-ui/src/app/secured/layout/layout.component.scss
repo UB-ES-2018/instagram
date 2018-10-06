@@ -1,13 +1,43 @@
-div{
+#layout{
     border-style: solid;
-    padding-left: 15%;
+    border-width: 0.2px;
+    border-color:#BBBBBB;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    padding-left: 200px;
+    width:100%;
+    height: 75px;
+    font-family: tahoma;
+}
+
+#botones{
+    padding-top: 20px;
+    width: 20%;
+    position: relative;
+    float: left;
+    margin-left:100px;
+}
+#logo{
+    padding-top:23px;
+    width:10%;
+    position: relative;
+    float: left;
+}
+#buscador{
+    margin-top:11px;
+    width:40%;
+    position: relative;
+    float: left;
+    margin-left: 100px;
 }
 
 i{
-    margin-left: 5%;
+    
+    margin-left: 10%;
 
 }
 
-input{
-    margin-left: 5%;
+i:hover{
+    cursor: pointer;
 }

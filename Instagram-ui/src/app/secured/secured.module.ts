@@ -6,13 +6,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { SecuredRoutingModule } from './secured-routing.module';
 import { FeedComponent } from './feed/feed.component';
 import { ExploreComponent } from './explore/explore.component';
+import { SharedModule } from './shared/shared.module';
 
 const components = [SecuredComponent, LayoutComponent, ProfileComponent];
 
 @NgModule({
   imports: [
     CommonModule,
-    SecuredRoutingModule
+    SecuredRoutingModule,
+    SharedModule
   ],
   declarations: [components, FeedComponent, ExploreComponent],
   exports: [components]
