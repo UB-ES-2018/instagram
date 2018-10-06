@@ -16,17 +16,29 @@ public class User implements Serializable {
 
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "username")
+	@Column(name = "USERNAME")
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "PASSWORD")
 	private String password;
 
-	@Column(name = "email")
+	@Column(name = "EMAIL")
 	private String email;
+
+	@Column(name = "NAME")
+	private String name;
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getId() {
 		return id;

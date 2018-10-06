@@ -8,6 +8,7 @@ public enum ErrorCodes {
 	USER_NOT_FOUND(1001, "User not found"),
 	INVALID_USERNAME(1002, "Invalid username"),
 	USERNAME_EXISTS(1003, "Username already exists"),
+	EMAIL_EXISTS(1004, "Email already exists"),
 
 	MATERIAL_NOT_FOUND(1101, "Material not found"),
 	INVALID_PRICES(1102, "Invalid prices"),
