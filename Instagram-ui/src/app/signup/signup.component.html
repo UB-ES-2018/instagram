@@ -1,7 +1,7 @@
 <html>
     <body style="background-color: #F8F8F8">
         <div class="row justify-content-md-center">
-            <div class="column" style="width: 21%; vertical-align: bottom;">
+            <div class="column" style="width: 21%; vertical-align: bottom; z-index: 3;">
                 <img class="phone-image" 
                     style="vertical-align: middle; 
                     width: 11cm; height: 16cm; 
@@ -10,9 +10,8 @@
                     bottom:0;
                     margin:auto;" 
                     src="assets/images/phoneSliders/backgroundPhones.png" />   
-            </div>
-            
-            <div class="column" style="width: 21%">       
+            </div>            
+            <div class="column" style="width: 21%; z-index: 4;">       
                 <br>
                 <div style="width: 9cm; text-align: center; margin-bottom: 10px; padding: 15px;" class="jumbotron">
                     <img class="user-avatar" src="assets/images/logo.png" width="225px" />
@@ -34,21 +33,20 @@
                     <form role="form">
                         <div class="form-control-range" style="text-align: center;">
                             <div class="form-group">
-                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Número de móvil o correo electrónico">
+                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="loginID" placeholder="Número de móvil o correo electrónico" required>
                             </div>
     
                             <div class="form-group">
-                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Nombre completo">
+                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="name" placeholder="Nombre completo">
                             </div>
             
                             <div class="form-group">
-                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Nombre de usuario">
+                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="username" placeholder="Nombre de usuario">
                             </div>
             
                             <div class="form-group">
-                                <input type="password" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Contraseña">
-                            </div>
-    
+                                <input type="password" style="font-size: 13.5px" class="form-control input-underline input-lg" id="password" placeholder="Contraseña">
+                            </div>                        
                             <p>
                                 <a href="javascript:void(0)" class="btn btn-block-custom btn-sm" role="button" [routerLink]="['/dashboard']">Siguiente</a>
                             </p>
