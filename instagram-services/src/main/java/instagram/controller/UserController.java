@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +30,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> addUser");
 		
-		User user = userService.addUser(userDto.getUsername(), userDto.getPassword(), userDto.getEmail());
+		User user = userService.addUser(userDto.getUsername(), userDto.getPassword(), userDto.getEmail(),userDto.getName());
 
 		UserDto userdDto = new UserDto();
 		userdDto.loadFromModel(user);
