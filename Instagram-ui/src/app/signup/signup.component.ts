@@ -41,12 +41,6 @@ export class SignupComponent implements OnInit {
             return;
         }
 
-        if (this.user.password !== this.confirmPassword) {
-            this.errorMessage = 'NoCoincidentPassword';
-            this.modalService.open(this.modalError);
-            return;
-        }
-
         this.userService.registerUser(this.user).subscribe(
             newUser => {
                 this.modalService.open(this.modalOk).result.then((result) => {
