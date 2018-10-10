@@ -1,4 +1,4 @@
-<div class="login-page" [@routerTransition]>
+<!--<div class="login-page" [@routerTransition]>
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <img class="user-avatar" src="assets/images/logo.png" width="150px" />
@@ -8,11 +8,12 @@
                     <div class="form-group">
                         <input type="text" class="form-control input-underline input-lg" id="" placeholder="Full Name">
                     </div>
-
                     <div class="form-group">
                         <input type="text" class="form-control input-underline input-lg" id="" placeholder="Email">
                     </div>
-
+                    <div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Username">
+                    </div>
                     <div class="form-group">
                         <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
                     </div>
@@ -26,3 +27,72 @@
         </div>
     </div>
 </div>
+-->
+<div class = "login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <form data-toggle="validator" #registerForm="ngForm" role="form" id="registerForm" name="registerForm">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="username"> Username </label>
+                        <input type="username" class="form-control width-input" id="username" name="username" [(ngModel)]="user.username" #username="ngModel" required>
+                        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger width-input">Invalid Username</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name"> Full name </label>
+                        <input class="form-control width-input" id="name" name="name" type="text" minlength="4" [(ngModel)]="user.name" #name="ngModel" required>
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger width-input">No void</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"> Email </label>
+                        <input type="email" class="form-control width-input" id="email" name="email" type="text" [(ngModel)]="user.email" #email="ngModel" email>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger width-input">Email</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">UserPassword</label>
+                        <input class="form-control width-input" id="password" name="password" type="password" minlength="4" [(ngModel)]="user.password" #password="ngModel" required>
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger width-input">No void</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">UserConfirmPassword</label>
+                        <input class="form-control width-input" id="confPassword" name="confPassword" type="password" minlength="4" [(ngModel)]="confirmPassword" #confPassword="ngModel" required>
+                        <div *ngIf="confPassword.invalid && (confPassword.dirty || confPassword.touched)" class="alert alert-danger width-input">No void</div>
+                    </div>
+                </fieldset>
+                <br>
+                <button (click)="onClickRegisterButton()" [disabled]="!registerForm.valid" class="btn edit-button">BtnRegister</button>
+                <button (click)="onClickCancelButton()" class="btn edit-button">BtnCancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalOk let-c="close" let-d="dismiss">
+    <div class="modal-header alert alert-success">
+        <h4 class="modal-title ">SuccessModalTitle</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>SuccessModalBody</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #modalError let-c="close" let-d="dismiss">
+    <div class="modal-header alert alert-danger">
+        <h4 class="modal-title">Error</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{ errorMessage }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
