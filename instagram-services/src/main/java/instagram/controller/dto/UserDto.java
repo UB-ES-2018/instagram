@@ -12,6 +12,19 @@ public class UserDto {
 
 	private String email;
 
+	private String name;
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 	public int getId() {
 		return id;
@@ -57,5 +70,6 @@ public class UserDto {
 		id = user.getId();
 		username = user.getUsername();
 		email = user.getEmail();
+		name = user.getName();
 	}
 }
