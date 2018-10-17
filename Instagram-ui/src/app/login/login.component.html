@@ -1,22 +1,62 @@
-<div class="login-page" [@routerTransition]>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>SB Admin BS4 Angular5</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
+<html>
+    <body style="background-color: #F8F8F8">
+        <div class="row justify-content-md-center">
+            <div class="column" style="width: 21%">       
+                <br>
+                <div style="width: 9cm; text-align: center; margin-bottom: 10px; padding: 15px;" class="jumbotron">
+                    <img class="user-avatar" src="assets/images/logo.png" width="225px" />
+    
+                    <br>
+                    
+    
+                    <form role="form">
+                        <div class="form-control-range" style="text-align: center;">
+                            <div class="form-group">
+                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Teléfono, usuario o correo electrónico">
+                            </div>
+            
+                            <div class="form-group">
+                                <input type="password" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Contraseña">
+                            </div>
+    
+                            <p>
+                                <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button" [routerLink]="['/dashboard']">Entrar</a>
+                            </p>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
-                    </div>
+                        
+                            
+                
+                            <div style="height: 1px; border-top: 1px solid #D3D3D3; text-align: center; position: relative; ">
+                                <span style="position: relative; top: -.7em; background: white; display: inline-block; ">&nbsp;&nbsp;&nbsp; o &nbsp;&nbsp;&nbsp;</span>
+                            </div>
+
+                            <br>
+                            <p>
+                                <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button" size="105px">
+                                    <i style="font-size:24px" class="fa">&#xf230;</i>        Iniciar sesión con Facebook</a>
+                            </p>
+
+                            <span style="color: black; font-size: 13px"> <a [routerLink]="['/signup']">¿Has olvidado la contraseña?</a></span>
+
+                        </div>
+                    </form>
+    
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
-            </form>
+                <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px;" class="jumbotron">
+                        <span style="color: black; font-size: 13.5px">¿No tienes una cuenta? <a [routerLink]="['/signup']">Regístrate</a></span>
+                </div>
+                <div style="margin: auto;">
+                    <span >Descarga la aplicación.</span>
+                </div>
+                
+                <div class="row">
+                        <img class="user-avatar" src="assets/images/banners/bannerApple.png" style=" width: 3cm; height: 1cm;"/>
+                        &nbsp;
+                        <img class="user-avatar" src="assets/images/banners/bannerGoogle.png" style=" width: 3cm; height: 1cm;"/>
+                        &nbsp;
+                        <img class="user-avatar" src="assets/images/banners/bannerMicrosoft.png" style=" width: 3cm; height: 1cm;"/>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </body>
+</html>
