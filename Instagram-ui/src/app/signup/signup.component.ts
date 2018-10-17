@@ -1,6 +1,6 @@
-import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { routerTransition } from '../router.animations';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -36,13 +36,7 @@ export class SignupComponent implements OnInit {
 
     onClickRegisterButton() {
         if (!this.registerForm.valid) {
-            this.errorMessage = "NoValidForm";
-            this.modalService.open(this.modalError);
-            return;
-        }
-
-        if (this.user.password !== this.confirmPassword) {
-            this.errorMessage = "NoCoincidentPassword";
+            this.errorMessage = 'NoValidForm';
             this.modalService.open(this.modalError);
             return;
         }
@@ -72,11 +66,11 @@ export class SignupComponent implements OnInit {
         }
 
         if (code === 1003) {
-            return "RepeatedUsername";
+            return 'RepeatedUsername';
         } else if (code === 1002) {
-            return "InvalidUsername";
+            return 'InvalidUsername';
         } else if (code === 1004) {
-            return "RepeatedEmail";
+            return 'RepeatedEmail';
         }
     }
     onClickCancelButton() {
