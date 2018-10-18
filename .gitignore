@@ -12,6 +12,7 @@
 **/.project
 **/.classpath
 **/.settings
+**package-lock.json
 
 # IDEs and editors
 /.idea
