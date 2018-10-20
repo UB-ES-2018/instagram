@@ -15,30 +15,33 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "id")
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "USERNAME")
+	@Column(name = "username")
 	private String username;
 
-	@Column(name = "PASSWORD")
+	@Column(name = "password")
 	private String password;
 
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String email;
 
-	@Column(name = "NAME")
+	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "bio")
+	private String bio;
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	@Column(name = "website")
+	private String website;
+	
+	@Column(name = "phoneNumber")
+	private int phoneNumber;
+	
+	@Column(name = "gender")
+	private String gender;
 
 	public int getId() {
 		return id;
@@ -71,7 +74,48 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	
+
 	
 
 }
