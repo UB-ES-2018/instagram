@@ -1,17 +1,23 @@
 package instagram.service;
 
-import java.util.List;
-
 import instagram.exception.BusinessException;
 import instagram.model.User;
 
 public interface UserService {
 
-	User getValidUserByUsername(String username);
-	
-	List<User> getAll();
-		
+	User getValidUserByUsername(String username) throws BusinessException;
+			
 	void deleteUser(int id) throws BusinessException;
 
 	User addUser(String username, String password, String email, String name) throws BusinessException;
+
+	void changeBio(String username, String bio) throws BusinessException;
+
+	void changeGender(String username, String gender) throws BusinessException;
+
+	void changeNumber(String username, int number) throws BusinessException;
+
+	void changePassword(String username, String password) throws BusinessException;
+
+	void changeName(String username, String name) throws BusinessException;
 }
