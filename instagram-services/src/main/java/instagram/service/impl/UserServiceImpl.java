@@ -2,12 +2,9 @@ package instagram.service.impl;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import instagram.controller.UserController;
 import instagram.exception.BusinessException;
 import instagram.exception.ErrorCodes;
 import instagram.model.User;
@@ -16,7 +13,6 @@ import instagram.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -119,6 +115,15 @@ public class UserServiceImpl implements UserService {
 		User user = optionalUser.get();
 		// Delete user itself
 		this.userRepository.delete(user);
+	}
+
+
+	@Override
+	public User getUserById(int id) throws BusinessException {
+		User user = this.userRepository.findOneById(id);
+		if(user == null)
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		return user;
 	}
 
 }
