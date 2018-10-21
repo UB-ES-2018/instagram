@@ -99,11 +99,21 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 
-	@RequestMapping(value = "/get/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getByusername/{username}", method = RequestMethod.GET)
 	public ResponseEntity<UserDto> getUser(@PathVariable String username)throws BusinessException{
 		logger.info("UserController -> getUser");
 
 		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
+	}
+	@RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
+	public ResponseEntity<UserDto> getUser(@PathVariable int id)throws BusinessException{
+		logger.info("UserController -> getUser");
+
+		User user = userService.getUserById(id);
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
 

@@ -5,6 +5,8 @@ import instagram.model.User;
 
 public class UserDto {
 
+	private int id;
+	
 	private String username;
 
 	private String password;
@@ -20,6 +22,15 @@ public class UserDto {
 	private int phoneNumber;
 	
 	private String gender;
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -86,6 +97,7 @@ public class UserDto {
 	}
 	
 	public void loadFromModel(User user) {
+		id = user.getId();
 		username = user.getUsername();
 		email = user.getEmail();
 		name = user.getName();
