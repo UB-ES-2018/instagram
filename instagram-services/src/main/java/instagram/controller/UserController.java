@@ -35,7 +35,7 @@ public class UserController {
 	public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> addUser");
 		
-		User user = userService.addUser(userDto.getUsername(), userDto.getPassword(), userDto.getEmail(),userDto.getName());
+		User user = userService.addUser(userDto.getUsername(), userDto.getPassword(), userDto.getEmail(),userDto.getName(),userDto.getBio(),userDto.getWeb(),userDto.getPhone(),userDto.getGender());
 
 		UserDto userdDto = new UserDto();
 		userdDto.loadFromModel(user);

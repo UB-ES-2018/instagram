@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User addUser(String username, String password, String email,String name ) throws BusinessException {
+	public User addUser(String username, String password, String email, String name, String bio, String website, int phoneNumber, String gender) throws BusinessException {
 		User user = new User();
 
 		if (userExists(username)) {

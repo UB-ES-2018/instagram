@@ -15,21 +15,33 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "id")
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "USERNAME")
+	@Column(name = "username")
 	private String username;
 
-	@Column(name = "PASSWORD")
+	@Column(name = "password")
 	private String password;
 
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "bio")
+	private String bio;
 
-	@Column(name = "NAME")
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "website")
+	private String website;
+	
+	@Column(name = "phoneNumbre")
+	private int phone;
+	
+	@Column(name = "gender")
+	private String gender;
 	
 	
 	public String getName() {
@@ -72,6 +84,36 @@ public class User implements Serializable {
 		this.email = email;
 	}
 	
-	
+	public String getBio() {
+		return bio;
+	}
 
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	
+	public String getWeb() {
+		return website;
+	}
+
+	public void setWeb(String website) {
+		this.website = website;
+	}
+	
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
 }

@@ -1,0 +1,3 @@
+INSERT INTO HASHTAG (tag) VALUES ('work');
+INSERT INTO HASHTAG (tag) VALUES ('party');
+INSERT INTO HASHTAG (tag) VALUES ('relax');

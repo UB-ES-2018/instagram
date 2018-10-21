@@ -13,5 +13,5 @@ public interface UserService {
 		
 	void deleteUser(int id) throws BusinessException;
 
-	User addUser(String username, String password, String email, String name) throws BusinessException;
+	User addUser(String username, String password, String email, String name, String bio, String website, int phoneNumber, String gender) throws BusinessException;
 }

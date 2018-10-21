@@ -14,6 +14,14 @@ public class UserDto {
 
 	private String name;
 	
+	private String bio;
+	
+	private String website;
+	
+	private int phone;
+	
+	private String gender;
+	
 	
 	
 	public String getName() {
@@ -64,6 +72,38 @@ public class UserDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	
+	public String getWeb() {
+		return website;
+	}
+
+	public void setWeb(String website) {
+		this.website = website;
+	}
+	
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 
 	public void loadFromModel(User user) {
@@ -71,5 +111,9 @@ public class UserDto {
 		username = user.getUsername();
 		email = user.getEmail();
 		name = user.getName();
+		bio = user.getBio();
+		phone = user.getPhone();
+		website = user.getWeb();
+		gender = user.getGender();
 	}
 }
