@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema mydb
@@ -26,16 +26,16 @@ CREATE TABLE IF NOT EXISTS `instagram`.`USER` (
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `bio` VARCHAR(100) NULL DEFAULT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `website` VARCHAR(45) NULL,
-  `phoneNumber` INT(20) NULL,
-  `gender` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  `website` VARCHAR(45) NULL DEFAULT NULL,
+  `phoneNumber` INT(20) NULL DEFAULT NULL,
+  `gender` VARCHAR(45) NULL DEFAULT 'UNDEFINED',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) ,
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
-  UNIQUE INDEX `password_UNIQUE` (`password` ASC) ,
-  UNIQUE INDEX `phoneNumber_UNIQUE` (`phoneNumber` ASC) )
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `password_UNIQUE` (`password` ASC),
+  UNIQUE INDEX `phoneNumber_UNIQUE` (`phoneNumber` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `instagram`.`POST` (
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
-  INDEX `fk_user_idx` (`id_user` ASC) ,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_user_idx` (`id_user` ASC),
   CONSTRAINT `fk_user_post`
     FOREIGN KEY (`id_user`)
     REFERENCES `instagram`.`USER` (`id`)
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `instagram`.`COMENTS` (
   `created_at` DATETIME NOT NULL,
   `updated_at` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
-  INDEX `fk_user_idx` (`id_user` ASC) ,
-  INDEX `fk_post_idx` (`id_post` ASC) ,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_user_idx` (`id_user` ASC),
+  INDEX `fk_post_idx` (`id_post` ASC),
   CONSTRAINT `fk_user_coments`
     FOREIGN KEY (`id_user`)
     REFERENCES `instagram`.`USER` (`id`)
@@ -97,13 +97,11 @@ CREATE TABLE IF NOT EXISTS `instagram`.`FOLLOWERS` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_follower` INT(11) NOT NULL,
   `id_user` INT(11) NOT NULL,
-  `accepted` INT(11) NOT NULL,
+  `accepted` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
-  INDEX `fk_user_idx` (`id_user` ASC) ,
-  INDEX `fk_follower_idx` (`id_follower` ASC) ,
-  UNIQUE INDEX `id_follower_UNIQUE` (`id_follower` ASC) ,
-  UNIQUE INDEX `id_user_UNIQUE` (`id_user` ASC) ,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_user_idx` (`id_user` ASC),
+  INDEX `fk_follower_idx` (`id_follower` ASC),
   CONSTRAINT `fk_user_followers`
     FOREIGN KEY (`id_user`)
     REFERENCES `instagram`.`USER` (`id`)
@@ -126,9 +124,9 @@ CREATE TABLE IF NOT EXISTS `instagram`.`LIKES` (
   `id_user` INT(11) NOT NULL,
   `id_post` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
-  INDEX `fk_user_idx` (`id_user` ASC) ,
-  INDEX `fk_post_idx` (`id_post` ASC) ,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_user_idx` (`id_user` ASC),
+  INDEX `fk_post_idx` (`id_post` ASC),
   CONSTRAINT `fk_user_likes`
     FOREIGN KEY (`id_user`)
     REFERENCES `instagram`.`USER` (`id`)
@@ -161,8 +159,8 @@ CREATE TABLE IF NOT EXISTS `instagram`.`POST_TAG` (
   `id_tag` INT NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
-  INDEX `fk_post_idx` (`id_post` ASC) ,
-  INDEX `fk_tag_idx` (`id_tag` ASC) ,
+  INDEX `fk_post_idx` (`id_post` ASC),
+  INDEX `fk_tag_idx` (`id_tag` ASC),
   CONSTRAINT `fk_post_post_tag`
     FOREIGN KEY (`id_post`)
     REFERENCES `instagram`.`POST` (`id`)

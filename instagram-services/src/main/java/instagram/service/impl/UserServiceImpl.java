@@ -1,16 +1,10 @@
 package instagram.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Lists;
-
-import instagram.controller.UserController;
 import instagram.exception.BusinessException;
 import instagram.exception.ErrorCodes;
 import instagram.model.User;
@@ -19,20 +13,20 @@ import instagram.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserRepository userRepository;
-
+	
+	
 	@Override
-	public User getValidUserByUsername(String username) {
-		return userRepository.findOneByUsernameIfIsValid(username);
+	public User getValidUserByUsername(String username) throws BusinessException {
+		if(!userExists(username)) {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+
+		}
+		return this.userRepository.findOneByUsername(username);
 	}
 
-	@Override
-	public List<User> getAll() {
-		return Lists.newArrayList(userRepository.findAll());
-	}
 
 	@Override
 	public User addUser(String username, String password, String email, String name, String bio, String website, int phoneNumber, String gender) throws BusinessException {
@@ -49,10 +43,61 @@ public class UserServiceImpl implements UserService {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
-
+		user.setGender("undefined");
+		
 		userRepository.save(user);
 
 		return user;
+	}
+	
+	@Override
+	public void changeBio(String username, String bio) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setBio(bio);
+			this.userRepository.save(user);
+		}
+		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+	}
+	
+	@Override
+	public void changePassword(String username, String password) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setPassword(password);
+			this.userRepository.save(user);
+		}
+		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+	}
+	
+	@Override
+	public void changeName(String username, String name) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setName(name);
+			this.userRepository.save(user);
+		}
+		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+	}
+	
+	@Override
+	public void changeGender(String username, String gender) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setGender(gender);
+			this.userRepository.save(user);
+		}
+		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+	}
+	
+	@Override
+	public void changeNumber(String username, int number) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setPhoneNumber(number);
+			this.userRepository.save(user);
+		}
+		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 
 	private boolean userExists(String username) {
@@ -70,6 +115,15 @@ public class UserServiceImpl implements UserService {
 		User user = optionalUser.get();
 		// Delete user itself
 		this.userRepository.delete(user);
+	}
+
+
+	@Override
+	public User getUserById(int id) throws BusinessException {
+		User user = this.userRepository.findOneById(id);
+		if(user == null)
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		return user;
 	}
 
 }

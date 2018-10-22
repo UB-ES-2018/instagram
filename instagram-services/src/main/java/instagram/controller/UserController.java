@@ -1,7 +1,5 @@
 package instagram.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +29,7 @@ public class UserController {
 	private UserService userService;
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> addUser");
 		
@@ -42,21 +40,84 @@ public class UserController {
 
 		return new ResponseEntity<UserDto>(userdDto, HttpStatus.CREATED);
 	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping(value = "/update/bio", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updateBio(@RequestBody String bio, String username) throws BusinessException {
+		logger.info("UserController -> updateBio");
+		userService.changeBio(username, bio);
+		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
 
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public ResponseEntity<List<UserDto>> getAll(){
-		logger.info("UserController -> getAll");
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(value = "/update/password", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updatePassword(@RequestBody String password, String username) throws BusinessException {
+		logger.info("UserController -> updatePassword");
+		userService.changePassword(username, password);
+		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
 
-		List<User> users = userService.getAll();
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(value = "/update/name", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updateName(@RequestBody String name, String username) throws BusinessException {
+		logger.info("UserController -> updateName");
+		userService.changeName(username, name);
+		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
 
-		List<UserDto> result = new ArrayList<UserDto>();
-		for (User user : users) {
-			UserDto userdDto = new UserDto();
-			userdDto.loadFromModel(user);
-			result.add(userdDto);
-		}
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(value = "/update/phoneNumber", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updatePhoneNumber(@RequestBody int phoneNumber, String username) throws BusinessException {
+		logger.info("UserController -> updatePhoneNumber");
+		userService.changeNumber(username, phoneNumber);
+		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
 
-		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping(value = "/update/gender", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updateGender(@RequestBody String gender, String username) throws BusinessException {
+		logger.info(username);
+		logger.info("UserController -> updateGender");
+		userService.changeGender(username, gender);
+		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+
+	@RequestMapping(value = "/getByusername/{username}", method = RequestMethod.GET)
+	public ResponseEntity<UserDto> getUser(@PathVariable String username)throws BusinessException{
+		logger.info("UserController -> getUser");
+
+		User user = userService.getValidUserByUsername(username);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
+	}
+	@RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
+	public ResponseEntity<UserDto> getUser(@PathVariable int id)throws BusinessException{
+		logger.info("UserController -> getUser");
+
+		User user = userService.getUserById(id);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
 	}
 
 	@RequestMapping(value ="/delete/{id}", method = RequestMethod.GET)

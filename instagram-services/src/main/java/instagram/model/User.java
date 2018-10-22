@@ -37,20 +37,11 @@ public class User implements Serializable {
 	@Column(name = "website")
 	private String website;
 	
-	@Column(name = "phoneNumbre")
-	private int phone;
+	@Column(name = "phoneNumber")
+	private int phoneNumber;
 	
 	@Column(name = "gender")
 	private String gender;
-	
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public int getId() {
 		return id;
@@ -83,7 +74,15 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getBio() {
 		return bio;
 	}
@@ -91,21 +90,29 @@ public class User implements Serializable {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
-	
-	public String getWeb() {
+
+	public String getWebsite() {
 		return website;
 	}
 
-	public void setWeb(String website) {
+	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
-	public int getPhone() {
-		return phone;
+
+	public int getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone(int phone) {
-		this.phone = phone;
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	public String getGender() {
