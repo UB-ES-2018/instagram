@@ -1,15 +1,47 @@
 
 <body style="background-color: #F8F8F8; max-width: 100%; overflow-x: hidden;">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center">    
         <div class="column" style="width: 21%; vertical-align: bottom; z-index: 3;">
-            <img class="phone-image"
+                <div class="phone-slider" style="width: 450px;
+                    height: 517px;
+                    background-image: url(../assets/images/phoneSliders/backgroundPhones.png);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    padding-top: 81px; 
+                    padding-left: 125px;
+                    padding-right: 0px;
+                    padding-bottom: 0px;
+                    vertical-align: middle;
+                    position:absolute;
+                    top:0;
+                    bottom:0;
+                    margin:auto;
+                    ">
+                    <div class="carousel-inner" role="listbox" style="height: 100% !important;
+                    object-fit: cover;">
+                        <div class="item active">
+                            <img src="../assets/images/phoneSliders/phoneImage1.jpg" alt="..." width="200">
+                            <div class="carousel-caption">
+                            First slide label
+                            </div>
+                        </div>
+                        <!--<div class="item" style="height: 100% !important;
+                        object-fit: cover;">
+                            <img src="../assets/images/phoneSliders/phoneImage2.jpg" alt="...">
+                            <div class="carousel-caption">
+                            Second slide label
+                            </div>
+                        </div>-->
+                    </div>                
+                </div>
+            <!-- <img class="phone-image"
                 style="vertical-align: middle;
                 width: 11cm; height: 16cm;
                 position:absolute;
                 top:0;
                 bottom:0;
                 margin:auto;"
-                src="../assets/images/phoneSliders/backgroundPhones.png" />
+                src="../assets/images/phoneSliders/backgroundPhones.png" />-->
         </div>
         <div class="column" style="width: 21%; z-index: 4;">
             <br>
@@ -59,10 +91,13 @@
                 </form>
 
             </div>
-            <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px;" class="jumbotron">
+            <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px; text-align: center;" class="jumbotron">
                     <span style="color: black; font-size: 13.5px">¿Tienes una cuenta? <a [routerLink]="['/login']">Entrar</a></span>
             </div>
-            <span>Descarga la aplicación</span>
+            <div style="text-align: center;">
+                <span>Descarga la aplicación</span>
+            </div>
+            
             <div class="row">
                     <img class="user-avatar" src="../assets/images/banners/bannerApple.png" style=" width: 3cm; height: 1cm;"/>
                     &nbsp;
