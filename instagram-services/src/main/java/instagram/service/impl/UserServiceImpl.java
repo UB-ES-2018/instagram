@@ -126,4 +126,13 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+
+	@Override
+	public User getLogin(String username, String password) throws BusinessException {
+		User user = this.userRepository.findOneByUsernameAndPassword(username, password);
+		if(user == null)
+			throw new BusinessException(ErrorCodes.INVALID_CREDENTIAS);
+		return user;
+	}
+
 }

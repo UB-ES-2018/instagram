@@ -22,4 +22,6 @@ public interface UserService {
 	void changePassword(String username, String password) throws BusinessException;
 
 	void changeName(String username, String name) throws BusinessException;
+
+	User getLogin(String username, String password) throws BusinessException;
 }
