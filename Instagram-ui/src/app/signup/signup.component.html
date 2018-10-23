@@ -1,9 +1,8 @@
-
-<body style="background-color: #F8F8F8; max-width: 100%; overflow-x: hidden;">
+<body style="background-color: #F8F8F8; max-width: 100%; overflow-x: hidden;" onload="carousel()">
     <div class="row justify-content-md-center">    
         <div class="column" style="width: 21%; vertical-align: bottom; z-index: 3;">
-                <div class="phone-slider" style="width: 450px;
-                    height: 517px;
+                <div class="phone-slider" style="width: 440px;
+                    height: 510px;
                     background-image: url(../assets/images/phoneSliders/backgroundPhones.png);
                     background-repeat: no-repeat;
                     background-size: contain;
@@ -19,21 +18,31 @@
                     ">
                     <div class="carousel-inner" role="listbox" style="height: 100% !important;
                     object-fit: cover;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage1.jpg" width="200">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage2.jpg" width="200" style="display: none;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage3.jpg" width="200" style="display: none;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage4.jpg" width="200" style="display: none;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage5.jpg" width="200" style="display: none;">
+                        
+                        
+                        <!--
                         <div class="item active">
                             <img src="../assets/images/phoneSliders/phoneImage1.jpg" alt="..." width="200">
                             <div class="carousel-caption">
                             First slide label
                             </div>
                         </div>
-                        <!--<div class="item" style="height: 100% !important;
+                        <div class="item" style="height: 100% !important;
                         object-fit: cover;">
                             <img src="../assets/images/phoneSliders/phoneImage2.jpg" alt="...">
                             <div class="carousel-caption">
                             Second slide label
                             </div>
                         </div>-->
-                    </div>                
+                    </div>    
+                             
                 </div>
+                
             <!-- <img class="phone-image"
                 style="vertical-align: middle;
                 width: 11cm; height: 16cm;
@@ -52,7 +61,7 @@
                     Regístrate para ver fotos y vídeos de tus amigos.
                 </p>
                 <p>
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button" size="105px">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button" size="105px" onclick="carousel();">
                         <i style="font-size:24px" class="fa">&#xf230;</i>        Iniciar sesión con Facebook</a>
                 </p>
 
@@ -223,3 +232,7 @@
         </div>
 </footer>
 <!-- Footer -->
+
+
+
+
