@@ -35,6 +35,11 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	public Post getPostById(int id) {
+		return this.postRepository.findOneById(id);
+	}
+	
+	@Override
 	public Post addPost(String id_user, String photo, String description, Date created_at) {
 		Post post = new Post();
 		

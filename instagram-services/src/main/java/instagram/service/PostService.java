@@ -10,7 +10,9 @@ public interface PostService {
 	
 	List<Post> getAll();
 	
-	List<Post> getAllPostsFromUser(int id_user)
+	List<Post> getAllPostsFromUser(int id_user);
+	
+	Post getPostById(int id);
 	
 	Post addPost(String id_user, String photo, String description, Date created_at);
 	
