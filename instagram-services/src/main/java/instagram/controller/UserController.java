@@ -119,6 +119,17 @@ public class UserController {
 
 		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/login/", method = RequestMethod.POST)
+	public ResponseEntity<UserDto> loginUser(@RequestBody String username, String password) throws BusinessException{
+		logger.info("UserController -> loginUser");
+		
+		User loggedUser = userService.getLogin(username, password);
+		UserDto result = new UserDto();
+		result.loadFromModel(loggedUser);
+		
+		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
+	}
 
 	@RequestMapping(value ="/delete/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseDto> deleteUserByID(@PathVariable int id) throws BusinessException{
