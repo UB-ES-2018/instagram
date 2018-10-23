@@ -1,6 +1,7 @@
 package instagram.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "COMMENT")
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,26 +20,20 @@ public class Comment implements Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "USERNAME")
-	private String username;
+	@Column(name = "ID_USER")
+	private int id_user;
 
-	@Column(name = "PASSWORD")
-	private String password;
+	@Column(name = "ID_POST")
+	private int id_post;
 
-	@Column(name = "EMAIL")
-	private String email;
+	@Column(name = "CONTENT")
+	private String content;
 
-	@Column(name = "NAME")
-	private String name;
+	@Column(name = "CREATED_AT")
+	private Date created_at;
 	
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	@Column(name = "UPDATED_AT")
+	private Date updated_at;
 
 	public int getId() {
 		return id;
@@ -48,30 +43,45 @@ public class Comment implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public int getId_user() {
+		return id_user;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setId_user(int id_user) {
+		this.id_user = id_user;
 	}
 
-	public String getPassword() {
-		return password;
+	public int getId_post() {
+		return id_post;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setId_post(int id_post) {
+		this.id_post = id_post;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getContent() {
+		return content;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+
+	public Date getUpdated_at() {
+		return updated_at;
+	}
+
+	public void setUpdated_at(Date updated_at) {
+		this.updated_at = updated_at;
+	}
 	
 
 }
