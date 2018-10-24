@@ -12,6 +12,7 @@
 **/.project
 **/.classpath
 **/.settings
+**package-lock.json
 
 # IDEs and editors
 /.idea
@@ -42,3 +43,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.angulardoc.json
+package-lock.json
+Instagram-ui/package-lock.json
