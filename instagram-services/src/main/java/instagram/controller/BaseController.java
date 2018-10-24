@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import instagram.exception.BusinessException;
 import instagram.exception.ErrorCodes;
 import instagram.exception.ForbiddenException;
-import mian.javainstagram.controller.dto.ErrorDto;
 
 @ControllerAdvice
 public class BaseController {
