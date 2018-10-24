@@ -119,12 +119,12 @@ public class UserController {
 
 		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
 	}
-	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value="/login/", method = RequestMethod.POST)
-	public ResponseEntity<UserDto> loginUser(@RequestBody String username, String password) throws BusinessException{
+	public ResponseEntity<UserDto> loginUser(@RequestBody UserDto user) throws BusinessException{
 		logger.info("UserController -> loginUser");
 		
-		User loggedUser = userService.getLogin(username, password);
+		User loggedUser = userService.getLogin(user.getUsername(), user.getPassword());
 		UserDto result = new UserDto();
 		result.loadFromModel(loggedUser);
 		
