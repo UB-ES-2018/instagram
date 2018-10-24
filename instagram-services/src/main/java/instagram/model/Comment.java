@@ -21,19 +21,19 @@ public class Comment implements Serializable {
 	private int id;
 
 	@Column(name = "ID_USER")
-	private int id_user;
+	private int idUser;
 
 	@Column(name = "ID_POST")
-	private int id_post;
+	private int idPost;
 
 	@Column(name = "CONTENT")
 	private String content;
 
 	@Column(name = "CREATED_AT")
-	private Date created_at;
+	private Date createdAt;
 	
 	@Column(name = "UPDATED_AT")
-	private Date updated_at;
+	private Date updatedAt;
 
 	public int getId() {
 		return id;
@@ -43,20 +43,20 @@ public class Comment implements Serializable {
 		this.id = id;
 	}
 
-	public int getId_user() {
-		return id_user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
-	public int getId_post() {
-		return id_post;
+	public int getIdPost() {
+		return idPost;
 	}
 
-	public void setId_post(int id_post) {
-		this.id_post = id_post;
+	public void setIdPost(int idPost) {
+		this.idPost = idPost;
 	}
 
 	public String getContent() {
@@ -67,21 +67,22 @@ public class Comment implements Serializable {
 		this.content = content;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public Date getUpdated_at() {
-		return updated_at;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdated_at(Date updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
+
 	
 
 }
