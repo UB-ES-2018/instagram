@@ -12,22 +12,20 @@
                     <form role="form">
                         <div class="form-control-range" style="text-align: center;">
                             <div class="form-group">
-                                <input type="text" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Teléfono, usuario o correo electrónico">
+                                <input type="text" [(ngModel)]="username"  style="font-size: 13.5px" class="form-control input-underline input-lg" name="username"  placeholder="Teléfono, usuario o correo electrónico">
                             </div>
             
                             <div class="form-group">
-                                <input type="password" style="font-size: 13.5px" class="form-control input-underline input-lg" id="" placeholder="Contraseña">
+                                <input type="password" [(ngModel)]="password" class="form-control input-underline input-lg" name="password" placeholder="Password">
                             </div>
-    
                             <p>
-                                <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button"  [routerLink]="['/dashboard']">Entrar</a>
+
+                            <button (click)="onClickRegisterButton()" class="btn btn-primary btn-sm">Entrar</button>
                             </p>
 
-                        
-                            
                 
                             <div style="height: 1px; border-top: 1px solid #D3D3D3; text-align: center; position: relative; ">
-                                <span style="position: relative; top: -.7em; background: white; display: inline-block; ">&nbsp;&nbsp;&nbsp; o &nbsp;&nbsp;&nbsp;</span>
+                                <span style="position: relative; top: -.7em; background: #E8ECEF; display: inline-block; ">&nbsp;&nbsp;&nbsp; o &nbsp;&nbsp;&nbsp;</span>
                             </div>
 
                             <br>
@@ -42,10 +40,10 @@
                     </form>
     
                 </div>
-                <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px;" class="jumbotron">
+                <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px; text-align: center;" class="jumbotron">
                         <span style="color: black; font-size: 13.5px">¿No tienes una cuenta? <a [routerLink]="['/signup']">Regístrate</a></span>
                 </div>
-                <div style="margin: auto;">
+                <div style="margin: auto; text-align: center;">
                     <span >Descarga la aplicación.</span>
                 </div>
                 
@@ -59,4 +57,98 @@
             </div>
         </div>
     </body>
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small cyan darken-3" style="background: #F8F8F8;">
+        <!-- Footer Elements -->
+        <div class="container">
+    
+            <!-- Grid row-->
+            <div class="row">
+    
+                <!-- Grid column -->
+                <div class="col-md-12 py-5">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <!-- Grid column -->
+    
+            </div>
+            <!-- Grid row-->
+    
+        </div>
+        <!-- Footer Elements -->
+        <div class="footer-copyright text-center py-3">
+                <!-- Información -->
+                <a [routerLink]="['/feed']" class="info-link" style="font-weight: bold; color: darkslategray;">
+                    INFORMACIÓN 
+                </a>
+                &nbsp; &nbsp;
+                <!-- Asistencia -->
+                <a [routerLink]="['/feed']" class="assistance-link" style="font-weight: bold; color: darkslategray;">
+                    ASISTENCIA 
+                </a>
+                &nbsp; &nbsp;
+                <!-- Prensa-->
+                <a [routerLink]="['/feed']" class="press-link" style="font-weight: bold; color: darkslategray;">
+                    PRENSA 
+                </a>
+                &nbsp; &nbsp;
+                <!-- Api -->
+                <a [routerLink]="['/feed']" class="api-link" style="font-weight: bold; color: darkslategray;">
+                    API 
+                </a>
+                &nbsp; &nbsp;
+                <!-- Empleo -->
+                <a [routerLink]="['/feed']" class="jobs-link" style="font-weight: bold; color: darkslategray;">
+                    EMPLEO 
+                </a>
+                &nbsp; &nbsp;
+                <!-- Privacidad -->
+                <a [routerLink]="['/feed']" class="privacy-link" style="font-weight: bold; color: darkslategray;">
+                    PRIVACIDAD 
+                </a>   
+                &nbsp; &nbsp;
+                <!--Condiciones-->
+                <a [routerLink]="['/feed']" class="tos-link" style="font-weight: bold; color: darkslategray;">
+                    CONDICIONES 
+                </a>  
+                &nbsp; &nbsp;
+                <!--Directorio-->
+                <a [routerLink]="['/feed']" class="dir-link" style="font-weight: bold; color: darkslategray;">
+                    DIRECTORIO 
+                </a>  
+                &nbsp; &nbsp;
+                <!--Perfiles-->
+                <a [routerLink]="['/feed']" class="profiles-link" style="font-weight: bold; color: darkslategray;">
+                    PERFILES 
+                </a>  
+                &nbsp; &nbsp;
+                <!--Hashtags-->
+                <a [routerLink]="['/feed']" class="hastags-link" style="font-weight: bold; color: darkslategray;">
+                    HASHTAGS 
+                </a>  
+                &nbsp; &nbsp;
+                <!--Idioma-->
+                <a [routerLink]="['/feed']" class="language-link" style="font-weight: bold; color: darkslategray;">
+                    IDIOMA 
+                </a> 
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                    
+                © 2018 INSTAGRAM     
+            </div>
+    </footer>
+    <!-- Footer -->
 </html>

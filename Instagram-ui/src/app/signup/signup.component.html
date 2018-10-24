@@ -1,15 +1,56 @@
-
-<body style="background-color: #F8F8F8">
-    <div class="row justify-content-md-center">
+<body style="background-color: #F8F8F8; max-width: 100%; overflow-x: hidden;" onload="carousel()">
+    <div class="row justify-content-md-center">    
         <div class="column" style="width: 21%; vertical-align: bottom; z-index: 3;">
-            <img class="phone-image"
+                <div class="phone-slider" style="width: 440px;
+                    height: 510px;
+                    background-image: url(../assets/images/phoneSliders/backgroundPhones.png);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    padding-top: 81px; 
+                    padding-left: 125px;
+                    padding-right: 0px;
+                    padding-bottom: 0px;
+                    vertical-align: middle;
+                    position:absolute;
+                    top:0;
+                    bottom:0;
+                    margin:auto;
+                    ">
+                    <div class="carousel-inner" role="listbox" style="height: 100% !important;
+                    object-fit: cover;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage1.jpg" width="200">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage2.jpg" width="200" style="display: none;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage3.jpg" width="200" style="display: none;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage4.jpg" width="200" style="display: none;">
+                        <img  class="mySlides w3-animate-fading" src="../assets/images/phoneSliders/phoneImage5.jpg" width="200" style="display: none;">
+                        
+                        
+                        <!--
+                        <div class="item active">
+                            <img src="../assets/images/phoneSliders/phoneImage1.jpg" alt="..." width="200">
+                            <div class="carousel-caption">
+                            First slide label
+                            </div>
+                        </div>
+                        <div class="item" style="height: 100% !important;
+                        object-fit: cover;">
+                            <img src="../assets/images/phoneSliders/phoneImage2.jpg" alt="...">
+                            <div class="carousel-caption">
+                            Second slide label
+                            </div>
+                        </div>-->
+                    </div>    
+                             
+                </div>
+                
+            <!-- <img class="phone-image"
                 style="vertical-align: middle;
                 width: 11cm; height: 16cm;
                 position:absolute;
                 top:0;
                 bottom:0;
                 margin:auto;"
-                src="../assets/images/phoneSliders/backgroundPhones.png" />
+                src="../assets/images/phoneSliders/backgroundPhones.png" />-->
         </div>
         <div class="column" style="width: 21%; z-index: 4;">
             <br>
@@ -20,7 +61,7 @@
                     Regístrate para ver fotos y vídeos de tus amigos.
                 </p>
                 <p>
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button" size="105px">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" role="button" size="105px" onclick="carousel();">
                         <i style="font-size:24px" class="fa">&#xf230;</i>        Iniciar sesión con Facebook</a>
                 </p>
 
@@ -59,10 +100,13 @@
                 </form>
 
             </div>
-            <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px;" class="jumbotron">
+            <div style="width: 9cm; height: 2cm; margin-bottom: 10px; padding: 15px; text-align: center;" class="jumbotron">
                     <span style="color: black; font-size: 13.5px">¿Tienes una cuenta? <a [routerLink]="['/login']">Entrar</a></span>
             </div>
-            <span>Descarga la aplicación</span>
+            <div style="text-align: center;">
+                <span>Descarga la aplicación</span>
+            </div>
+            
             <div class="row">
                     <img class="user-avatar" src="../assets/images/banners/bannerApple.png" style=" width: 3cm; height: 1cm;"/>
                     &nbsp;
@@ -104,4 +148,91 @@
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
     </div>
 </ng-template>
+
+<!-- Footer -->
+<footer class="page-footer font-small cyan darken-3" style="background: #F8F8F8;">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+        <!-- Grid row-->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 py-5">
+                <br>
+                <br>
+                <br>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+    </div>
+    <!-- Footer Elements -->
+    <div class="footer-copyright text-center py-3">
+            <!-- Información -->
+            <a [routerLink]="['/feed']" class="info-link" style="font-weight: bold; color: darkslategray;">
+                INFORMACIÓN 
+            </a>
+            &nbsp; &nbsp;
+            <!-- Asistencia -->
+            <a [routerLink]="['/feed']" class="assistance-link" style="font-weight: bold; color: darkslategray;">
+                ASISTENCIA 
+            </a>
+            &nbsp; &nbsp;
+            <!-- Prensa-->
+            <a [routerLink]="['/feed']" class="press-link" style="font-weight: bold; color: darkslategray;">
+                PRENSA 
+            </a>
+            &nbsp; &nbsp;
+            <!-- Api -->
+            <a [routerLink]="['/feed']" class="api-link" style="font-weight: bold; color: darkslategray;">
+                API 
+            </a>
+            &nbsp; &nbsp;
+            <!-- Empleo -->
+            <a [routerLink]="['/feed']" class="jobs-link" style="font-weight: bold; color: darkslategray;">
+                EMPLEO 
+            </a>
+            &nbsp; &nbsp;
+            <!-- Privacidad -->
+            <a [routerLink]="['/feed']" class="privacy-link" style="font-weight: bold; color: darkslategray;">
+                PRIVACIDAD 
+            </a>   
+            &nbsp; &nbsp;
+            <!--Condiciones-->
+            <a [routerLink]="['/feed']" class="tos-link" style="font-weight: bold; color: darkslategray;">
+                CONDICIONES 
+            </a>  
+            &nbsp; &nbsp;
+            <!--Directorio-->
+            <a [routerLink]="['/feed']" class="dir-link" style="font-weight: bold; color: darkslategray;">
+                DIRECTORIO 
+            </a>  
+            &nbsp; &nbsp;
+            <!--Perfiles-->
+            <a [routerLink]="['/feed']" class="profiles-link" style="font-weight: bold; color: darkslategray;">
+                PERFILES 
+            </a>  
+            &nbsp; &nbsp;
+            <!--Hashtags-->
+            <a [routerLink]="['/feed']" class="hastags-link" style="font-weight: bold; color: darkslategray;">
+                HASHTAGS 
+            </a>  
+            &nbsp; &nbsp;
+            <!--Idioma-->
+            <a [routerLink]="['/feed']" class="language-link" style="font-weight: bold; color: darkslategray;">
+                IDIOMA 
+            </a> 
+            &nbsp; &nbsp; &nbsp; &nbsp;
+                
+            © 2018 INSTAGRAM     
+        </div>
+</footer>
+<!-- Footer -->
+
+
+
 

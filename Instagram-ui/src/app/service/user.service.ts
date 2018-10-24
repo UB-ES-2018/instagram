@@ -28,5 +28,14 @@ export class UserService {
       tap(p => console.log(`registered user`))
     );
   }
+  setLogin(username:string, password:string): Observable<User>{
+    var user = new User();
+    user.username = username;
+    user.password = password;
+    return this.httpClient.post<User>(CONST.URL_USER_LOGIN, user)
+      .pipe(
+        tap(p=> console.log('Loging user'))
+      );
+  }
  
 }
