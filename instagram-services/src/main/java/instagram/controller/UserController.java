@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import instagram.exception.BusinessException;
 import instagram.model.User;
 import instagram.service.UserService;
-import mian.javainstagram.controller.dto.ResponseDto;
-import mian.javainstagram.controller.dto.UserDto;
 
 @RestController
 @RequestMapping("/users")
