@@ -1,5 +1,7 @@
 package instagram.controller.dto;
 
+import java.util.Date;
+
 import instagram.model.Post;
 
 public class PostDto {
@@ -8,9 +10,9 @@ public class PostDto {
 	
 	private int id_user;
 	
-	private string photo;
+	private String photo;
 	
-	private string description;
+	private String description;
 	
 	private Date created_at;
 	
@@ -20,7 +22,7 @@ public class PostDto {
 		return id;
 	}
 	
-	public setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -28,23 +30,23 @@ public class PostDto {
 		return id_user;
 	}
 	
-	public setIdUser(int id_user) {
+	public void setIdUser(int id_user) {
 		this.id_user = id_user;
 	}
 	
-	public string getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 	
-	public setPhoto(string photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 	
-	public string getDescription() {
+	public String getDescription() {
 		return description;
 	}
 	
-	public setDescription(string description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	
@@ -52,7 +54,7 @@ public class PostDto {
 		return created_at;
 	}
 	
-	public setCreatedAt(Date created_at) {
+	public void setCreatedAt(Date created_at) {
 		this.created_at = created_at;
 	}
 	
@@ -60,7 +62,7 @@ public class PostDto {
 		return updated_at;
 	}
 	
-	public setUpdatedAt(Date updated_at) {
+	public void setUpdatedAt(Date updated_at) {
 		this.updated_at = updated_at;
 	}
 	

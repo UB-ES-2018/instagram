@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public Post addPost(String id_user, String photo, String description, Date created_at) {
+	public Post addPost(int id_user, String photo, String description, Date created_at) {
 		Post post = new Post();
 		
 		post.setIdUser(id_user);
@@ -55,9 +55,9 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	pubic void deletePost(int id) throws BusinessException {
-		Optional<Post> optionalPost = this.postRepository.findOneById(id);
+	public void deletePost(int id) throws BusinessException {
+		Optional<Post> optionalPost = this.postRepository.findById(id);
 		Post post = optionalPost.get();
-		this.postRepository.delete(user);
+		this.postRepository.delete(post);
 	}
 }

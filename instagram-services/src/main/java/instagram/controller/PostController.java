@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import instagram.model.Post;
+import instagram.controller.dto.PostDto;
 import instagram.service.PostService;
 import instagram.exception.BusinessException;
 
@@ -71,11 +72,10 @@ public class PostController {
 		logger.info("PostController -> addPost");
 		
 		Post post = postService.addPost(postDto.getIdUser(), postDto.getPhoto(), postDto.getDescription(), postDto.getCreatedAt());
+		PostDto postDtoret = new PostDto();
+		postDtoret.loadFromModel(post);
 		
-		PostDto postDto = new PostDto();
-		postDto.loadFromModel(post);
-		
-		return new ResponseEntity<postDto>(userDto, HttpStatus.CREATED);
+		return new ResponseEntity<PostDto>(postDtoret, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

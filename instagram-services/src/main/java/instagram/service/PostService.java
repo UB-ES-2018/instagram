@@ -14,7 +14,7 @@ public interface PostService {
 	
 	Post getPostById(int id);
 	
-	Post addPost(String id_user, String photo, String description, Date created_at);
+	Post addPost(int id_user, String photo, String description, Date created_at);
 	
 	void deletePost(int id) throws BusinessException;
 }
