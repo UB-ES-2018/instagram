@@ -1,8 +1,7 @@
 package instagram.service.impl;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
-//import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,18 +25,8 @@ public class CommentServiceImpl implements CommentService {
 	private CommentRepository commentRepository;
 
 	@Override
-	public List<Comment> getCommentsFromUser(int idUser) {
-		return commentRepository.findAllByIdUser(idUser);
-	}
-
-	@Override
-	public List<Comment> getCommentsFromPost(int idPost) {
-		return commentRepository.findAllByIdPost(idPost);
-	}
-
-	@Override
-	public void deleteComment(int id) throws BusinessException {
-		commentRepository.deleteById(id);
+	public Comment getCommentById(int id) throws BusinessException {
+		return commentRepository.findById(id).orElseThrow(() -> new BusinessException(null)); // error code TODO
 	}
 
 	@Override
@@ -47,7 +36,7 @@ public class CommentServiceImpl implements CommentService {
 		comment.setIdUser(idUser);
 		comment.setIdPost(idPost);
 		comment.setContent(content);
-		comment.setCreatedAt(new Date(new java.util.Date().getTime()));
+		comment.setCreatedAt(new Date());
 		comment.setUpdatedAt(null);
 		
 		commentRepository.save(comment);
@@ -56,14 +45,30 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public void editComment(int id, String newContent) throws BusinessException {
-		Comment comment = commentRepository.findById(id).get();
+	public Comment editComment(int id, String newContent) throws BusinessException {
+		Comment comment = commentRepository.findById(id).orElseThrow(() -> new BusinessException(null)); // error code TODO
 		
 		comment.setContent(newContent);
-		comment.setUpdatedAt(new Date(new java.util.Date().getTime()));
+		comment.setUpdatedAt(new Date());
 		
 		commentRepository.save(comment);
 		
+		return comment;
+	}
+
+	@Override
+	public void deleteComment(int id) throws BusinessException {
+		commentRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Comment> getCommentsByUser(int idUser) {
+		return commentRepository.findAllByIdUser(idUser);
+	}
+
+	@Override
+	public List<Comment> getCommentsByPost(int idPost) {
+		return commentRepository.findAllByIdPost(idPost);
 	}
 
 	

@@ -6,14 +6,16 @@ import instagram.exception.BusinessException;
 import instagram.model.Comment;
 
 public interface CommentService {
-
-	List<Comment> getCommentsFromUser(int idUser);
 	
-	List<Comment> getCommentsFromPost(int idPost);
+	Comment getCommentById(int id) throws BusinessException;
 	
-	void deleteComment(int id) throws BusinessException;
-
 	Comment addComment(int idUser, int idPost, String content) throws BusinessException;
 
-	void editComment(int id, String newContent) throws BusinessException;
+	Comment editComment(int id, String newContent) throws BusinessException;
+
+	void deleteComment(int id) throws BusinessException;
+
+	List<Comment> getCommentsByUser(int idUser);
+	
+	List<Comment> getCommentsByPost(int idPost);
 }

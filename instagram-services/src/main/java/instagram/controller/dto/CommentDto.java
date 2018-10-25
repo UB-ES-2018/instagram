@@ -1,38 +1,21 @@
-package instagram.model;
+package instagram.controller.dto;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import instagram.model.Comment;
 
-@Entity
-@Table(name = "COMMENT")
-public class Comment implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+public class CommentDto {
+	
 	private int id;
 
-	@Column(name = "ID_USER")
 	private int idUser;
 
-	@Column(name = "ID_POST")
 	private int idPost;
 
-	@Column(name = "CONTENT")
 	private String content;
 
-	@Column(name = "CREATED_AT")
 	private Date createdAt;
 	
-	@Column(name = "UPDATED_AT")
 	private Date updatedAt;
 
 	public int getId() {
@@ -82,7 +65,18 @@ public class Comment implements Serializable {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
 	
+	public void loadFromModel(Comment comment) {
+		id = comment.getId();
 
+		idUser = comment.getIdUser();
+
+		idPost = comment.getIdPost();
+
+		content = comment.getContent();
+
+		createdAt = comment.getCreatedAt();
+		
+		updatedAt = comment.getUpdatedAt();
+	}
 }
