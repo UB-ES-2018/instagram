@@ -19,6 +19,7 @@ import instagram.exception.BusinessException;
 import instagram.model.User;
 import instagram.service.UserService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -28,7 +29,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> addUser");
@@ -41,7 +41,6 @@ public class UserController {
 		return new ResponseEntity<UserDto>(userdDto, HttpStatus.CREATED);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "/update/bio", method = RequestMethod.PUT)
 	public ResponseEntity<UserDto> updateBio(@RequestBody String bio, String username) throws BusinessException {
 		logger.info("UserController -> updateBio");
@@ -86,7 +85,6 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "/update/gender", method = RequestMethod.PUT)
 	public ResponseEntity<UserDto> updateGender(@RequestBody String gender, String username) throws BusinessException {
 		logger.info(username);
@@ -109,6 +107,7 @@ public class UserController {
 
 		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
 	}
+	
 	@RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
 	public ResponseEntity<UserDto> getUser(@PathVariable int id)throws BusinessException{
 		logger.info("UserController -> getUser");
@@ -119,7 +118,7 @@ public class UserController {
 
 		return new ResponseEntity<UserDto>(result, HttpStatus.OK);
 	}
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@RequestMapping(value="/login/", method = RequestMethod.POST)
 	public ResponseEntity<UserDto> loginUser(@RequestBody UserDto user) throws BusinessException{
 		logger.info("UserController -> loginUser");
