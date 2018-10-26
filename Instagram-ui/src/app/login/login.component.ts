@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
-import { UserService } from '../service/user.service';
 import { User } from '../model/User';
+import { authService } from '../service/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     username : string;
     user : User;
     constructor(public router: Router,
-                private userService: UserService ) {}
+                private authService: authService) {}
 
     ngOnInit() {
     }
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('isLoggedin', 'true');
     }
     onClickRegisterButton(){
-        this.userService.setLogin(this.username,this.password).subscribe(
+        this.authService.setLogin(this.username,this.password).subscribe(
             user => {
                 this.user = user
                 this.router.navigateByUrl('/perfil'); 
