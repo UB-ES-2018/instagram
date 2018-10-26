@@ -12,7 +12,7 @@ import { User } from '../model/User';
 export class authService {
 
   logStatus : boolean = false;
-  logUser: User;
+  logUser: User = User.createDummy();
 
   constructor(private httpClient: HttpClient) { }
 
