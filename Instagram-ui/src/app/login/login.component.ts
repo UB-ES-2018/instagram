@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { User } from '../model/User';
 import { authService } from '../service/auth.service';
+import { FollowService } from '../service/follow.service';
 
 @Component({
     selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     username : string;
     user : User;
     constructor(public router: Router,
-                private authService: authService) {}
+                private authService: authService,
+                private followService: FollowService) {}
 
     ngOnInit() {
         if(this.authService.logStatus){
