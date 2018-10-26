@@ -19,11 +19,9 @@ export class LoginComponent implements OnInit {
                 private authService: authService) {}
 
     ngOnInit() {
-    }
-    ngDoCheck(){
-        console.log(this.password);
-        console.log(this.username);
-        console.log(this.user);
+        if(this.authService.logStatus){
+            this.router.navigateByUrl('/perfil');
+        }
     }
     onLoggedin() {
         localStorage.setItem('isLoggedin', 'true');
