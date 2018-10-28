@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { authService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  profilename: string;
+  constructor(private router: Router, private authenticationService: authService) { }
   ngOnInit() {
+    //this.profilename = this.authenticationService.logUser.name;
+    this.profilename = 'zzzz';
+    console.log('qqqqqqqqqqqqqqqq ' + this.profilename);
   }
 
   onKeydown(event) {

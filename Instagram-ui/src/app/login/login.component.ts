@@ -13,26 +13,26 @@ import { FollowService } from '../service/follow.service';
 })
 export class LoginComponent implements OnInit {
 
-    password : string;
-    username : string;
-    user : User;
+    password: string;
+    username: string;
+    user: User;
     constructor(public router: Router,
-                private authService: authService,
-                private followService: FollowService) {}
+        private authService: authService,
+        private followService: FollowService) { }
 
     ngOnInit() {
-        if(this.authService.logStatus){
+        if (this.authService.logStatus) {
             this.router.navigateByUrl('/perfil');
         }
     }
     onLoggedin() {
         localStorage.setItem('isLoggedin', 'true');
     }
-    onClickRegisterButton(){
-        this.authService.setLogin(this.username,this.password).subscribe(
+    onClickRegisterButton() {
+        this.authService.setLogin(this.username, this.password).subscribe(
             user => {
-                this.user = user
-                this.router.navigateByUrl('/perfil'); 
+                this.user = user;
+                this.router.navigateByUrl('');
             });
     }
 }

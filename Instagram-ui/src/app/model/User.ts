@@ -1,14 +1,14 @@
-export class User{
-    id : number;
-    username : string;
-    password : string;
-    email : string;
-    name : string;	
-	bio : string;
-    website : string;
-    phoneNumber : number;	
+export class User {
+    id: number;
+    username: string;
+    password: string;
+    email: string;
+    name: string;
+    bio: string;
+    website: string;
+    phoneNumber: number;
     gender: string;
-    
+
     public static createDummy(): User {
         const user = new User();
         user.id = -1;

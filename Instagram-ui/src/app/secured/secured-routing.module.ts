@@ -11,8 +11,7 @@ const routes: Routes = [
         path: '',
         component: SecuredComponent,
         children: [
-            { path: '', component: ProfileComponent },
-            { path: 'feed', component: FeedComponent},
+            { path: '', component: FeedComponent},
             { path: 'explore', component: ExploreComponent},
             { path: ':profileID', component: ProfileComponent }
         ]
