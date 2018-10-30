@@ -3,12 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared';
 
 const routes: Routes = [
-    { path: '', loadChildren: './login/login.module#LoginModule' },
     { path: 'login', loadChildren: './login/login.module#LoginModule' },
     { path: 'signup', loadChildren: './signup/signup.module#SignupModule' },
     { path: 'access-denied', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
     { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
-    { path: 'perfil', loadChildren: './secured/secured.module#SecuredModule'},
+    { path: '', loadChildren: './secured/secured.module#SecuredModule'},
     { path: '**', redirectTo: 'not-found' }
 ];
 

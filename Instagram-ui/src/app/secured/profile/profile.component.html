@@ -2,15 +2,15 @@
   <div id="logo"><img alt="" src="assets/images/defaultlogo.png" width="200px"/></div><!--<img alt="" src="assets/images/logo.png" width="200px"/>-->
   <div id="datosusuario">
     <div id="datostop">
-        <div id="nick">{{profile.nick}}</div>
+        <div id="nick">{{user?.username}}</div>
         <div id="opciones">Editar Perfil </div>
     </div>
     <div id="datosmid">
-        <div id="followers">{{profile.followers}} followers</div>
-        <div id="publications">{{profile.publications}} publications</div>
-        <div id="following">{{profile.following}} following</div>
+        <div id="followers">{{followers}} followers</div>
+        <div id="publications">{{posts}} publications</div>
+        <div id="following">{{followeds}} following</div>
     </div>
-    <div id="name">{{profile.name}}</div>
+    <div id="name">{{user?.name}}</div>
   </div>
   
 </div>
