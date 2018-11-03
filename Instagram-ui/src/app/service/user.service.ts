@@ -46,5 +46,9 @@ export class UserService {
     return this.httpClient.get(CONST.URL_POST + id).pipe(map((posts: any[]) => posts.length));
   }
 
+  modifyName(name: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_NAME.replace('{username}', userName), name);
+
+  }
 
 }

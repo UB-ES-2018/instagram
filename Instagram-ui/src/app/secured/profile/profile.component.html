@@ -3,7 +3,7 @@
   <div id="datosusuario">
     <div id="datostop">
         <div id="nick">{{user?.username}}</div>
-        <div id="opciones">Editar Perfil </div>
+        <div id="opciones"><a *ngIf="isAuthUser()" routerLink="/accounts">Editar Perfil</a></div>
     </div>
     <div id="datosmid">
         <div id="followers">{{followers}} followers</div>

@@ -11,9 +11,11 @@ const routes: Routes = [
         path: '',
         component: SecuredComponent,
         children: [
-            { path: '', component: FeedComponent},
-            { path: 'explore', component: ExploreComponent},
+            { path: 'accounts', loadChildren: './edit-user-profile/edit-user-profile.module#EditUserProfileModule' },
+            { path: '', component: FeedComponent },
+            { path: 'explore', component: ExploreComponent },
             { path: ':profileID', component: ProfileComponent }
+
         ]
     }
 ];
