@@ -5,15 +5,19 @@ import { SecuredComponent } from './secured.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ExploreComponent } from './explore/explore.component';
 import { FeedComponent } from './feed/feed.component';
+import { AuthGuard } from '../shared';
 
 const routes: Routes = [
     {
         path: '',
         component: SecuredComponent,
         children: [
-            { path: 'accounts', loadChildren: './edit-user-profile/edit-user-profile.module#EditUserProfileModule' },
-            { path: '', component: FeedComponent },
-            { path: 'explore', component: ExploreComponent },
+            {
+                path: 'accounts', loadChildren: './edit-user-profile/edit-user-profile.module#EditUserProfileModule',
+                canActivate: [AuthGuard]
+            },
+            { path: '', component: FeedComponent, canActivate: [AuthGuard] },
+            { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
             { path: ':profileID', component: ProfileComponent }
 
         ]

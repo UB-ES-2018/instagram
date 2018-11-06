@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import {UserService} from './service/user.service';
 import { authService } from './service/auth.service';
 import { FollowService } from './service/follow.service';
+import { AuthGuard } from './shared';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -43,7 +44,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     providers: [
         authService,
         UserService,
-        FollowService
+        FollowService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })

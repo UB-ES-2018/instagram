@@ -48,7 +48,10 @@ export class ProfileComponent implements OnInit {
     }, error => console.error('error retrieving post data ' + error));
   }
   isAuthUser() {
-    //console.log(this.authenticationService.logUser.username +"------"+this.user.username);
-    return this.authenticationService.logUser.username === this.user.username;
+    // console.log(this.authenticationService.logUser.username +"------"+this.user.username);
+    if (this.authenticationService.logUser && this.user) {
+      return this.authenticationService.logUser.username === this.user.username;
+    }
+    return false;
   }
 }

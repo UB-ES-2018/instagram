@@ -50,5 +50,40 @@ export class UserService {
     return this.httpClient.put<User>(CONST.URL_UPDATE_NAME.replace('{username}', userName), name);
 
   }
+  modifyUserName(userNamen: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_USERNAME.replace('{username}', userName), userNamen);
+
+  }
+  modifyBio(bio: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_BIO.replace('{username}', userName), bio);
+
+  }
+
+  modifyPhone(phone: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_PHONE.replace('{username}', userName), phone);
+
+  }
+
+  modifyGender(gender: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_GENDER.replace('{username}', userName), gender);
+
+  }
+
+  modifyPass(pass: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_PASS.replace('{username}', userName), pass);
+
+  }
+
+  modifyEMail(email: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_EMAIL.replace('{username}', userName), email);
+
+  }
+
+  modifyWeb(web: string, userName: string): Observable<User> {
+    return this.httpClient.put<User>(CONST.URL_UPDATE_WEB.replace('{username}', userName), web);
+
+  }
+
+
 
 }

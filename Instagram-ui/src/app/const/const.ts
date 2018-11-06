@@ -11,7 +11,15 @@ export const CONST = {
     URL_FOLLOWEDS: environment.api + 'followers/getFolloweds/',
     URL_POST: environment.api + 'post/getPost/',
     URL_USER_GET_BY_USERNAME: environment.api + 'users/getByusername/',
-    URL_UPDATE_NAME: environment.api + 'users/{username}/update/name'
+    URL_UPDATE_NAME: environment.api + 'users/{username}/update/name',
+    URL_UPDATE_BIO: environment.api + 'users/{username}/update/bio',
+    URL_UPDATE_PHONE: environment.api + 'users/{username}/update/phoneNumber',
+    URL_UPDATE_GENDER: environment.api + 'users/{username}/update/gender',
+    URL_UPDATE_PASS: environment.api + 'users/{username}/update/password',
+    URL_UPDATE_WEB: environment.api + 'users/{username}/update/web',
+    URL_UPDATE_USERNAME: environment.api + 'users/{username}/update/userName',
+    URL_UPDATE_EMAIL: environment.api + 'users/{username}/update/email'
+
 
 
 };

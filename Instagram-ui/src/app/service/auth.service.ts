@@ -12,7 +12,7 @@ import { User } from '../model/User';
 export class authService {
 
   logStatus = false;
-  logUser: User = User.createDummy();
+  logUser: User;
 
   constructor(private httpClient: HttpClient) {
     if (sessionStorage.getItem('authenticatedUser')) {
