@@ -4,6 +4,7 @@ import { ProfileService } from '../shared/profile.service';
 import { Profile } from '../shared/models/profile.model';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/User';
+import { authService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
   followeds: number;
   posts: number;
 
-  constructor(private router: ActivatedRoute, private userService: UserService, private ruta: Router) { }
+  constructor(private router: ActivatedRoute, private userService: UserService,
+    private ruta: Router, private authenticationService: authService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -44,5 +46,12 @@ export class ProfileComponent implements OnInit {
     this.userService.getAmountPost(this.user.id).subscribe(posts => {
       this.posts = posts;
     }, error => console.error('error retrieving post data ' + error));
+  }
+  isAuthUser() {
+    // console.log(this.authenticationService.logUser.username +"------"+this.user.username);
+    if (this.authenticationService.logUser && this.user) {
+      return this.authenticationService.logUser.username === this.user.username;
+    }
+    return false;
   }
 }

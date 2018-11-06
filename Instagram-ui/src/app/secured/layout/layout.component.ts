@@ -9,11 +9,15 @@ import { authService } from '../../service/auth.service';
 })
 export class LayoutComponent implements OnInit {
   profilename: string;
-  constructor(private router: Router, private authenticationService: authService) { }
+  constructor(private router: Router, public authenticationService: authService) { }
   ngOnInit() {
-    //this.profilename = this.authenticationService.logUser.name;
-    this.profilename = 'zzzz';
-    console.log('qqqqqqqqqqqqqqqq ' + this.profilename);
+    // this.profilename = this.authenticationService.logUser.name;
+    if (this.authenticationService.logUser) {
+      this.profilename = this.authenticationService.logUser.username;
+    } else {
+      this.profilename = null;
+    }
+
   }
 
   onKeydown(event) {
