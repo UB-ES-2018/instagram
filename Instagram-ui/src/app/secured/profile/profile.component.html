@@ -30,46 +30,10 @@
       <span aria-hidden="true">&times;</span>
       </button>
   </div>
-  <div class="modal-body" style="height: 250px; overflow-y: auto;">
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      <p>SuccessModalBody</p>
-      
+  <div id="followed_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
+      <li *ngFor="let user_followed of followed_list">
+          {{user_followed.username}}
+      </li>
   </div>
   <div class="modal-footer">      
   </div>

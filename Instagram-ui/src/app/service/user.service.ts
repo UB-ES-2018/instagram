@@ -42,6 +42,14 @@ export class UserService {
     return this.httpClient.get(CONST.URL_FOLLOWEDS + id).pipe(map((users: User[]) => users.length));
   }
 
+  getFollowers(id: number): Observable<User[]> {
+    return this.httpClient.get(CONST.URL_FOLLOWERS + id).pipe(map((users: User[]) => users));
+  }
+
+  getFolloweds(id: number): Observable<User[]> {
+    return this.httpClient.get(CONST.URL_FOLLOWEDS + id).pipe(map((users: User[]) => users));
+  }
+
   getAmountPost(id: number): Observable<number> {
     return this.httpClient.get(CONST.URL_POST + id).pipe(map((posts: any[]) => posts.length));
   }

@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit {
   user: User;
   followers: number;
   followeds: number;
+  follower_list: User[];
+  followed_list: User[];
   posts: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
@@ -50,6 +52,14 @@ export class ProfileComponent implements OnInit {
     this.userService.getAmountFollowers(this.user.id).subscribe(followers => {
       this.followers = followers;
     }, error => console.error('error retrieving followers data ' + error));
+
+    this.userService.getFolloweds(this.user.id).subscribe(followed_list => {
+      this.followed_list = followed_list;
+    }, error => console.error('Error retrieving the followed list ' + error));
+    this.userService.getFollowers(this.user.id).subscribe(follower_list => {
+      this.follower_list = follower_list;
+    }, error => console.error('Error retrieving the follower list ' + error));
+
     this.userService.getAmountPost(this.user.id).subscribe(posts => {
       this.posts = posts;
     }, error => console.error('error retrieving post data ' + error));
