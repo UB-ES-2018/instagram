@@ -7,6 +7,14 @@
     </div>
     <div id="datosmid">
         <div id="followers">{{followers}} followers</div>
+        
+        <div id="getFollow">
+          <button (click)="popUp()" class="btn btn-primary btn-sm">popup</button> 
+        </div>
+
+        <div id="follow">
+          <button (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
+        </div>
         <div id="publications">{{posts}} publications</div>
         <div id="following">{{followeds}} following</div>
     </div>
@@ -14,3 +22,55 @@
   </div>
   
 </div>
+
+<ng-template #modalFollowed let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title ">Following</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body" style="height: 250px; overflow-y: auto;">
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      <p>SuccessModalBody</p>
+      
+  </div>
+  <div class="modal-footer">      
+  </div>
+</ng-template>

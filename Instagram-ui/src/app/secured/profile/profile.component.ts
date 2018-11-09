@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../shared/profile.service';
 import { Profile } from '../shared/models/profile.model';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/User';
 import { authService } from '../../service/auth.service';
+import { FollowService } from '../../service/follow.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
+
 export class ProfileComponent implements OnInit {
+  @ViewChild('modalFollowed') modalFollowed: ElementRef;
+
   profileID: string;
   user: User;
   followers: number;
@@ -19,7 +25,8 @@ export class ProfileComponent implements OnInit {
   posts: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
-    private ruta: Router, private authenticationService: authService) { }
+    private ruta: Router, private authenticationService: authService,
+    private followService: FollowService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -54,4 +61,13 @@ export class ProfileComponent implements OnInit {
     }
     return false;
   }
+
+  sendFollow() {
+    this.followService.requestFollow(8, 7).subscribe();
+    console.log(8 + ' Sending follow to ' + 7);
+  }
+  popUp(){
+    this.modalService.open(this.modalFollowed, {centered: true})
+  }
+  
 }
