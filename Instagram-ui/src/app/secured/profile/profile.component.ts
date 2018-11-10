@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
     console.log(8 + ' Sending follow to ' + 7);
   }
   popUp(){
-    this.modalService.open(this.modalFollowed, {centered: true})
+    this.modalService.open(this.modalFollowed, {centered: true, size: 'pop', windowClass: 'modal-cs'})
   }
   
 }

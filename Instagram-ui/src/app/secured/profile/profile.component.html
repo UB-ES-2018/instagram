@@ -25,15 +25,29 @@
 
 <ng-template #modalFollowed let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <h4 class="modal-title ">Following</h4>
+      <h4 class="modal-title" style="padding-left: 5em">Following</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
       </button>
   </div>
   <div id="followed_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
-      <li *ngFor="let user_followed of followed_list">
-          {{user_followed.username}}
-      </li>
+      <div *ngFor="let user_followed of followed_list" class="column" style="line-height: 4.5em">
+          <span style="display:inline;">
+            <img alt="" src="assets/images/defaultlogo.png" width="15%"/>
+          </span>
+
+          <div style="display:inline-block; line-height: 1em">
+              <b>&nbsp; {{user_followed.username}}</b>
+              <br>
+              <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.bio}}</span>
+          </div>
+                   
+          <span style="display:inline; float: right;">
+              <button (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
+          </span>
+          
+          
+      </div>
   </div>
   <div class="modal-footer">      
   </div>
