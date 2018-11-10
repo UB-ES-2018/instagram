@@ -17,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowed') modalFollowed: ElementRef;
+  @ViewChild('modalFollowers') modalFollowers: ElementRef;
 
   profileID: string;
   user: User;
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
   followeds: number;
   follower_list: User[];
   followed_list: User[];
+  temp_list: User[]
   posts: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
@@ -76,21 +78,27 @@ export class ProfileComponent implements OnInit {
     this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe();
     console.log(this.authenticationService.logUser.id + ' Sending follow to ' + followed_id);
   }
-  popUp(){
+  followedPopUp(){
     if(this.authenticationService.logUser && this.user){
-      this.modalService.open(this.modalFollowed, {centered: true, size: 'pop', windowClass: 'modal-cs'})
+      this.modalService.open(this.modalFollowed, {centered: true, size:'lg', windowClass: 'modal-cs'})
     }else{
       this.ruta.navigate(['login']);
-    }
-    
+    }    
   }
-  differentUser(id: Number){
-    console.log('Checking');
+
+  followersPopUp(){
+    if(this.authenticationService.logUser && this.user){
+      this.modalService.open(this.modalFollowers, {centered: true, size:'lg', windowClass: 'modal-cs'})
+    }else{
+      this.ruta.navigate(['login']);
+    }    
+  }
+
+  followCheck(id: number){
     if(id != this.authenticationService.logUser.id){
       return true;
     }else{
       return false;
     }
-  }
-  
+  }  
 }
