@@ -166,3 +166,9 @@
 @include media-breakpoint-up(lg) {
   .modal-lg { max-width: $modal-lg; }
 }
+
+
+.modal-cs .modal-pop {
+  max-width: 400px;
+  max-height: 400px;
+}
