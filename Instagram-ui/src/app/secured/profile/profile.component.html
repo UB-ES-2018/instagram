@@ -40,10 +40,9 @@
               <b>&nbsp; {{user_followed.username}}</b>
               <br>
               <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.bio}}</span>
-          </div>
-                   
+          </div>                   
           <span style="display:inline; float: right;">
-              <button (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
+              <button *ngIf="differentUser(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
           </span>
           
           

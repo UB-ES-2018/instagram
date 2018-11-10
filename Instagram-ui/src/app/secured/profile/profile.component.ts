@@ -72,12 +72,25 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 
-  sendFollow() {
-    this.followService.requestFollow(8, 7).subscribe();
-    console.log(8 + ' Sending follow to ' + 7);
+  sendFollow(followed_id: number) {
+    this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe();
+    console.log(this.authenticationService.logUser.id + ' Sending follow to ' + followed_id);
   }
   popUp(){
-    this.modalService.open(this.modalFollowed, {centered: true, size: 'pop', windowClass: 'modal-cs'})
+    if(this.authenticationService.logUser && this.user){
+      this.modalService.open(this.modalFollowed, {centered: true, size: 'pop', windowClass: 'modal-cs'})
+    }else{
+      this.ruta.navigate(['login']);
+    }
+    
+  }
+  differentUser(id: Number){
+    console.log('Checking');
+    if(id != this.authenticationService.logUser.id){
+      return true;
+    }else{
+      return false;
+    }
   }
   
 }
