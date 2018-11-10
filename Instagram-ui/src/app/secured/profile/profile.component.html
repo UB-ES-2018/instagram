@@ -4,7 +4,7 @@
     <div id="datostop">
         <div id="nick">{{user?.username}}</div>
         <div id="follow">
-            <button (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
+            <button *ngIf="followCheck(user?.id)" (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
         </div>
         <div id="opciones"><a *ngIf="isAuthUser()" routerLink="/accounts">Editar Perfil</a></div>
     </div>
