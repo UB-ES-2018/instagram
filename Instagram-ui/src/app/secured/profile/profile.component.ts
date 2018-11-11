@@ -4,6 +4,7 @@ import { ProfileService } from '../shared/profile.service';
 import { Profile } from '../shared/models/profile.model';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/User';
+import { Follow } from '../../model/Follow';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit {
   followeds: number;
   follower_list: User[];
   followed_list: User[];
-  temp_list: User[]
+  follow_check: Follow;
   posts: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
@@ -36,6 +37,7 @@ export class ProfileComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.profileID = params.profileID;
       this.loadUser();
+      this.follow_check = Follow.createDummy();
     });
   }
   private loadUser() {
@@ -92,6 +94,14 @@ export class ProfileComponent implements OnInit {
     }else{
       this.ruta.navigate(['login']);
     }    
+  }
+
+  checkFollow(followed:number) {   
+    //this.followService.checkFollow(followed,this.authenticationService.logUser.id).subscribe(follow_check => {
+    //  this.follow_check = follow_check;
+    //}, error => console.error('error checking follow ' + error)); 
+    //console.log(' User ' + this.authenticationService.logUser.id + ' follows ' + followed + ' status: ' +this.follow_check.accepted);
+    return true;
   }
 
   followCheck(id: number){
