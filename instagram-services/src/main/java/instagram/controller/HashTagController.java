@@ -21,6 +21,7 @@ import instagram.exception.BusinessException;
 import instagram.model.HashTag; 
 import instagram.service.HashTagService; 
 
+@CrossOrigin
 @RestController
 @RequestMapping("/hashTags")
 public class HashTagController {

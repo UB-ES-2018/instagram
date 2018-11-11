@@ -92,6 +92,8 @@ public class FollowerController {
 
 		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
 	}
+	
+	
 
 	@RequestMapping(value ="/getFolloweds/{userid}", method = RequestMethod.GET)
 	public ResponseEntity<List<UserDto>> getFolloweds(@PathVariable int userid) throws BusinessException{
@@ -107,5 +109,16 @@ public class FollowerController {
 
 		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
 				
+	}
+	
+	@RequestMapping(value = "/check/{followed}/{follower}", method = RequestMethod.GET)
+	public ResponseEntity<FollowerDto> check(@PathVariable int followed, @PathVariable int follower) throws BusinessException {
+		logger.info("FollowerController -> check");
+		
+		Follower newFollow = this.followerService.getFollower(followed, follower);
+		FollowerDto follow = new FollowerDto();
+		follow.loadFromModel(newFollow);
+
+		return new ResponseEntity<FollowerDto>(follow, HttpStatus.ACCEPTED);
 	}
 }

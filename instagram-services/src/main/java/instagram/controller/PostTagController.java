@@ -21,6 +21,7 @@ import instagram.exception.BusinessException;
 import instagram.model.PostTag;
 import instagram.service.PostTagService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/postTags")
 public class PostTagController {

@@ -61,6 +61,20 @@ public class FollowerServiceImpl implements FollowerService {
 	public List<Integer> getAllNewRequest(int userid) {
 		return this.followerRepository.findAllNewRequest(userid);
 	}
+
+	@Override
+	public Follower getFollower(int followed, int follower) throws BusinessException {
+		Follower follow = this.followerRepository.findOneByfollowAndFollowed(follower, followed);
+		if(follow == null){
+			follow = new Follower();
+			follow.setFollowed(followed);
+			follow.setFollow(follower);
+			follow.setAccepted(false);
+		}else {
+			follow.setAccepted(true);
+		}
+		return follow;
+	}
 	
 
 }
