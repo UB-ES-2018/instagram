@@ -21,6 +21,7 @@ import instagram.exception.BusinessException;
 import instagram.model.Like;
 import instagram.service.LikeService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/likes")
 public class LikeController {
