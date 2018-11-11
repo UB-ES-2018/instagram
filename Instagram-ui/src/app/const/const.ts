@@ -19,7 +19,7 @@ export const CONST = {
     URL_UPDATE_WEB: environment.api + 'users/{username}/update/web',
     URL_UPDATE_USERNAME: environment.api + 'users/{username}/update/userName',
     URL_UPDATE_EMAIL: environment.api + 'users/{username}/update/email',
-    URL_FOLLOW_CHECK: environment.api + 'check/{followed}/{follower}'
+    URL_FOLLOW_CHECK: environment.api + 'followers/check/'
 
 
 
