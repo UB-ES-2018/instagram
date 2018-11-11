@@ -3,14 +3,77 @@
   <div id="datosusuario">
     <div id="datostop">
         <div id="nick">{{user?.username}}</div>
+        <div id="follow">
+            <button *ngIf="followCheck(user?.id)" (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
+        </div>
         <div id="opciones"><a *ngIf="isAuthUser()" routerLink="/accounts">Editar Perfil</a></div>
     </div>
     <div id="datosmid">
-        <div id="followers">{{followers}} followers</div>
+        <div (click)="followersPopUp()" id="followers" style="cursor: pointer;">{{followers}} Followers</div>
         <div id="publications">{{posts}} publications</div>
-        <div id="following">{{followeds}} following</div>
+        <div (click)="followedPopUp()" id="following" style="cursor: pointer;">{{followeds}} Following</div>
     </div>
-    <div id="name">{{user?.name}}</div>
+    <br>
+    <div id="name"><b>{{user?.name}}</b></div>
+    <div id="bio">{{user?.bio}}</div>
   </div>
   
 </div>
+
+<ng-template #modalFollowed let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title" style="padding-left: 5em">Following</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div id="followed_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
+      <div *ngFor="let user_followed of followed_list" class="column" style="line-height: 4.5em">
+          <span style="display:inline;">
+            <img alt="" src="assets/images/defaultlogo.png" width="15%"/>
+          </span>
+
+          <div style="display:inline-block; line-height: 1em">
+              <b>&nbsp; {{user_followed.username}}</b>
+              <br>
+              <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.bio}}</span>
+          </div>                   
+          <span style="display:inline; float: right;">
+              <button *ngIf="followCheck(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
+          </span>
+          
+          
+      </div>
+  </div>
+  <div class="modal-footer">      
+  </div>
+</ng-template>
+
+<ng-template #modalFollowers let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" style="padding-left: 5em">Followers</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div id="followers_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
+        <div *ngFor="let user_following of follower_list" class="column" style="line-height: 4.5em">
+            <span style="display:inline;">
+              <img alt="" src="assets/images/defaultlogo.png" width="15%"/>
+            </span>
+  
+            <div style="display:inline-block; line-height: 1em">
+                <b>&nbsp; {{user_following.username}}</b>
+                <br>
+                <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.bio}}</span>
+            </div>                   
+            <span style="display:inline; float: right;">
+                <button *ngIf="followCheck(user_following.id)" (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button> 
+            </span>
+            
+            
+        </div>
+    </div>
+    <div class="modal-footer">      
+    </div>
+  </ng-template>

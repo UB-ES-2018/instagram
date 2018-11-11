@@ -28,7 +28,19 @@
                 }
                   
             }
+
         </script>
+
+        <script>
+            var followed_popup = function(user_list) {
+                var names = [];
+                for (var user in user_list) {
+                    names.push(user.userid);
+                }
+                document.getElementById('followed_modal').innerHTML = names.join(' ');
+            }
+        </script>
+
         <app-root>
             <div class="spinner">
                 <div class="bounce1"></div>
