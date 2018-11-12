@@ -37,7 +37,7 @@
         <div style="display:inline-block; line-height: 1em">
             <b (click)="d('Cross click')" [routerLink]="['/', user_followed.username]" style="cursor: pointer; outline-width: 0;">&nbsp; {{user_followed.username}}</b>
             <br>
-            <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.bio}}</span>
+            <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.name}}</span>
         </div>                   
         <span style="display:inline; float: right;">
             <button *ngIf="selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
@@ -67,7 +67,7 @@
             <div style="display:inline-block; line-height: 1em">
                 <b (click)="d('Cross click')" [routerLink]="['/', user_following.username]" style="cursor: pointer; outline-width: 0;">&nbsp; {{user_following.username}}</b>
                 <br>
-                <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.bio}}</span>
+                <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.name}}</span>
             </div>                   
             <span style="display:inline; float: right;">
                 <button *ngIf="selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)" (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button> 
