@@ -5,7 +5,7 @@
         <div id="nick">{{user?.username}}</div>
         <div id="follow">
             <button *ngIf="selfFollowCheck(user?.id) && !follow_check.accepted" (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
-            <button *ngIf="selfFollowCheck(user?.id) && follow_check.accepted" class="btn btn-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
+            <button *ngIf="selfFollowCheck(user?.id) && follow_check.accepted" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
         </div>
         <div id="opciones"><a *ngIf="isAuthUser()" routerLink="/accounts">Editar Perfil</a></div>
     </div>
@@ -41,7 +41,7 @@
         </div>                   
         <span style="display:inline; float: right;">
             <button *ngIf="selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
-            <button *ngIf="selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)" class="btn btn-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
+            <button *ngIf="selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
         </span>
           
           
@@ -71,7 +71,7 @@
             </div>                   
             <span style="display:inline; float: right;">
                 <button *ngIf="selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)" (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button> 
-                <button *ngIf="selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)" class="btn btn-secondary btn-sm" style="pointer-events: none;">Seguido</button>
+                <button *ngIf="selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button>
             </span>              
         </div>
     </div>
