@@ -29,10 +29,10 @@ public class Post implements Serializable {
 	private String description;
 	
 	@Column(name = "CREATED_AT")
-	private Date created_at;
+	private Date createdAt;
 	
 	@Column(name = "UPDATED_AT")
-	private Date updated_at;
+	private Date updatedAt;
 	
 	public int getId() {
 		return id;
@@ -67,18 +67,18 @@ public class Post implements Serializable {
 	}
 	
 	public Date getCreatedAt() {
-		return created_at;
+		return createdAt;
 	}
 	
-	public void setCreatedAt(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	public Date getUpdatedAt() {
-		return updated_at;
+		return updatedAt;
 	}
 	
-	public void setUpdatedAt(Date updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 }

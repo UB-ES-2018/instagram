@@ -31,7 +31,6 @@ public class PostTagController {
 	@Autowired
 	private PostTagService postTagService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseEntity<PostTagDto> addPost_Tag(@RequestBody PostTagDto postTagDto) throws BusinessException {
 		logger.info("Post_TagController -> addPost_Tag");
