@@ -10,9 +10,9 @@
         <div id="opciones"><a *ngIf="isAuthUser()" routerLink="/accounts">Editar Perfil</a></div>
     </div>
     <div id="datosmid">
-        <div (click)="followersPopUp()" id="followers" style="cursor: pointer;">{{followers}} Followers</div>
+        <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}} Followers</div>
         <div id="publications">{{posts}} publications</div>
-        <div (click)="followedPopUp()" id="following" style="cursor: pointer;">{{followeds}} Following</div>
+        <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}} Following</div>
     </div>
     <br>
     <div id="name"><b>{{user?.name}}</b></div>
@@ -35,7 +35,7 @@
         </span>
 
         <div style="display:inline-block; line-height: 1em">
-            <b>&nbsp; {{user_followed.username}}</b>
+            <b (click)="d('Cross click')" [routerLink]="['/', user_followed.username]" style="cursor: pointer; outline-width: 0;">&nbsp; {{user_followed.username}}</b>
             <br>
             <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.bio}}</span>
         </div>                   
@@ -65,7 +65,7 @@
             </span>
   
             <div style="display:inline-block; line-height: 1em">
-                <b>&nbsp; {{user_following.username}}</b>
+                <b (click)="d('Cross click')" [routerLink]="['/', user_following.username]" style="cursor: pointer; outline-width: 0;">&nbsp; {{user_following.username}}</b>
                 <br>
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.bio}}</span>
             </div>                   
