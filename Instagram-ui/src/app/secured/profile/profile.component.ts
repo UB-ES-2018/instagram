@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   followeds: number;
   follower_list: User[];
   followed_list: User[];
-  follow_check: Follow;
+  follow_check: Follow = Follow.createDummy();
   posts: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
@@ -37,13 +37,13 @@ export class ProfileComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.profileID = params.profileID;
       this.loadUser();
-      this.follow_check = Follow.createDummy();
     });
   }
   private loadUser() {
     this.userService.getProfile(this.profileID).subscribe(user => {
       this.user = user;
       this.loadUserInfo();
+      this.checkFollow(this.user.id)
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
@@ -64,9 +64,9 @@ export class ProfileComponent implements OnInit {
       this.follower_list = follower_list;
     }, error => console.error('Error retrieving the follower list ' + error));
 
-    this.userService.getAmountPost(this.user.id).subscribe(posts => {
-      this.posts = posts;
-    }, error => console.error('error retrieving post data ' + error));
+    //this.userService.getAmountPost(this.user.id).subscribe(posts => {
+    //  this.posts = posts;
+    //}, error => console.error('error retrieving post data ' + error));
   }
   isAuthUser() {
     // console.log(this.authenticationService.logUser.username +"------"+this.user.username);
@@ -97,11 +97,10 @@ export class ProfileComponent implements OnInit {
   }
 
   checkFollow(followed:number) {   
-    //this.followService.checkFollow(followed,this.authenticationService.logUser.id).subscribe(follow_check => {
-    //  this.follow_check = follow_check;
-    //}, error => console.error('error checking follow ' + error)); 
-    //console.log(' User ' + this.authenticationService.logUser.id + ' follows ' + followed + ' status: ' +this.follow_check.accepted);
-    return true;
+    this.followService.checkFollow(followed,this.authenticationService.logUser.id).subscribe(follow_check => {
+      this.follow_check = follow_check;
+    }, error => console.error('error checking follow ' + error)); 
+    // el problema es que quiero llamar a esta funcion para cada usuario de la lista de followers
   }
 
   followCheck(id: number){
