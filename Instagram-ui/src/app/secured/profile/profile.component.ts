@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   followeds: number;
   follower_list: User[];
   followed_list: User[];
+  self_followed_list: User[];
   follow_check: Follow = Follow.createDummy();
   posts: number;
 
@@ -37,13 +38,16 @@ export class ProfileComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.profileID = params.profileID;
       this.loadUser();
+      this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
+        this.self_followed_list = self_followed_list;
+      }, error => console.error('Error retrieving the self followed list ' + error));
     });
   }
   private loadUser() {
     this.userService.getProfile(this.profileID).subscribe(user => {
       this.user = user;
       this.loadUserInfo();
-      this.checkFollow(this.user.id)
+      this.checkFollowStatus(this.user.id)
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
@@ -95,19 +99,27 @@ export class ProfileComponent implements OnInit {
       this.ruta.navigate(['login']);
     }    
   }
-
-  checkFollow(followed:number) {   
+  
+  // Profile button check, called on init
+  checkFollowStatus(followed:number) {   
     this.followService.checkFollow(followed,this.authenticationService.logUser.id).subscribe(follow_check => {
       this.follow_check = follow_check;
     }, error => console.error('error checking follow ' + error)); 
-    // el problema es que quiero llamar a esta funcion para cada usuario de la lista de followers
   }
 
-  followCheck(id: number){
+  selfFollowCheck(id: number){
     if(id != this.authenticationService.logUser.id){
       return true;
     }else{
       return false;
     }
   }  
+  // Follower status checking, will use auth user followers
+  checkFollowedStatus(followed_id: number){
+    if(this.self_followed_list.filter(user => (user.id === followed_id)).length > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
