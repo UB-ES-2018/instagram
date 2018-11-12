@@ -3,23 +3,18 @@ package instagram.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 //import com.google.common.collect.Lists;
 
-import instagram.controller.UserController;
 import instagram.exception.BusinessException;
-import instagram.exception.ErrorCodes;
 import instagram.model.Comment;
 import instagram.repository.CommentRepository;
 import instagram.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-	private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private CommentRepository commentRepository;

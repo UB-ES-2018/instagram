@@ -31,7 +31,6 @@ public class HashTagController {
 	@Autowired
 	private HashTagService hashTagService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseEntity<HashTagDto> addHashTag(@RequestBody HashTagDto hashTagDto) throws BusinessException {
 		logger.info("HashTagController -> addHashTag");
