@@ -130,18 +130,6 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping(value = "/update/gender", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateGender(@RequestBody String gender, String username) throws BusinessException {
-		logger.info(username);
-		logger.info("UserController -> updateGender");
-		userService.changeGender(username, gender);
-		User user = userService.getValidUserByUsername(username);
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
 
 	@RequestMapping(value = "/getByusername/{username}", method = RequestMethod.GET)
 	public ResponseEntity<UserDto> getUser(@PathVariable String username)throws BusinessException{
