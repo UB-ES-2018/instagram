@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { authService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-edit-password',
@@ -26,8 +25,11 @@ export class EditPasswordComponent implements OnInit {
     this.oldPasswordWrong = false;
     this.passwordsMissmatch = false;
     if (this.confirmNewPass === this.newPass) {
-      this.userService.modifyPass(this.newPass, this.username).subscribe(response => {
-
+      this.userService.modifyPass(this.pass, this.username, this.newPass).subscribe(
+        response => {
+          if(response){
+            this.oldPasswordWrong = true;
+          }
       }, error => {
         this.oldPasswordWrong = true;
       });

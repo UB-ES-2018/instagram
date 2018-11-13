@@ -8,6 +8,7 @@ import { CONST } from '../const/const';
 import { handleError } from '../error-handle/error.handling';
 import { User } from '../model/User';
 import { authService } from './auth.service';
+import { PassDto } from '../model/passDto';
 
 @Injectable()
 export class UserService {
@@ -77,9 +78,18 @@ export class UserService {
 
   }
 
-  modifyPass(pass: string, userName: string): Observable<User> {
-    return this.httpClient.put<User>(CONST.URL_UPDATE_PASS.replace('{username}', userName), pass);
+  modifyPass(oldpass: string, userName: string, newPass: string): Observable<User> {
+    var passDto = new PassDto();
+    passDto.username = userName;
+    passDto.newPassword = newPass;
+    passDto.oldPassword = oldpass;
 
+    const URL = CONST.URL_PUT_USER_PASSWORD
+    return this.httpClient.put<User>(URL,passDto)
+      .pipe(
+        tap(users => console.log(`changed password`)),
+        catchError(handleError('getUsers', new User()))
+      );
   }
 
   modifyEMail(email: string, userName: string): Observable<User> {
