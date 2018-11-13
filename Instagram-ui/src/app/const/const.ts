@@ -8,6 +8,7 @@ export const CONST = {
     URL_USER_GET_BY_ID: environment.api + 'users/getById/',
     URL_USER_GET_BY_USERNAME: environment.api + 'users/getByusername/',
     URL_PUT_USER_PASSWORD: environment.api + 'users/update/password',
+    URL_PUT_UPDATE_ALL: environment.api + 'users/update/all',
 
     URL_FOLLOW_CHECK: environment.api + 'followers/check/',
     URL_FOLLOWER_REQUEST: environment.api + 'followers/request',

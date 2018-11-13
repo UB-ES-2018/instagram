@@ -31,6 +31,13 @@ export class UserService {
       );
   }
 
+  changeUserData(user:User){
+    return this.httpClient.put<User>(CONST.URL_PUT_UPDATE_ALL,user)
+      .pipe(
+        tap(p=> console.log('user data has been change'))
+      )
+  }
+
   getProfile(name: String): Observable<User> {
     return this.httpClient.get<User>(CONST.URL_USER_GET_BY_USERNAME + name);
   }
