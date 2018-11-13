@@ -56,8 +56,9 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setBio(bio);
 			this.userRepository.save(user);
-		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		]
 	}
 	
 	@Override
@@ -66,8 +67,9 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setPassword(password);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 	
 	@Override
@@ -76,8 +78,9 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setName(name);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 	
 	@Override
@@ -86,8 +89,9 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setGender(gender);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 	
 	@Override
@@ -96,8 +100,20 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setPhoneNumber(number);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+	}
+	
+	@Override
+	public void changeWebsite(String username, String website) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setWebsite(website);
+			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		}
 	}
 	
 	@Override
