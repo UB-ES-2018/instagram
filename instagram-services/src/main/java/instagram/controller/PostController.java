@@ -30,7 +30,7 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-	@RequestMapping(value = "/getPost/{id_user}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPostIDUser/{id_user}", method = RequestMethod.GET)
 	public ResponseEntity<List<PostDto>> getUsersPosts(@PathVariable int id_user) throws BusinessException{
 		logger.info("PostController -> getUsersPosts");
 		
@@ -58,7 +58,7 @@ public class PostController {
 		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/getPost/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPostIDPhoto/{id}", method = RequestMethod.GET)
 	public ResponseEntity<PostDto> getPostById(@PathVariable int id) throws BusinessException{
 		logger.info("PostController -> getPost");
 		
