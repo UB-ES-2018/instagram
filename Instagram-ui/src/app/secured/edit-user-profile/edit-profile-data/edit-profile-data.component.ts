@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { authService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
+import { User } from '../../../model/User';
 
 @Component({
   selector: 'app-edit-profile-data',
@@ -27,41 +28,37 @@ export class EditProfileDataComponent implements OnInit {
   }
 
   enviar() {
+    var user = this.authentiactionService.logUser;
+
     if (this.form.get('name').touched) {
-      this.userService.modifyName(this.form.get('name').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+      user.name = this.form.get('name').value
     }
-    if (this.form.get('username').touched) {
-      this.userService.modifyUserName(this.form.get('username').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+
+    if (this.form.get('username').touched){
+      user.username = this.form.get('username').value
     }
-    if (this.form.get('bio').touched) {
-      this.userService.modifyBio(this.form.get('bio').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+
+    if (this.form.get('bio').touched){
+      user.bio = this.form.get('bio').value
     }
-    if (this.form.get('email').touched) {
-      this.userService.modifyEMail(this.form.get('email').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+    if (this.form.get('email').touched){
+      user.email = this.form.get('email').value
     }
-    if (this.form.get('phoneNumber').touched) {
-      this.userService.modifyPhone(this.form.get('phoneNumber').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+    if (this.form.get('phoneNumber').touched){
+      user.phoneNumber = this.form.get('phoneNumber').value
     }
-    if (this.form.get('gender').touched) {
-      this.userService.modifyGender(this.form.get('gender').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+    if (this.form.get('gender').touched){
+      user.gender = this.form.get('gender').value
     }
-    if (this.form.get('website').touched) {
-      this.userService.modifyWeb(this.form.get('website').value, this.authentiactionService.logUser.username).subscribe(result => {
-        this.authentiactionService.logUser.name = result.name;
-      });
+    if(this.form.get('website').touched){
+      user.website = this.form.get('website').value
     }
+    console.log(user)
+    this.userService.changeUserData(user).subscribe(
+      response=>{
+        this.authentiactionService.logUser = response;
+      }
+    )
   }
 
 
