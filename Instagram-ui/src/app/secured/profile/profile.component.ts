@@ -4,6 +4,7 @@ import { ProfileService } from '../shared/profile.service';
 import { Profile } from '../shared/models/profile.model';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/User';
+import { Follow } from '../../model/Follow';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
   followeds: number;
   follower_list: User[];
   followed_list: User[];
-  temp_list: User[]
+  self_followed_list: User[];
+  follow_check: Follow = Follow.createDummy();
   posts: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
@@ -36,12 +38,16 @@ export class ProfileComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.profileID = params.profileID;
       this.loadUser();
+      this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
+        this.self_followed_list = self_followed_list;
+      }, error => console.error('Error retrieving the self followed list ' + error));
     });
   }
   private loadUser() {
     this.userService.getProfile(this.profileID).subscribe(user => {
       this.user = user;
       this.loadUserInfo();
+      this.checkFollowStatus(this.user.id)
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
@@ -62,9 +68,9 @@ export class ProfileComponent implements OnInit {
       this.follower_list = follower_list;
     }, error => console.error('Error retrieving the follower list ' + error));
 
-    this.userService.getAmountPost(this.user.id).subscribe(posts => {
-      this.posts = posts;
-    }, error => console.error('error retrieving post data ' + error));
+    //this.userService.getAmountPost(this.user.id).subscribe(posts => {
+    //  this.posts = posts;
+    //}, error => console.error('error retrieving post data ' + error));
   }
   isAuthUser() {
     // console.log(this.authenticationService.logUser.username +"------"+this.user.username);
@@ -72,6 +78,14 @@ export class ProfileComponent implements OnInit {
       return this.authenticationService.logUser.username === this.user.username;
     }
     return false;
+  }
+
+  isLogged(){
+    if(this.authenticationService.logUser){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   sendFollow(followed_id: number) {
@@ -93,12 +107,27 @@ export class ProfileComponent implements OnInit {
       this.ruta.navigate(['login']);
     }    
   }
+  
+  // Profile button check, called on init
+  checkFollowStatus(followed:number) {   
+    this.followService.checkFollow(followed,this.authenticationService.logUser.id).subscribe(follow_check => {
+      this.follow_check = follow_check;
+    }, error => console.error('error checking follow ' + error)); 
+  }
 
-  followCheck(id: number){
+  selfFollowCheck(id: number){
     if(id != this.authenticationService.logUser.id){
       return true;
     }else{
       return false;
     }
   }  
+  // Follower status checking, will use auth user followers
+  checkFollowedStatus(followed_id: number){
+    if(this.self_followed_list.filter(user => (user.id === followed_id)).length > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

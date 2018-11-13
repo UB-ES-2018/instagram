@@ -25,5 +25,13 @@ export class FollowService {
       catchError(handleError('getUsers', new Follow()))
     );
   }
+
+  checkFollow(followed:number, follower:number):  Observable<Follow> {
+    return this.httpClient.get<Follow>(CONST.URL_FOLLOW_CHECK + followed + '/' + follower)
+      .pipe(tap(
+        val => console.log(val)),
+        catchError(handleError('checkFollow',Follow.createDummy())));
+
+  }
  
 }
