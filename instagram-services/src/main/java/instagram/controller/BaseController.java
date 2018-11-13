@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import instagram.controller.dto.ErrorDto;
@@ -12,6 +13,7 @@ import instagram.exception.BusinessException;
 import instagram.exception.ErrorCodes;
 import instagram.exception.ForbiddenException;
 
+@CrossOrigin
 @ControllerAdvice
 public class BaseController {
 

@@ -18,13 +18,13 @@ public class FollowerServiceImpl implements FollowerService {
 	private FollowerRepository followerRepository;
 
 	@Override
-	public List<Follower> getAllFollowersFromUser(int userid) {
-		return this.followerRepository.FindAllByFollowed(userid);
+	public List<Integer> getAllFollowersFromUser(int userid) {
+		return this.followerRepository.findAllByFollowed(userid);
 	}
 
 	@Override
-	public List<Follower> getAllFollowedsFromUser(int userid) {
-		return this.followerRepository.findAllByFollow(userid);
+	public List<Integer> getAllFollowedsFromUser(int userid) {
+		return this.followerRepository.findAllByFollower(userid);
 	}
 
 	@Override
@@ -46,15 +46,34 @@ public class FollowerServiceImpl implements FollowerService {
 		if(!FollowExist(follower, followed)) {
 			throw new BusinessException(ErrorCodes.FOLLOW_NOT_FOUND);
 		}
-		Follower follow = this.followerRepository.FindOneByfollowAndFollowed(follower, followed);
+		Follower follow = this.followerRepository.findOneByfollowAndFollowed(follower, followed);
 		follow.setAccepted(acepted);
 		this.followerRepository.save(follow);
 		return follow;
 	}
 	
 	private boolean FollowExist(int follower,int followed) {
-		Follower follow  = this.followerRepository.FindOneByfollowAndFollowed(follower, followed);
+		Follower follow  = this.followerRepository.findOneByfollowAndFollowed(follower, followed);
 		return follow != null;
+	}
+
+	@Override
+	public List<Integer> getAllNewRequest(int userid) {
+		return this.followerRepository.findAllNewRequest(userid);
+	}
+
+	@Override
+	public Follower getFollower(int followed, int follower) throws BusinessException {
+		Follower follow = this.followerRepository.findOneByfollowAndFollowed(follower, followed);
+		if(follow == null){
+			follow = new Follower();
+			follow.setFollowed(followed);
+			follow.setFollow(follower);
+			follow.setAccepted(false);
+		}else {
+			follow.setAccepted(true);
+		}
+		return follow;
 	}
 	
 

@@ -21,6 +21,7 @@ import instagram.exception.BusinessException;
 import instagram.model.Like;
 import instagram.service.LikeService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/likes")
 public class LikeController {
@@ -30,7 +31,6 @@ public class LikeController {
 	@Autowired
 	private LikeService likeService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseEntity<LikeDto> addLike(@RequestBody LikeDto likeDto) throws BusinessException {
 		logger.info("LikeController -> addLike");
