@@ -121,6 +121,17 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public void changeEmail(String username, String email) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setEmail(email);
+			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		}
+	}
+	
+	@Override
 	public void changeAll(String username, String email, String name, String bio, String website, int pNumber, String gender) throws BusinessException{
 		if(userExists(username)) {
 			User user = this.userRepository.findOneByUsername(username);
