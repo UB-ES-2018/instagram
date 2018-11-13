@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import instagram.controller.dto.PassChangerDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.controller.dto.UserDto;
 import instagram.exception.BusinessException;
@@ -64,10 +65,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/update/password", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updatePassword(@RequestBody UserDto userDto) throws BusinessException {
+	public ResponseEntity<UserDto> updatePassword(@RequestBody PassChangerDto passDto) throws BusinessException {
+		
 		logger.info("UserController -> updatePassword");
-		userService.changePassword(userDto.getUsername(), userDto.getPassword());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
+		User user = this.userService.changePassword(passDto.getUsername(),passDto.getOldPassword(),passDto.getNewPassword());
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
 

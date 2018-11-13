@@ -62,18 +62,17 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void changePassword(String username, String password) throws BusinessException {
+	public User changePassword(String username, String oldPassword, String newPassword) throws BusinessException {
+		User user = new User();
 		if(userExists(username)) {
-			User user = this.userRepository.findOneByUsername(username);
-			if(user.getPassword().equals(password)) {
-				user.setPassword(password);
+			user = this.userRepository.findOneByUsername(username);
+			if(user.getPassword().equals(oldPassword)) {
+				user.setPassword(newPassword);
 				this.userRepository.save(user);
-			}else {
-				throw new BusinessException(ErrorCodes.FORBIDDEN);
 			}
-		}else {
-			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
+		return user;
+		
 	}
 	
 	@Override

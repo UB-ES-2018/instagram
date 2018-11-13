@@ -19,7 +19,7 @@ public interface UserService {
 
 	void changeNumber(String username, int number) throws BusinessException;
 
-	void changePassword(String username, String password) throws BusinessException;
+	User changePassword(String username, String oldPassword, String newPassword) throws BusinessException;
 
 	void changeName(String username, String name) throws BusinessException;
 	
