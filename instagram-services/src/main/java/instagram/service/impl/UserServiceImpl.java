@@ -65,8 +65,12 @@ public class UserServiceImpl implements UserService {
 	public void changePassword(String username, String password) throws BusinessException {
 		if(userExists(username)) {
 			User user = this.userRepository.findOneByUsername(username);
-			user.setPassword(password);
-			this.userRepository.save(user);
+			if(user.getPassword().equals(password)) {
+				user.setPassword(password);
+				this.userRepository.save(user);
+			}else {
+				throw new BusinessException(ErrorCodes.FORBIDDEN);
+			}
 		}else {
 			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
