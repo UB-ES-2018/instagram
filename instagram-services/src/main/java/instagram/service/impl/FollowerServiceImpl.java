@@ -35,7 +35,7 @@ public class FollowerServiceImpl implements FollowerService {
 		Follower follow = new Follower();
 		follow.setFollowed(followed);
 		follow.setFollow(follower);
-		follow.setAccepted(false);
+		follow.setAccepted(true);
 		
 		this.followerRepository.save(follow);
 		return follow;

@@ -38,9 +38,7 @@ export class ProfileComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.profileID = params.profileID;
       this.loadUser();
-      this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
-        this.self_followed_list = self_followed_list;
-      }, error => console.error('Error retrieving the self followed list ' + error));
+      this.selfFollowedList();
     });
   }
   private loadUser() {
@@ -89,7 +87,13 @@ export class ProfileComponent implements OnInit {
   }
 
   sendFollow(followed_id: number) {
-    this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe();
+    this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe(
+      response=> {
+        this.checkFollowStatus(this.user.id);
+        this.selfFollowedList();
+        this.loadUserInfo();
+      }
+    );
     console.log(this.authenticationService.logUser.id + ' Sending follow to ' + followed_id);
   }
   followedPopUp(){
@@ -129,5 +133,12 @@ export class ProfileComponent implements OnInit {
     }else{
       return false;
     }
+  }
+  
+  //
+  selfFollowedList(){
+    this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
+      this.self_followed_list = self_followed_list;
+    }, error => console.error('Error retrieving the self followed list ' + error));
   }
 }

@@ -4,7 +4,7 @@
     <div id="datostop">
         <div id="nick">{{user?.username}}</div>
         <div id="follow">
-            <button *ngIf="isAuthUser() && selfFollowCheck(user?.id) && !follow_check.accepted" (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
+            <button *ngIf="isLogged() && selfFollowCheck(user?.id) && !follow_check.accepted" (click)="sendFollow(user?.id)" class="btn btn-primary btn-sm">Seguir</button> 
             <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
         </div>
         <div *ngIf="isAuthUser()" id="opciones">
