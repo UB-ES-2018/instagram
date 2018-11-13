@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 			this.userRepository.save(user);
 		}else {
 			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
-		]
+		}
 	}
 	
 	@Override
