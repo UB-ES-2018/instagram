@@ -80,6 +80,14 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 
+  isLogged(){
+    if(this.authenticationService.logUser){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   sendFollow(followed_id: number) {
     this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe();
     console.log(this.authenticationService.logUser.id + ' Sending follow to ' + followed_id);

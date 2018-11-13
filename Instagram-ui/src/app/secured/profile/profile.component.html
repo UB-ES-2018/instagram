@@ -5,7 +5,7 @@
         <div id="nick">{{user?.username}}</div>
         <div id="follow">
             <button *ngIf="isAuthUser() && selfFollowCheck(user?.id) && !follow_check.accepted" (click)="sendFollow()" class="btn btn-primary btn-sm">Seguir</button> 
-            <button *ngIf="isAuthUser() && selfFollowCheck(user?.id) && follow_check.accepted" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
+            <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
         </div>
         <div *ngIf="isAuthUser()" id="opciones">
             <a routerLink="/accounts">Editar Perfil</a>
@@ -42,8 +42,8 @@
             <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.name}}</span>
         </div>                   
         <span style="display:inline; float: right;">
-            <button *ngIf="selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
-            <button *ngIf="selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
+            <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
+            <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button> 
         </span>
           
           
@@ -72,8 +72,8 @@
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.name}}</span>
             </div>                   
             <span style="display:inline; float: right;">
-                <button *ngIf="selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)" (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button> 
-                <button *ngIf="selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)" (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button> 
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)" class="btn btn-outline-secondary btn-sm" style="pointer-events: none;">Seguido</button>
             </span>              
         </div>
     </div>
