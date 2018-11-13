@@ -55,7 +55,7 @@ public class UserController {
 	@RequestMapping(value = "/update/email", method = RequestMethod.PUT)
 	public ResponseEntity<UserDto> updateEmail(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> updateEmail");
-		userService.changeBio(userDto.getUsername(), userDto.getEmail());
+		userService.changeEmail(userDto.getUsername(), userDto.getEmail());
 		User user = userService.getValidUserByUsername(userDto.getUsername());
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
@@ -77,7 +77,7 @@ public class UserController {
 	@RequestMapping(value = "/update/website", method = RequestMethod.PUT)
 	public ResponseEntity<UserDto> updateWebsite(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> updateWebsite");
-		userService.changeName(userDto.getUsername(), userDto.getWebsite());
+		userService.changeWebsite(userDto.getUsername(), userDto.getWebsite());
 		User user = userService.getValidUserByUsername(userDto.getUsername());
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
@@ -88,7 +88,7 @@ public class UserController {
 	@RequestMapping(value = "/update/gender", method = RequestMethod.PUT)
 	public ResponseEntity<UserDto> updateGender(@RequestBody UserDto userDto) throws BusinessException {
 		logger.info("UserController -> updateGender");
-		userService.changeName(userDto.getUsername(), userDto.getGender());
+		userService.changeGender(userDto.getUsername(), userDto.getGender());
 		User user = userService.getValidUserByUsername(userDto.getUsername());
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
@@ -129,17 +129,6 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
-	@RequestMapping(value = "/update/gender", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateGender(@RequestBody String gender, String username) throws BusinessException {
-		logger.info(username);
-		logger.info("UserController -> updateGender");
-		userService.changeGender(username, gender);
-		User user = userService.getValidUserByUsername(username);
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
 
 	@RequestMapping(value = "/getByusername/{username}", method = RequestMethod.GET)
 	public ResponseEntity<UserDto> getUser(@PathVariable String username)throws BusinessException{
