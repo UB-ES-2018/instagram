@@ -72,7 +72,7 @@ export class UserService {
     return this.httpClient.put<boolean>(URL,passDto)
       .pipe(
         tap(users => console.log(`changed password`)),
-        catchError(handleError('getUsers',false)
+        catchError(handleError('getUsers',false))
       );
   }
 
