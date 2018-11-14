@@ -62,16 +62,18 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User changePassword(String username, String oldPassword, String newPassword) throws BusinessException {
+	public Boolean changePassword(String username, String oldPassword, String newPassword) throws BusinessException {
 		User user = new User();
+		Boolean valid = false;
 		if(userExists(username)) {
 			user = this.userRepository.findOneByUsername(username);
 			if(user.getPassword().equals(oldPassword)) {
 				user.setPassword(newPassword);
 				this.userRepository.save(user);
+				valid = true;
 			}
 		}
-		return user;
+		return valid;
 		
 	}
 	

@@ -42,81 +42,13 @@ public class UserController {
 		return new ResponseEntity<UserDto>(userdDto, HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/update/bio", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateBio(@RequestBody UserDto userDto) throws BusinessException {
-		logger.info("UserController -> updateBio");
-		userService.changeBio(userDto.getUsername(), userDto.getBio());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
-	
-	@RequestMapping(value = "/update/email", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateEmail(@RequestBody UserDto userDto) throws BusinessException {
-		logger.info("UserController -> updateEmail");
-		userService.changeEmail(userDto.getUsername(), userDto.getEmail());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
-	
 	@RequestMapping(value = "/update/password", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updatePassword(@RequestBody PassChangerDto passDto) throws BusinessException {
+	public ResponseEntity<Boolean> updatePassword(@RequestBody PassChangerDto passDto) throws BusinessException {
 		
 		logger.info("UserController -> updatePassword");
-		User user = this.userService.changePassword(passDto.getUsername(),passDto.getOldPassword(),passDto.getNewPassword());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
+		Boolean valid = this.userService.changePassword(passDto.getUsername(),passDto.getOldPassword(),passDto.getNewPassword());
 
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
-	
-	@RequestMapping(value = "/update/website", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateWebsite(@RequestBody UserDto userDto) throws BusinessException {
-		logger.info("UserController -> updateWebsite");
-		userService.changeWebsite(userDto.getUsername(), userDto.getWebsite());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
-	
-	@RequestMapping(value = "/update/gender", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateGender(@RequestBody UserDto userDto) throws BusinessException {
-		logger.info("UserController -> updateGender");
-		userService.changeGender(userDto.getUsername(), userDto.getGender());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
-	
-	@RequestMapping(value = "/update/name", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updateName(@RequestBody UserDto userDto) throws BusinessException {
-		logger.info("UserController -> updateName");
-		userService.changeName(userDto.getUsername(), userDto.getName());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
-	
-	@RequestMapping(value = "/update/phoneNumber", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updatePhoneNumber(@RequestBody UserDto userDto) throws BusinessException {
-		logger.info("UserController -> updatePhoneNumber");
-		userService.changeNumber(userDto.getUsername(), userDto.getPhoneNumber());
-		User user = userService.getValidUserByUsername(userDto.getUsername());
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
-
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Boolean>(valid, HttpStatus.ACCEPTED);
 	}
 	
 	@RequestMapping(value = "/update/all", method = RequestMethod.PUT)
@@ -130,7 +62,6 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
-
 	@RequestMapping(value = "/getByusername/{username}", method = RequestMethod.GET)
 	public ResponseEntity<UserDto> getUser(@PathVariable String username)throws BusinessException{
 		logger.info("UserController -> getUser");
