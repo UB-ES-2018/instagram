@@ -14,6 +14,7 @@ export const CONST = {
     URL_FOLLOWER_REQUEST: environment.api + 'followers/request',
     URL_FOLLOWERS: environment.api + 'followers/getFollowers/',
     URL_FOLLOWEDS: environment.api + 'followers/getFolloweds/',
+    URL_DELETE_FOLLOW: environment.api + 'followers/delete',
 
     URL_POST: environment.api + 'post/getPost/',
 

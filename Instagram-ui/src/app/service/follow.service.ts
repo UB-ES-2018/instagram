@@ -26,6 +26,19 @@ export class FollowService {
     );
   }
 
+  unFollow(follower:number,followed:number){
+    var follow = new Follow();
+    follow.accepted = false;
+    follow.followed = followed;
+    follow.follower = follower;
+    return this.httpClient.post<Follow>(CONST.URL_DELETE_FOLLOW,follow)
+      .pipe(
+        tap(follow => console.log('follow has been delete')),
+        catchError(handleError('unFollow', new Follow()))
+      );
+
+  }
+
   checkFollow(followed:number, follower:number):  Observable<Follow> {
     return this.httpClient.get<Follow>(CONST.URL_FOLLOW_CHECK + followed + '/' + follower)
       .pipe(tap(

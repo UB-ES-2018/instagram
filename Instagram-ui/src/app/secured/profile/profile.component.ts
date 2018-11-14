@@ -94,7 +94,15 @@ export class ProfileComponent implements OnInit {
         this.loadUserInfo();
       }
     );
-    console.log(this.authenticationService.logUser.id + ' Sending follow to ' + followed_id);
+  }
+  sendUnfollow(followed_id: number){
+    this.followService.unFollow(this.authenticationService.logUser.id, followed_id).subscribe(
+      response => {
+        this.checkFollowedStatus(this.user.id);
+        this.selfFollowedList();
+        this.loadUserInfo();
+      }
+    )
   }
   followedPopUp(){
     if(this.authenticationService.logUser && this.user){
