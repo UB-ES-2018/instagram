@@ -1,0 +1,36 @@
+<div id="contenidoEditPerfil">
+    <div><a>{{username}}</a></div>
+    <form [formGroup]="form" (submit)="enviar()">
+        <div>
+            <label>Nombre</label>
+            <input formControlName="name"/>
+        </div>
+        <div>
+            <label>Nombre de usuario</label>
+            <input formControlName="username" />
+        </div>
+        <div>
+            <label>Biografia</label>
+            <input formControlName="bio"/>
+        </div>
+        <div>
+            <label>E-mail</label>
+            <input formControlName="email"/>
+        </div>
+        <div>
+            <label>Número de teléfono</label>
+            <input formControlName="phoneNumber"/>
+        </div>
+        <div>
+            <label>Sexo</label>
+            <input formControlName="gender"/>
+        </div>
+        <div>
+            <label>Sitio Web</label>
+            <input formControlName="website"/>
+        </div>
+        <div>
+            <input type="submit" value="Enviar" />
+        </div>
+    </form>
+</div>

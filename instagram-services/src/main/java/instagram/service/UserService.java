@@ -19,9 +19,15 @@ public interface UserService {
 
 	void changeNumber(String username, int number) throws BusinessException;
 
-	void changePassword(String username, String password) throws BusinessException;
+	Boolean changePassword(String username, String oldPassword, String newPassword) throws BusinessException;
 
 	void changeName(String username, String name) throws BusinessException;
+	
+	void changeWebsite(String username, String website) throws BusinessException;
+	
+	void changeEmail(String username, String email) throws BusinessException;
+	
+	void changeAll(String username, String email, String name, String bio, String website, int pNumber, String gender) throws BusinessException;
 
 	User getLogin(String username, String password) throws BusinessException;
 }

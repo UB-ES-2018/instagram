@@ -56,18 +56,25 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setBio(bio);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 	
 	@Override
-	public void changePassword(String username, String password) throws BusinessException {
+	public Boolean changePassword(String username, String oldPassword, String newPassword) throws BusinessException {
+		User user = new User();
+		Boolean valid = false;
 		if(userExists(username)) {
-			User user = this.userRepository.findOneByUsername(username);
-			user.setPassword(password);
-			this.userRepository.save(user);
+			user = this.userRepository.findOneByUsername(username);
+			if(user.getPassword().equals(oldPassword)) {
+				user.setPassword(newPassword);
+				this.userRepository.save(user);
+				valid = true;
+			}
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		return valid;
+		
 	}
 	
 	@Override
@@ -76,8 +83,9 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setName(name);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 	
 	@Override
@@ -86,8 +94,9 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setGender(gender);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
 	
 	@Override
@@ -96,10 +105,49 @@ public class UserServiceImpl implements UserService {
 			User user = this.userRepository.findOneByUsername(username);
 			user.setPhoneNumber(number);
 			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 		}
-		throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
 	}
-
+	
+	@Override
+	public void changeWebsite(String username, String website) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setWebsite(website);
+			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		}
+	}
+	
+	@Override
+	public void changeEmail(String username, String email) throws BusinessException {
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setEmail(email);
+			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		}
+	}
+	
+	@Override
+	public void changeAll(String username, String email, String name, String bio, String website, int pNumber, String gender) throws BusinessException{
+		if(userExists(username)) {
+			User user = this.userRepository.findOneByUsername(username);
+			user.setEmail(email);
+			user.setName(name);
+			user.setBio(bio);
+			user.setWebsite(website);
+			user.setPhoneNumber(pNumber);
+			user.setGender(gender);
+			this.userRepository.save(user);
+		}else {
+			throw new BusinessException(ErrorCodes.USER_NOT_FOUND);
+		}
+	}
+	
 	private boolean userExists(String username) {
 		User user = userRepository.findOneByUsername(username);
 		return user != null;

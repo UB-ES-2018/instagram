@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import instagram.controller.dto.ResponseDto;
 import instagram.service.PostService;
 import instagram.exception.BusinessException;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/post")
 public class PostController {
@@ -28,7 +30,7 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-	@RequestMapping(value = "/getPost/{id_user}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPostIDUser/{id_user}", method = RequestMethod.GET)
 	public ResponseEntity<List<PostDto>> getUsersPosts(@PathVariable int id_user) throws BusinessException{
 		logger.info("PostController -> getUsersPosts");
 		
@@ -56,7 +58,7 @@ public class PostController {
 		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/getPost/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPostIDPhoto/{id}", method = RequestMethod.GET)
 	public ResponseEntity<PostDto> getPostById(@PathVariable int id) throws BusinessException{
 		logger.info("PostController -> getPost");
 		
