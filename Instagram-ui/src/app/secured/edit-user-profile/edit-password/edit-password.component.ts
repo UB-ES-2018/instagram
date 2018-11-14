@@ -27,13 +27,12 @@ export class EditPasswordComponent implements OnInit {
     if (this.confirmNewPass === this.newPass) {
       this.userService.modifyPass(this.pass, this.username, this.newPass).subscribe(
         response => {
-          if(response){
+          if (!response) {
             this.oldPasswordWrong = true;
           }
-      }, error => {
-        this.oldPasswordWrong = true;
-      });
-      //this.userService.modifyPass(this.newPass, this.pass, this.username)
+        }, error => {
+          this.oldPasswordWrong = true;
+        });
     } else {
       this.passwordsMissmatch = true;
     }
