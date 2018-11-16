@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 
 import instagram.exception.BusinessException;
 import instagram.model.Like;
+import instagram.model.User;
 import instagram.repository.LikeRepository;
 import instagram.service.LikeService;
 
@@ -47,6 +48,22 @@ public class LikeServiceImpl implements LikeService {
 		Like like = optionalLike.get();
 		// Delete user itself
 		this.likeRepository.delete(like);
+	}
+
+	@Override
+	public Like getById(int id) throws BusinessException {
+		return likeRepository.findById(id).orElseThrow(() -> new BusinessException(null));
+	}
+
+	@Override
+	public List<Like> getByIdPost(int idPost) {
+		return likeRepository.findByIdPost(idPost);
+	}
+
+	@Override
+	public List<User> getLikers(int idPost) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

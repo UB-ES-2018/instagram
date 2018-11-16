@@ -58,6 +58,7 @@ public class CommentController {
 		logger.info("CommentController -> getPostComments");
 
 		List<Comment> comments = commentService.getCommentsByPost(idPost);
+		
 		List<CommentDto> result = new ArrayList<CommentDto>();
 		for (Comment comment : comments) {
 			CommentDto postComment = new CommentDto();
@@ -73,6 +74,7 @@ public class CommentController {
 		logger.info("CommentController -> getUserComments");
 
 		List<Comment> comments = commentService.getCommentsByUser(idUser);
+		
 		List<CommentDto> result = new ArrayList<CommentDto>();
 		for (Comment comment : comments) {
 			CommentDto postComment = new CommentDto();
