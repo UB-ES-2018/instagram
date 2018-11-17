@@ -1,36 +1,42 @@
 <div id="contenidoEditPerfil">
-    <div><a>{{username}}</a></div>
     <form [formGroup]="form" (submit)="enviar()">
         <div>
-            <label>Nombre</label>
-            <input formControlName="name"/>
-        </div>
-        <div>
-            <label>Nombre de usuario</label>
-            <input formControlName="username" />
-        </div>
-        <div>
-            <label>Biografia</label>
-            <input formControlName="bio"/>
-        </div>
-        <div>
-            <label>E-mail</label>
-            <input formControlName="email"/>
-        </div>
-        <div>
-            <label>Número de teléfono</label>
-            <input formControlName="phoneNumber"/>
-        </div>
-        <div>
-            <label>Sexo</label>
-            <input formControlName="gender"/>
-        </div>
-        <div>
-            <label>Sitio Web</label>
-            <input formControlName="website"/>
-        </div>
-        <div>
-            <input type="submit" value="Enviar" />
+            <div id="nameTitle">
+                <div class="left">
+                    <img alt="" src="assets/images/defaultlogo.png" width="40px" />
+                </div>
+                <div class="right">
+                    <div><a>{{username}}</a></div>
+                    <div><a style="color:rgb(65, 168, 202); font-weight: 600">Cambiar foto del perfil</a></div>
+
+                </div>
+            </div>
+            <div class="left">
+                <div><label>Nombre</label></div>
+                <div><label>Nombre de usuario</label></div>
+                <div><label>Sitio Web</label></div>
+                <div><label>Biografia</label></div>
+            </div>
+            <div class="right">
+                <input formControlName="name" />
+                <input formControlName="username" />
+                <input formControlName="bio" />
+                <textarea formControlName="website" ></textarea>
+            </div>
+            <div class="separa">
+                <a>Información privada</a>
+            </div>
+            <div class="left">
+                <div><label>Correo electrónico</label></div>
+                <div><label>Número de teléfono</label></div>
+                <div><label>Sexo</label></div>
+            </div>
+            <div class="right">
+                <input formControlName="email" />
+                <input formControlName="phoneNumber" />
+                <input formControlName="gender" />
+            </div>
+            <div id="boton"><input type="submit" class="btn btn-primary btn-sm" value="Enviar" /></div>
         </div>
     </form>
 </div>
