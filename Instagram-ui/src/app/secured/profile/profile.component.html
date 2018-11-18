@@ -8,7 +8,7 @@
             <button *ngIf="isLogged() && selfFollowCheck(user?.id) && checkFollowedStatus(user?.id)" (click)="sendUnfollow(user?.id)" class="btn btn-outline-secondary btn-sm" >Seguido</button> 
         </div>
         <div *ngIf="isAuthUser()" id="opciones">
-            <a routerLink="/accounts">Editar Perfil</a>
+            <button id="botonOpciones" routerLink="/accounts">Editar Perfil</button>
         </div>
     </div>
     <div id="datosmid">

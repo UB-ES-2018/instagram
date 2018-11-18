@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { authService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
+import { and } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-edit-password',
@@ -37,6 +38,10 @@ export class EditPasswordComponent implements OnInit {
       this.passwordsMissmatch = true;
     }
 
+  }
+
+  changedPass() {
+    return !((this.confirmNewPass) && (this.newPass) && (this.pass));
   }
 
 }

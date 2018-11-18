@@ -30,16 +30,35 @@
 #nick{
     position: relative;
     float: left;
-    width: 50%;
     font-size: 30px;
+    margin-right: 20px;
+
 }
+
+
+
+
 #opciones{
-    padding-top: 7px;
-    position: relative;
-    float: left;
-    width: 50%;
-    
+    padding-top: 10px;
+    flex-shrink: 0;
+    margin-left: 25px; 
 }
+#botonOpciones{
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    color: #262626;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    font-weight: 600;
+}
+#botonOpciones:hover{
+    cursor: pointer;
+}
+
+
 #followers{
     position: relative;
     float: left;

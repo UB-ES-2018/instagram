@@ -6,7 +6,7 @@
                     <img alt="" src="assets/images/defaultlogo.png" width="40px" />
                 </div>
                 <div class="right">
-                    <div><a>{{username}}</a></div>
+                    <div><a id="nombUsu">{{username}}</a></div>
                     <div><a style="color:rgb(65, 168, 202); font-weight: 600">Cambiar foto del perfil</a></div>
 
                 </div>
@@ -21,7 +21,7 @@
                 <input formControlName="name" />
                 <input formControlName="username" />
                 <input formControlName="bio" />
-                <textarea formControlName="website" ></textarea>
+                <textarea formControlName="website"></textarea>
             </div>
             <div class="separa">
                 <a>Información privada</a>
@@ -34,9 +34,17 @@
             <div class="right">
                 <input formControlName="email" />
                 <input formControlName="phoneNumber" />
-                <input formControlName="gender" />
+                <select>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="no">Sin especificar</option>
+                </select>
             </div>
             <div id="boton"><input type="submit" class="btn btn-primary btn-sm" value="Enviar" /></div>
+            <div class="hidenm" *ngIf="profileUpdated">
+                <a style="color: rgb(5, 196, 53); width: 100%; float: left; text-align: center; font-weight: 600;">Perfil
+                    actualizado satisfactoriamente</a>
+            </div>
         </div>
     </form>
 </div>

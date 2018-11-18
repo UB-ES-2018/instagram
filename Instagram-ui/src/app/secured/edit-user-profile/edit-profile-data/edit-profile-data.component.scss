@@ -32,8 +32,14 @@
 
 .right input{
     margin-bottom: 22px;
-    border: none;
+    border: 1px solid #efefef;
+    padding-left: 10px;
+    border-bottom: 1px;
+    border-right: 1px;
     width: 100%;  
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #262626;
 }
 
 .right textarea{
@@ -64,7 +70,23 @@
     margin-bottom: 16px;
 }
 
+#nombUsu{
+    font-size: 24px;
+}
+
 #boton{
     float: left;
     padding-left: 25%;
+}
+
+select{
+    margin-bottom: 22px;
+}
+
+.hidenm{
+    font-weight: 600;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    padding-left: 20px;
 }
