@@ -9,10 +9,14 @@ public enum ErrorCodes {
 	INVALID_USERNAME(1002, "Invalid username"),
 	USERNAME_EXISTS(1003, "Username already exists"),
 	EMAIL_EXISTS(1004, "Email already exists"),
-	INVALID_CREDENTIAS(1005,"Invalid Credentials"),
+	INVALID_CREDENTIAS(1005, "Invalid Credentials"),
 	
-	FOLLOW_EXISTS(1005,"Follow already exists"),
-	FOLLOW_NOT_FOUND(1006,"Follow not found"),
+	FOLLOW_EXISTS(1006, "Follow already exists"),
+	FOLLOW_NOT_FOUND(1007, "Follow not found"),
+	
+	COMMENT_NOT_FOUND(1008, "Comment not found"),
+
+	LIKE_NOT_FOUND(1008, "Like not found"),
 
 	MATERIAL_NOT_FOUND(1101, "Material not found"),
 	INVALID_PRICES(1102, "Invalid prices"),
