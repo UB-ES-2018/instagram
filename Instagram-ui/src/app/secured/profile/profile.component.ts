@@ -19,6 +19,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowed') modalFollowed: ElementRef;
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
+  @ViewChild('modalImage') modalImage: ElementRef;
 
   profileID: string;
   user: User;
@@ -106,7 +107,7 @@ export class ProfileComponent implements OnInit {
   }
   followedPopUp(){
     if(this.authenticationService.logUser && this.user){
-      this.modalService.open(this.modalFollowed, {centered: true, size:'lg', windowClass: 'modal-cs'})
+      this.modalService.open(this.modalFollowed, {centered: true, size:'sm', windowClass: 'modal-cs'})
     }else{
       this.ruta.navigate(['login']);
     }    
@@ -114,10 +115,14 @@ export class ProfileComponent implements OnInit {
 
   followersPopUp(){
     if(this.authenticationService.logUser && this.user){
-      this.modalService.open(this.modalFollowers, {centered: true, size:'lg', windowClass: 'modal-cs'})
+      this.modalService.open(this.modalFollowers, {centered: true, size:'sm', windowClass: 'modal-cs'})
     }else{
       this.ruta.navigate(['login']);
     }    
+  }
+
+  imagePopUp(){
+    this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})   
   }
   
   // Profile button check, called on init

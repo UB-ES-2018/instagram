@@ -20,8 +20,7 @@
     <div id="name"><b>{{user?.name}}</b></div>
     <div id="bio">{{user?.bio}}</div>
   </div>
-  
-</div>
+  <button id="testImg" (click)="imagePopUp()" class="btn btn-primary btn-sm">test</button>
 
 <ng-template #modalFollowed let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -44,9 +43,7 @@
         <span style="display:inline; float: right;">
             <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
             <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)" (click)="sendUnfollow(user_followed.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
-        </span>
-          
-          
+        </span>       
       </div>
   </div>
   <div class="modal-footer">      
@@ -79,4 +76,25 @@
     </div>
     <div class="modal-footer">      
     </div>
+  </ng-template>
+
+
+  <ng-template #modalImage let-c="close" let-d="dismiss">
+      <div style="display: inline-block">
+            <div class="column" id="image_modal" style="height: 600px; float: left;
+            width: 67%;">
+                <img alt="" src="https://webstyle.unicomm.fsu.edu/img/placeholders/ratio-pref-1-1.png" width="600px" height="600px"/>
+            </div>
+            <div class="column" style="float: left;
+            width: 33%;">
+                <div>
+                    TITOL
+                </div>
+                ----
+                <div>
+                    Coments
+                </div>
+            </div>
+      </div>
+        
   </ng-template>
