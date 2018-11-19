@@ -31,11 +31,11 @@ export class UserService {
       );
   }
 
-  changeUserData(user:User){
-    return this.httpClient.put<User>(CONST.URL_PUT_UPDATE_ALL,user)
+  changeUserData(user: User) {
+    return this.httpClient.put<User>(CONST.URL_PUT_UPDATE_ALL, user)
       .pipe(
-        tap(p=> console.log('user data has been change'))
-      )
+        tap(p => console.log('user data has been change'))
+      );
   }
 
   getProfile(name: String): Observable<User> {
@@ -63,19 +63,22 @@ export class UserService {
   }
 
   modifyPass(oldpass: string, userName: string, newPass: string): Observable<boolean> {
-    var passDto = new PassDto();
+    const passDto = new PassDto();
     passDto.username = userName;
     passDto.newPassword = newPass;
     passDto.oldPassword = oldpass;
 
-    const URL = CONST.URL_PUT_USER_PASSWORD
-    return this.httpClient.put<boolean>(URL,passDto)
+    const URL = CONST.URL_PUT_USER_PASSWORD;
+    return this.httpClient.put<boolean>(URL, passDto)
       .pipe(
         tap(users => console.log(`changed password`)),
-        catchError(handleError('getUsers',false))
+        catchError(handleError('getUsers', false))
       );
   }
 
-
+  uploadImage(foto: string, descripcion: string) {
+    //const postDto = new postDto();
+    alert('qwe');
+  }
 
 }
