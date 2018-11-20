@@ -31,13 +31,19 @@
 
         </script>
 
+
         <script>
-            var followed_popup = function(user_list) {
-                var names = [];
-                for (var user in user_list) {
-                    names.push(user.userid);
-                }
-                document.getElementById('followed_modal').innerHTML = names.join(' ');
+            function toggleLike(x){
+                x.classList.toggle("loved")
+            }   
+            function toggleLikeSm(x){
+                x.classList.toggle("sm-loved")
+            }
+            function toggleSaved(x){
+                x.classList.toggle("saved")
+            }        
+            function focusComment(){
+                document.getElementById("cmnt").focus();
             }
         </script>
 
