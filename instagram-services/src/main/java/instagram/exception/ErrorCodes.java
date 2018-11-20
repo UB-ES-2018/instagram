@@ -16,7 +16,7 @@ public enum ErrorCodes {
 	
 	COMMENT_NOT_FOUND(1008, "Comment not found"),
 
-	LIKE_NOT_FOUND(1008, "Like not found"),
+	LIKE_NOT_FOUND(1009, "Like not found"),
 
 	MATERIAL_NOT_FOUND(1101, "Material not found"),
 	INVALID_PRICES(1102, "Invalid prices"),
