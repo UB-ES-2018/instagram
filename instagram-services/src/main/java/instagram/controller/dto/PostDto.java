@@ -54,16 +54,16 @@ public class PostDto {
 		return createdAt;
 	}
 	
-	public void setCreatedAt(Date created_at) {
-		this.createdAt = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 	
-	public void setUpdatedAt(Date updated_at) {
-		this.updatedAt = updated_at;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	public void loadFromModel(Post post) {
