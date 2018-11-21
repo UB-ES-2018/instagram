@@ -10,11 +10,11 @@ public interface PostService {
 	
 	List<Post> getAll();
 	
-	List<Post> getAllPostsFromUser(int id_user);
+	List<Post> getAllPostsFromUser(int idUser);
 	
 	Post getPostById(int id);
 	
-	Post addPost(int id_user, String photo, String description, Date created_at);
+	Post addPost(int idUser, String photo, String description, Date createdAt);
 	
 	void deletePost(int id) throws BusinessException;
 }

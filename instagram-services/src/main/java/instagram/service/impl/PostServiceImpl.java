@@ -26,8 +26,8 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public List<Post> getAllPostsFromUser(int id_user){
-		return this.postRepository.findAllByUser(id_user);
+	public List<Post> getAllPostsFromUser(int idUser){
+		return this.postRepository.findAllByUser(idUser);
 	}
 	
 	@Override
@@ -36,14 +36,14 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public Post addPost(int id_user, String photo, String description, Date created_at) {
+	public Post addPost(int idUser, String photo, String description, Date createdAt) {
 		Post post = new Post();
 		
-		post.setIdUser(id_user);
+		post.setIdUser(idUser);
 		post.setPhoto(photo);
 		post.setDescription(description);
-		post.setCreatedAt(created_at);
-		post.setUpdatedAt(created_at);
+		post.setCreatedAt(createdAt);
+		post.setUpdatedAt(createdAt);
 		
 		postRepository.save(post);
 		
