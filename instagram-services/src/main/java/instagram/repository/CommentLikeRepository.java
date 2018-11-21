@@ -9,7 +9,7 @@ import instagram.model.CommentLike;
 
 public interface CommentLikeRepository extends CrudRepository<CommentLike, Integer> {
 
-	@Query("SELECT lc FROM LikesComent lc WHERE lc.idPost = ?1")
+	@Query("SELECT lc FROM CommentLike lc WHERE lc.idComment = ?1")
 	CommentLike findOneByIdCommentIfIsValid(int idComment);
 
 	List<CommentLike> findByIdComment(int idComment);
