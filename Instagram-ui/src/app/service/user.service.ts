@@ -9,6 +9,7 @@ import { handleError } from '../error-handle/error.handling';
 import { User } from '../model/User';
 import { authService } from './auth.service';
 import { PassDto } from '../model/passDto';
+import { PostDto } from '../model/Post';
 
 @Injectable()
 export class UserService {
@@ -76,9 +77,13 @@ export class UserService {
       );
   }
 
-  uploadImage(foto: string, descripcion: string) {
-    //const postDto = new postDto();
-    alert('qwe');
+  uploadImage(foto: string, descripcion: string, id: number, fecha: Date) {
+    const postDto = new PostDto();
+    postDto.idUser = id;
+    postDto.photo = foto;
+    postDto.description = descripcion;
+    postDto.createdAt = fecha;
+    return this.httpClient.post<PostDto>(CONST.URL_UPLOAD_IMAGE, postDto);
   }
 
 }

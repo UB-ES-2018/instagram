@@ -88,10 +88,10 @@
             <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event) accept="image/*" />
         </div>
         <div id="espacioFoto">
-            <img id="fotoSubir" alt="" [src]="image64" />
+            <img id="fotoSubir" alt="" [src]="foto" />
         </div>
-        <div id="descFoto" [(ngModel)]="descripcionFoto" *ngIf="imagePresent">
-            <textarea id="textAreaFoto">Descipcion</textarea>
+        <div id="descFoto"  *ngIf="imagePresent">
+            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descipcion</textarea>
         </div>
         <div *ngIf="imagePresent" id="enviarFoto">
             <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />

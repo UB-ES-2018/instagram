@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
   image64: string;
   imagePresent: boolean;
   descripcionFoto: string;
+  foto: string;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -168,16 +169,18 @@ export class ProfileComponent implements OnInit {
       const file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        this.image64 = reader.result.toString();
+        this.foto = reader.result.toString();
       };
     }
-    if (this.image64 !== '') {
+    if (this.foto !== '') {
       this.imagePresent = true;
     }
   }
 
   enviarFoto() {
-    this.userService.uploadImage(this.image64, this.descripcionFoto);
+    this.userService.uploadImage(this.foto, this.descripcionFoto, this.authenticationService.logUser.id, new Date()).subscribe(resposta => {
+      console.log('uploaded!');
+    });
   }
 
 }
