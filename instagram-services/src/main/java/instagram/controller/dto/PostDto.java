@@ -8,15 +8,15 @@ public class PostDto {
 	
 	private int id;
 	
-	private int id_user;
+	private int idUser;
 	
 	private String photo;
 	
 	private String description;
 	
-	private Date created_at;
+	private Date createdAt;
 	
-	private Date updated_at;
+	private Date updatedAt;
 	
 	public int getId() {
 		return id;
@@ -27,11 +27,11 @@ public class PostDto {
 	}
 	
 	public int getIdUser() {
-		return id_user;
+		return idUser;
 	}
 	
 	public void setIdUser(int id_user) {
-		this.id_user = id_user;
+		this.idUser = id_user;
 	}
 	
 	public String getPhoto() {
@@ -51,27 +51,27 @@ public class PostDto {
 	}
 	
 	public Date getCreatedAt() {
-		return created_at;
+		return createdAt;
 	}
 	
-	public void setCreatedAt(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	public Date getUpdatedAt() {
-		return updated_at;
+		return updatedAt;
 	}
 	
-	public void setUpdatedAt(Date updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	public void loadFromModel(Post post) {
 		id = post.getId();
-		id_user = post.getIdUser();	
+		idUser = post.getIdUser();	
 		photo = post.getPhoto();
 		description = post.getDescription();
-		created_at = post.getCreatedAt();
-		updated_at = post.getUpdatedAt();
+		createdAt = post.getCreatedAt();
+		updatedAt = post.getUpdatedAt();
 	}
 }
