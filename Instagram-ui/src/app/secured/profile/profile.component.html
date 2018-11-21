@@ -12,6 +12,9 @@
             </div>
             <div *ngIf="isAuthUser()" id="opciones">
                 <button id="botonOpciones" routerLink="/accounts">Editar Perfil</button>
+                <div (click)="settingsPopUp()" id="settings" style="cursor: pointer; outline-width: 0; display: block; float: right;">
+                    <img src="http://icons-for-free.com/free-icons/png/512/2246806.png" alt="Settings images" width="60px" height="60px">
+                </div>
             </div>
         </div>
         <div id="datosmid">
@@ -129,3 +132,25 @@
     <div class="modal-footer">
     </div>
 </ng-template>
+
+<ng-template #modalSettings let-c="close" let-d="dismiss">
+    <div id="settings_modal" class="modal-body">
+        <ul id="settings_model_list">
+            <li>
+                <button>
+                    Cambiar contraseña
+                </button>
+            </li>
+            <li>
+                <button>
+                    Cerrar sesion
+                </button>
+            </li>
+            <li>
+                <button>
+                    Salir
+                </button>
+            </li>
+        </ul>
+    </div>
+  </ng-template>

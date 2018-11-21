@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowed') modalFollowed: ElementRef;
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
+  @ViewChild('modalSettings') modalSettings: ElementRef;
+  
 
   profileID: string;
   user: User;
@@ -181,6 +183,14 @@ export class ProfileComponent implements OnInit {
     this.userService.uploadImage(this.foto, this.descripcionFoto, this.authenticationService.logUser.id, new Date()).subscribe(resposta => {
       console.log('uploaded!');
     });
+  }
+
+  settingsPopUp(){
+    if(this.authenticationService.logUser && this.user){
+      this.modalService.open(this.modalSettings, {centered: true, size:'lg', windowClass: 'modal-cs'})
+    }else{
+      this.ruta.navigate(['login']);
+    }    
   }
 
 }
