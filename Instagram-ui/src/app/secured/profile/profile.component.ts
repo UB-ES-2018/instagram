@@ -193,4 +193,9 @@ export class ProfileComponent implements OnInit {
     }    
   }
 
+  logOut(){
+    this.authenticationService.removeLogin();
+    this.ruta.navigate(['login']);
+  }
+
 }

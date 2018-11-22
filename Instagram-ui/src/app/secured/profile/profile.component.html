@@ -137,18 +137,18 @@
     <div id="settings_modal" class="modal-body">
         <ul id="settings_model_list">
             <li>
-                <button>
+                <button routerLink="/accounts/password" (click)="d('Cross click')">
                     Cambiar contraseña
                 </button>
             </li>
             <li>
-                <button>
+                <button (click)="logOut()" (click)="d('Cross click')">
                     Cerrar sesion
                 </button>
             </li>
             <li>
-                <button>
-                    Salir
+                <button (click)="d('Cross click')">
+                    Cancelar
                 </button>
             </li>
         </ul>
