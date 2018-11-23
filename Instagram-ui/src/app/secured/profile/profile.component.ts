@@ -8,6 +8,9 @@ import { Follow } from '../../model/Follow';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { loadQueryList } from '@angular/core/src/render3/instructions';
+import { PostService } from '../../service/post.service';
+import { PostLoad } from '../../model/PostLoad';
 
 
 @Component({
@@ -35,10 +38,12 @@ export class ProfileComponent implements OnInit {
   imagePresent: boolean;
   descripcionFoto: string;
   foto: string;
+  post: PostLoad;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
-    private followService: FollowService, private modalService: NgbModal) { }
+    private followService: FollowService, private modalService: NgbModal,
+    private postService: PostService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -47,6 +52,16 @@ export class ProfileComponent implements OnInit {
       this.selfFollowedList();
     });
     this.imagePresent = false;
+
+    this.AjotitaTest();
+  }
+  private AjotitaTest(){
+    this.postService.requestIdPostByIdPostAndLoggin(1,6).subscribe(
+      postLoad =>{
+        this.post = postLoad
+        console.log(this.post);
+      }
+    );
   }
   private loadUser() {
     this.userService.getProfile(this.profileID).subscribe(user => {

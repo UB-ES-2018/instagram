@@ -5,6 +5,7 @@ import java.util.Date;
 
 import instagram.exception.BusinessException;
 import instagram.model.Post;
+import instagram.model.PostLoad;
 
 public interface PostService {
 	
@@ -17,4 +18,6 @@ public interface PostService {
 	Post addPost(int idUser, String photo, String description, Date createdAt);
 	
 	void deletePost(int id) throws BusinessException;
+	
+	PostLoad getPostByIdAndLoggedUser(int idPost, int idUser);
 }
