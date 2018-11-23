@@ -1,7 +1,7 @@
-export class Follow{
-    follower : number;
-    followed : number;
-    accepted : boolean;
+export class Follow {
+    follower: number;
+    followed: number;
+    accepted: boolean;
 
     public static createDummy(): Follow {
         const follow = new Follow();

@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import instagram.model.Post;
+import instagram.model.PostLoad;
 import instagram.controller.dto.PostDto;
+import instagram.controller.dto.PostLoadDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.service.PostService;
 import instagram.exception.BusinessException;
@@ -29,6 +32,25 @@ public class PostController {
 	
 	@Autowired
 	private PostService postService;
+	
+	@RequestMapping(value = "/load/{idPost}", method = RequestMethod.GET)
+	public ResponseEntity<PostLoadDto> getPostLoad(@PathVariable int idPost, @RequestParam(value = "idUser" , required = false) String idUser) {
+		logger.info("PostController -> getPostLoad");
+		
+		int valueUser = -1;
+		if(idUser != null) {
+			valueUser = Integer.parseInt(idUser);
+		}
+
+		PostLoad postLoad = this.postService.getPostByIdAndLoggedUser(idPost, valueUser);
+		PostLoadDto result = new PostLoadDto();
+		result.loadFromPostLoad(postLoad);
+		
+		
+		return new ResponseEntity<PostLoadDto>(result,HttpStatus.OK);
+		
+		
+	}
 	
 	@RequestMapping(value = "/getPostIDUser/{id_user}", method = RequestMethod.GET)
 	public ResponseEntity<List<PostDto>> getUsersPosts(@PathVariable int id_user) throws BusinessException{

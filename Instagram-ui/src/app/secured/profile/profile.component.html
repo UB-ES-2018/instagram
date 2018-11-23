@@ -1,141 +1,137 @@
 <div id="contenido">
-  <div id="logo"><img alt="" src="assets/images/defaultlogo.png" width="200px"/></div><!--<img alt="" src="assets/images/logo.png" width="200px"/>-->
-  <div id="datosusuario">
-    <div id="datostop">
-        <div id="nick">{{user?.username}}</div>
-        <div id="follow" *ngIf=self_followed_list>
-            <button *ngIf="isLogged() && selfFollowCheck(user?.id) && !checkFollowedStatus(user?.id)" (click)="sendFollow(user?.id)" class="btn btn-primary btn-sm">Seguir</button> 
-            <button *ngIf="isLogged() && selfFollowCheck(user?.id) && checkFollowedStatus(user?.id)" (click)="sendUnfollow(user?.id)" class="btn btn-outline-secondary btn-sm" >Seguido</button> 
+    <div id="logo"><img alt="" src="assets/images/defaultlogo.png" width="200px" /></div>
+    <!--<img alt="" src="assets/images/logo.png" width="200px"/>-->
+    <div id="datosusuario">
+        <div id="datostop">
+            <div id="nick">{{user?.username}}</div>
+            <div id="follow" *ngIf=self_followed_list>
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && !checkFollowedStatus(user?.id)" (click)="sendFollow(user?.id)"
+                    class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && checkFollowedStatus(user?.id)" (click)="sendUnfollow(user?.id)"
+                    class="btn btn-outline-secondary btn-sm">Seguido</button>
+            </div>
+            <div *ngIf="isAuthUser()" id="opciones">
+                <button id="botonOpciones" routerLink="/accounts">Editar Perfil</button>
+            </div>
         </div>
-        <div *ngIf="isAuthUser()" id="opciones">
-            <button id="botonOpciones" routerLink="/accounts">Editar Perfil</button>
+        <div id="datosmid">
+            <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}}
+                Followers</div>
+            <div id="publications">{{posts}} publications</div>
+            <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}}
+                Following</div>
         </div>
+        <br>
+        <div id="name"><b>{{user?.name}}</b></div>
+        <div id="bio">{{user?.bio}}</div>
     </div>
-    <div id="datosmid">
-        <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}} Followers</div>
-        <div id="publications">{{posts}} publications</div>
-        <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}} Following</div>
+    <div id="fotos">
+        <div class="quadradoTabla">
+            <div id="subirFoto" (click)="uploadPopup()" class="celda" *ngIf="isAuthUser()">
+                <img alt="" src="assets/images/camara.png" width="200px" />
+                <!--<input type="file" id="inputFoto" (change)=subirFoto($event) style="display:none;" accept="image/*" />-->
+            </div>
+
+
+            <!--<div class="celda"><img src="/assets/images/X.png" /></div>
+        <div class="celda"><img src="/assets/images/X.png" /></div>
+        <div class="celda"><img src="/assets/images/X.png" /></div>
+        <div class="celda"><img src="/assets/images/X.png" /></div>
+        <div class="celda"><img src="/assets/images/X.png" /></div>
+        <div class="celda"><img src="/assets/images/X.png" /></div>-->
+        </div>
+
     </div>
-    <br>
-    <div id="name"><b>{{user?.name}}</b></div>
-    <div id="bio">{{user?.bio}}</div>
-  </div>
-  <button id="testImg" (click)="imagePopUp()" class="btn btn-primary btn-sm">test</button>
+    <button id="testImg" (click)="imagePopUp()" class="btn btn-primary btn-sm">test</button>
+
+
+</div>
 
 <ng-template #modalFollowed let-c="close" let-d="dismiss">
-  <div class="modal-header">
-      <h4 class="modal-title" style="padding-left: 5em">Following</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  <div id="followed_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
-      <div *ngFor="let user_followed of followed_list" class="column" style="line-height: 4.5em">
-        <span style="display:inline;">
-        <img alt="" src="assets/images/defaultlogo.png" width="15%"/>
-        </span>
+    <div class="modal-header">
+        <h4 class="modal-title" style="padding-left: 5em">Following</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div id="followed_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
+        <div *ngFor="let user_followed of followed_list" class="column" style="line-height: 4.5em">
+            <span style="display:inline;">
+                <img alt="" src="assets/images/defaultlogo.png" width="15%" />
+            </span>
 
-        <div style="display:inline-block; line-height: 1em">
-            <b (click)="d('Cross click')" [routerLink]="['/', user_followed.username]" style="cursor: pointer; outline-width: 0;">&nbsp; {{user_followed.username}}</b>
-            <br>
-            <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.name}}</span>
-        </div>                   
-        <span style="display:inline; float: right;">
-            <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)" (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button> 
-            <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)" (click)="sendUnfollow(user_followed.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
-        </span>       
-      </div>
-  </div>
-  <div class="modal-footer">      
-  </div>
+            <div style="display:inline-block; line-height: 1em">
+                <b (click)="d('Cross click')" [routerLink]="['/', user_followed.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
+                    {{user_followed.username}}</b>
+                <br>
+                <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.name}}</span>
+            </div>
+            <span style="display:inline; float: right;">
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)"
+                    (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)"
+                    (click)="sendUnfollow(user_followed.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
+            </span>
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</ng-template>
+
+<ng-template #modalUpload let-c="close" let-d="dismiss" >
+    <div id="contenidoSubirFoto">
+        <div id="tituloSubirFoto">
+            <a>Subir Imagen</a>
+        </div>
+        <div id="inputFoto">
+            <label for="inputFotoHid" class="btn btn-primary btn-sm">Examinar</label>
+            <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event) accept="image/*" />
+        </div>
+        <div id="espacioFoto">
+            <img id="fotoSubir" alt="" [src]="foto" />
+        </div>
+        <div id="descFoto"  *ngIf="imagePresent">
+            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descripcion</textarea>
+        </div>
+        <div *ngIf="imagePresent" id="enviarFoto">
+            <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
 </ng-template>
 
 <ng-template #modalFollowers let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title" style="padding-left: 5em">Followers</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div id="followers_modal" class="modal-body" style="height: 250px; overflow-y: auto;">
         <div *ngFor="let user_following of follower_list" class="column" style="line-height: 4.5em">
             <span style="display:inline;">
-              <img alt="" src="assets/images/defaultlogo.png" width="15%"/>
+                <img alt="" src="assets/images/defaultlogo.png" width="15%" />
             </span>
-  
+
             <div style="display:inline-block; line-height: 1em">
-                <b (click)="d('Cross click')" [routerLink]="['/', user_following.username]" style="cursor: pointer; outline-width: 0;">&nbsp; {{user_following.username}}</b>
+                <b (click)="d('Cross click')" [routerLink]="['/', user_following.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
+                    {{user_following.username}}</b>
                 <br>
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.name}}</span>
-            </div>                   
+            </div>
             <span style="display:inline; float: right;">
-                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)" (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button> 
-                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)" (click)="sendUnfollow(user_following.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
-            </span>              
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)"
+                    (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)"
+                    (click)="sendUnfollow(user_following.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
+            </span>
         </div>
     </div>
-    <div class="modal-footer">      
+    <div class="modal-footer">
     </div>
-  </ng-template>
+</ng-template>
 
-
-  <ng-template #modalImage let-c="close" let-d="dismiss">
-      <div style="display: inline-block">
-            <div class="column" id="image_modal" style="height: 600px; float: left;
-            width: 67%;">
-                <img alt="" src="https://webstyle.unicomm.fsu.edu/img/placeholders/ratio-pref-1-1.png" width="600px" height="600px"/>
-            </div>
-            <div class="column" style="float: left;
-            width: 33%;">
-                <div id="userOwner" style="margin: 15px; margin-bottom: 0px">
-                    <div class="left" style="border-bottom: 1px solid #f8f8f8;">
-                        <img alt="" src="assets/images/defaultlogo.png" width="40px" />
-                        <b>  {{user?.username}}</b>
-                        <br>
-                        <br>
-                    </div>
-                </div>
-                <div id="comments" style="height: 365px; overflow-y: scroll; border-bottom: 1px solid #f8f8f8;">
-                    <div id="description" style="margin: 20px; font-size: 14px;">
-                        <b> {{user?.username}}</b> Descripció average
-                    </div>
-                    <div id="comment2" style="margin: 20px; font-size: 14px;">
-                        <span style="display: inline-block; width: 80%; overflow: hidden;">
-                            <b>{{user?.username}}</b> 
-                            Comentari average que no se que explica haha hola company com estas 
-                        </span>
-                        <span style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
-                    </div>
-                    <div id="comment3" style="margin: 20px; font-size: 14px;">
-                        <span style="display: inline-block; width: 80%; overflow: hidden;">
-                            <b>{{user?.username}}</b> 
-                            Aquests comentaris teòricament seran autogenerats però bueno, jo poso place-holders per a mantenir l'aspecte del frontend
-                        </span>
-                        <span style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
-                    </div>
-                    <div id="comment4" style="margin: 20px; font-size: 14px;">
-                        <span style="display: inline-block; width: 80%; overflow: hidden;">
-                            <b>{{user?.username}}</b> 
-                            AAAA AAAAAAAA AAAAAAA AAAAAAA AAAAAA AAAAAAAAAA AAAAA AAAAAAA AAAAAA AAAA AAAAAAAA AAAAAAA AAAAAAA AAAAAA AAAAAAAAAA AAAAA AAAAAAA AAAAAA AAAA AAAAAAAA AAAAAAA AAAAAAA AAAAAA AAAAAAAAAA AAAAA AAAAAAA AAAAAA AAAA AAAAAAAA AAAAAAA AAAAAAA AAAAAA AAAAAAAAAA AAAAA AAAAAAA AAAAAA 
-                        </span>
-                        <span style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
-                    </div>
-                </div>
-                <div id="tray_react" style="border-bottom: 1px solid #f8f8f8; margin: 20px;">
-                    <div class='react'>
-                        <span style="cursor: pointer;" onclick="toggleLike(this)" class='love'></span>
-                        <span style="cursor: pointer;" onclick="focusComment()" class='comment'></span>
-                        <span style="float: right; cursor: pointer;"  onclick="toggleSaved(this)" class='save'></span>                   
-                    </div>
-                    <b>32 likes</b>
-                    <br>
-                    <i id="date" style="color: gray; font-size: 13px;">November 29</i>
-                </div>
-                <div id="comment-section" style="border-bottom: 1px solid #f8f8f8; margin-left: 20px; margin-right: 20px;">
-                    <span class='dot02'></span>
-                    <input type='text' id='cmnt' placeholder='Add a comment...'>                    
-                </div>
-            </div>
-      </div>
-        
-  </ng-template>
+<ng-template #modalImage let-c="close" let-d="dismiss">
+    <app-image-modal postId=1></app-image-modal>
+</ng-template>

@@ -1,0 +1,47 @@
+<div style="display: inline-block">
+    <div class="column" id="image_modal" style="height: 600px; float: left;
+    width: 67%;">
+        <img alt="" [src]=post.photo width="600px" height="600px"/>
+    </div>
+    <div class="column" style="float: left;
+    width: 33%;">
+        <div id="userOwner" style="margin: 15px; margin-bottom: 0px">
+            <div class="left" style="border-bottom: 1px solid #f8f8f8;">
+                <img alt="" src="assets/images/defaultlogo.png" width="40px" />
+                <b>  {{post.ownerName}}</b>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div id="comments" style="height: 365px; overflow-y: scroll; border-bottom: 1px solid #f8f8f8; width: 400px">
+            <div *ngIf="post.description != null" id="description" style="margin: 20px; font-size: 14px;">
+                <b> {{post.ownerName}}</b> {{post.description}}
+            </div>
+
+            <div *ngFor="let comment of post.coments">
+                <div id={{comment.idComment}} style="margin: 20px; font-size: 14px;">
+                    <span style="display: inline-block; width: 80%; overflow: hidden;">
+                        <b (click)="d('Cross click')" [routerLink]="['/', comment.name]" style="cursor: pointer; outline-width: 0;">{{comment.name}}</b> 
+                        {{comment.content}}
+                    </span>
+                    <span style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
+                </div>
+            </div>
+
+        </div>
+        <div id="tray_react" style="border-bottom: 1px solid #f8f8f8; margin: 20px;">
+            <div class='react'>
+                <span style="cursor: pointer;" onclick="toggleLike(this)" class='love'></span>
+                <span style="cursor: pointer;" onclick="focusComment()" class='comment'></span>
+                <span style="float: right; cursor: pointer;"  onclick="toggleSaved(this)" class='save'></span>                   
+            </div>
+            <b>32 likes</b>
+            <br>
+            <i id="date" style="color: gray; font-size: 13px;">{{post.createdAt}}</i>
+        </div>
+        <div id="comment-section" style="border-bottom: 1px solid #f8f8f8; margin-left: 20px; margin-right: 20px;">
+            <span class='dot02'></span>
+            <input type='text' id='cmnt' placeholder='Add a comment...'>                    
+        </div>
+    </div>
+</div>

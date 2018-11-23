@@ -183,4 +183,10 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+
+	@Override
+	public String getUsername(int idUser) {
+		return this.userRepository.findById(idUser).get().getName();
+	}
+
 }

@@ -30,4 +30,6 @@ public interface UserService {
 	void changeAll(String username, String email, String name, String bio, String website, int pNumber, String gender) throws BusinessException;
 
 	User getLogin(String username, String password) throws BusinessException;
+	
+	String getUsername(int idUser);
 }

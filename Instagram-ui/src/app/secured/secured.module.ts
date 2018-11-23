@@ -7,14 +7,17 @@ import { SecuredRoutingModule } from './secured-routing.module';
 import { FeedComponent } from './feed/feed.component';
 import { ExploreComponent } from './explore/explore.component';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { ImageModalComponent } from './image-modal/image-modal.component';
 
-const components = [SecuredComponent, LayoutComponent, ProfileComponent];
+const components = [SecuredComponent, LayoutComponent, ProfileComponent, ImageModalComponent];
 
 @NgModule({
   imports: [
     CommonModule,
     SecuredRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   declarations: [components, FeedComponent, ExploreComponent],
   exports: [components]
