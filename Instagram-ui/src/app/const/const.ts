@@ -18,6 +18,7 @@ export const CONST = {
 
     URL_POST: environment.api + 'post/getPost/',
     URL_UPLOAD_IMAGE: environment.api + 'post/add/',
+    URL_GET_POST_BY_IDPOST_AND_IDUSER_LOGGED: environment.api + 'post/load/{idPost}',
 
     URL_UPDATE_NAME: environment.api + 'users/{username}/update/name',
     URL_UPDATE_BIO: environment.api + 'users/{username}/update/bio',
