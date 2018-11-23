@@ -9,4 +9,17 @@ export class PostLoad {
     ownerName: string;
     coments: Array<Coment>;
 
+    public static createDummy(): PostLoad {
+        const post = new PostLoad();
+        post.idPost = null;
+        post.idUser = null;
+        post.photo = null;
+        post.description = null;
+        post.createdAt = null;
+        post.ownerName = null;
+        post.coments = null;
+
+        return post;
+    }
 }
+
