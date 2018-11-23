@@ -42,7 +42,8 @@
         </div>
 
     </div>
-    <app-image-modal postId=1></app-image-modal>
+    <button id="testImg" (click)="imagePopUp()" class="btn btn-primary btn-sm">test</button>
+
 
 </div>
 
@@ -129,4 +130,8 @@
     </div>
     <div class="modal-footer">
     </div>
+</ng-template>
+
+<ng-template #modalImage let-c="close" let-d="dismiss">
+    <app-image-modal postId=1></app-image-modal>
 </ng-template>

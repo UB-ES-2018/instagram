@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowed') modalFollowed: ElementRef;
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
+  @ViewChild('modalImage') modalImage: ElementRef;
 
   profileID: string;
   user: User;
@@ -197,6 +198,10 @@ export class ProfileComponent implements OnInit {
     this.userService.uploadImage(this.foto, this.descripcionFoto, this.authenticationService.logUser.id, new Date()).subscribe(resposta => {
       console.log('uploaded!');
     });
+  }
+
+  imagePopUp(){
+    this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})   
   }
 
 }
