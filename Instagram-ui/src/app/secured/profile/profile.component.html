@@ -92,7 +92,7 @@
             <img id="fotoSubir" alt="" [src]="foto" />
         </div>
         <div id="descFoto"  *ngIf="imagePresent">
-            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descipcion</textarea>
+            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descripcion</textarea>
         </div>
         <div *ngIf="imagePresent" id="enviarFoto">
             <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />
