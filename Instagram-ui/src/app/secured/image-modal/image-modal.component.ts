@@ -7,6 +7,7 @@ import { PostService } from '../../service/post.service';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/User';
 import { Follow } from '../../model/Follow';
+import { Like } from '../../model/Like';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -30,10 +31,11 @@ export class ImageModalComponent implements OnInit {
 
 
     post: PostLoad = PostLoad.createDummy();;
-    
+    follow_check: Follow = Follow.createDummy();
 
     ngOnInit() {
-        this.AjotitaTest(this.postId)
+        this.AjotitaTest(this.postId);
+        this.checkFollowStatus(this.post.idUser);
     }
 
     formatDate(){
@@ -47,7 +49,13 @@ export class ImageModalComponent implements OnInit {
     }
 
     private AjotitaTest(post_id: number){
-        this.postService.requestIdPostByIdPostAndLoggin(post_id,this.authenticationService.logUser.id).subscribe(
+        let user_id: number;
+        if (this.authenticationService.logStatus) {
+            user_id = this.authenticationService.logUser.id;
+        }else{
+            user_id = null;
+        }
+        this.postService.requestIdPostByIdPostAndLoggin(post_id,user_id).subscribe(
             postLoad =>{
             this.post = postLoad
             this.formatDate()
@@ -55,6 +63,54 @@ export class ImageModalComponent implements OnInit {
             }
         );
     }
+    
 
+    checkFollowStatus(followed: number) {
+        this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
+            this.follow_check = follow_check;
+        }, error => console.error('error checking follow ' + error));
+    }
+
+    // Follower status checking, will use auth-user followers
+    checkFollowedStatus(followed_id: number) {
+        if (this.follow_check.accepted) {
+            console.log("followed true")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isLogged() {
+        if (this.authenticationService.logUser) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    selfFollowCheck(id: number) {
+        if (id !== this.authenticationService.logUser.id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    sendFollow(followed_id: number) {
+        this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe(
+            response => {
+            this.checkFollowStatus(this.post.idUser);
+            }
+        );
+    }
+
+    sendUnfollow(followed_id: number) {
+        this.followService.unFollow(this.authenticationService.logUser.id, followed_id).subscribe(
+            response => {
+            this.checkFollowStatus(this.post.idUser);
+            }
+        );
+    }
     
 }

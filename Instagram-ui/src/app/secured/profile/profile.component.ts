@@ -162,7 +162,7 @@ export class ProfileComponent implements OnInit {
       return false;
     }
   }
-  // Follower status checking, will use auth user followers
+  // Follower status checking, will use auth-user followers
   checkFollowedStatus(followed_id: number) {
     if (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0) {
       return true;

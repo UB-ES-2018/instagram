@@ -9,6 +9,10 @@
             <div class="left" style="border-bottom: 1px solid #f8f8f8;">
                 <img alt="" src="assets/images/defaultlogo.png" width="40px" />
                 <b (click)="d('Cross click')" [routerLink]="['/', post.ownerName]" style="cursor: pointer; outline-width: 0;">  {{post.ownerName}}</b>
+                <b *ngIf="isLogged() && selfFollowCheck(post.idUser) && !checkFollowedStatus(post.idUser)" (click)="sendFollow(post.idUser)"
+                    style="cursor: pointer; outline-width: 0;" class="text-primary"> · Seguir</b>
+                <b *ngIf="isLogged() && selfFollowCheck(post.idUser) && checkFollowedStatus(post.idUser)" (click)="sendUnfollow(post.idUser)"
+                    style="cursor: pointer; outline-width: 0"> · Seguido</b>
                 <br>
                 <br>
             </div>
@@ -24,7 +28,7 @@
                         <b (click)="d('Cross click')" [routerLink]="['/', comment.name]" style="cursor: pointer; outline-width: 0;">{{comment.name}}</b> 
                         {{comment.content}}
                     </span>
-                    <span style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
+                    <span *ngIf="isLogged()" style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
                 </div>
             </div>
 
