@@ -8,12 +8,12 @@
         <div id="userOwner" style="margin: 15px; margin-bottom: 0px">
             <div class="left" style="border-bottom: 1px solid #f8f8f8;">
                 <img alt="" src="assets/images/defaultlogo.png" width="40px" />
-                <b>  {{post.ownerName}}</b>
+                <b (click)="d('Cross click')" [routerLink]="['/', post.ownerName]" style="cursor: pointer; outline-width: 0;">  {{post.ownerName}}</b>
                 <br>
                 <br>
             </div>
         </div>
-        <div id="comments" style="height: 365px; overflow-y: scroll; border-bottom: 1px solid #f8f8f8; width: 400px">
+        <div id="comments" style="height: 365px; overflow-y: scroll; border-bottom: 1px solid #f8f8f8; width:315px">
             <div *ngIf="post.description != null" id="description" style="margin: 20px; font-size: 14px;">
                 <b> {{post.ownerName}}</b> {{post.description}}
             </div>

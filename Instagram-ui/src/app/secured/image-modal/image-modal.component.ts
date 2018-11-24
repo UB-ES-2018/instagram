@@ -36,12 +36,25 @@ export class ImageModalComponent implements OnInit {
         this.AjotitaTest(this.postId)
     }
 
+    formatDate(){
+        let formattedDate = new Date(this.post.createdAt);
+
+        let options: Intl.DateTimeFormatOptions = {
+            day: "numeric", month: "long", year: "numeric"
+        };
+        this.post.createdAt = formattedDate.toLocaleDateString("en-GB", options);
+        
+    }
+
     private AjotitaTest(post_id: number){
         this.postService.requestIdPostByIdPostAndLoggin(post_id,this.authenticationService.logUser.id).subscribe(
-          postLoad =>{
+            postLoad =>{
             this.post = postLoad
+            this.formatDate()
             console.log(this.post);
-          }
+            }
         );
-      }
+    }
+
+    
 }
