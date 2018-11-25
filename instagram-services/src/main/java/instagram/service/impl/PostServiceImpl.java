@@ -15,8 +15,10 @@ import instagram.model.Comment;
 import instagram.model.CommentLoad;
 import instagram.model.Post;
 import instagram.model.PostLoad;
+import instagram.model.PostPerfil;
 import instagram.repository.PostRepository;
 import instagram.service.CommentService;
+import instagram.service.LikeService;
 import instagram.service.PostService;
 import instagram.service.UserService;
 
@@ -35,14 +37,28 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private LikesComentAuxServiceImpl likesComentService;
 	
+	@Autowired
+	private LikeService likeService;
+	
 	@Override
 	public List<Post> getAll(){
 		return Lists.newArrayList(postRepository.findAll());
 	}
 	
 	@Override
-	public List<Post> getAllPostsFromUser(int idUser){
-		return this.postRepository.findAllByUser(idUser);
+	public List<PostPerfil> getAllPostsFromUser(int idUser){
+		List<Post> posts = this.postRepository.findAllByUser(idUser);
+		List<PostPerfil> listPostPerfil = new ArrayList<PostPerfil>();
+		
+		for(Post post : posts) {
+			PostPerfil postPerfil = new PostPerfil();
+			postPerfil.setId(post.getId());
+			postPerfil.setPhoto(post.getPhoto());
+			postPerfil.setNumComments(this.commentService.getCommentsByPost(post.getId()).size());
+			postPerfil.setNumLikes(this.likeService.findAllByIdPost(post.getId()).size());
+			listPostPerfil.add(postPerfil);
+		}
+		return listPostPerfil;
 	}
 	
 	@Override
@@ -52,6 +68,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public Post addPost(int idUser, String photo, String description, Date createdAt) {
+		
 		Post post = new Post();
 		
 		post.setIdUser(idUser);
@@ -67,6 +84,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public void deletePost(int id) throws BusinessException {
+		
 		Optional<Post> optionalPost = this.postRepository.findById(id);
 		Post post = optionalPost.get();
 		this.postRepository.delete(post);

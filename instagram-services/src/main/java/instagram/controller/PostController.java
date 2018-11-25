@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import instagram.model.Post;
 import instagram.model.PostLoad;
+import instagram.model.PostPerfil;
 import instagram.controller.dto.PostDto;
 import instagram.controller.dto.PostLoadDto;
+import instagram.controller.dto.PostPerfilDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.service.PostService;
 import instagram.exception.BusinessException;
@@ -52,18 +54,18 @@ public class PostController {
 		
 	}
 	
-	@RequestMapping(value = "/getPostIDUser/{id_user}", method = RequestMethod.GET)
-	public ResponseEntity<List<PostDto>> getUsersPosts(@PathVariable int id_user) throws BusinessException{
+	@RequestMapping(value = "/getPostIDUser/{idUser}", method = RequestMethod.GET)
+	public ResponseEntity<List<PostPerfilDto>> getUsersPosts(@PathVariable int idUser) throws BusinessException{
 		logger.info("PostController -> getUsersPosts");
 		
-		List<Post> posts = this.postService.getAllPostsFromUser(id_user);
-		List<PostDto> result = new ArrayList<PostDto>();
-		for(Post post : posts) {
-			PostDto checkedPost = new PostDto();
+		List<PostPerfil> posts = this.postService.getAllPostsFromUser(idUser);
+		List<PostPerfilDto> result = new ArrayList<PostPerfilDto>();
+		for(PostPerfil post : posts) {
+			PostPerfilDto checkedPost = new PostPerfilDto();
 			checkedPost.loadFromModel(post);
 			result.add(checkedPost);
 		}
-		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
+		return new ResponseEntity<List<PostPerfilDto>>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getPost", method = RequestMethod.GET)

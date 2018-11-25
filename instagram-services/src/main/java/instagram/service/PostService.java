@@ -6,12 +6,13 @@ import java.util.Date;
 import instagram.exception.BusinessException;
 import instagram.model.Post;
 import instagram.model.PostLoad;
+import instagram.model.PostPerfil;
 
 public interface PostService {
 	
 	List<Post> getAll();
 	
-	List<Post> getAllPostsFromUser(int idUser);
+	List<PostPerfil> getAllPostsFromUser(int idUser);
 	
 	Post getPostById(int id);
 	

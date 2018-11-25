@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { loadQueryList } from '@angular/core/src/render3/instructions';
 import { PostService } from '../../service/post.service';
 import { PostLoad } from '../../model/PostLoad';
+import { PostPerfil } from '../../model/PostPerfil';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit {
   descripcionFoto: string;
   foto: string;
   post: PostLoad;
+  perfilPhotos: PostPerfil[];
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -55,6 +57,14 @@ export class ProfileComponent implements OnInit {
 
     this.AjotitaTest();
   }
+  private loadPhotosForPerfil(idUser: number){
+    this.postService.requestPhotosForPerfil(idUser).subscribe(
+      postPerfil => {
+        this.perfilPhotos = postPerfil;
+        console.log(this.perfilPhotos);
+      }
+    )
+  }
   private AjotitaTest(){
     this.postService.requestIdPostByIdPostAndLoggin(1,6).subscribe(
       postLoad =>{
@@ -68,6 +78,7 @@ export class ProfileComponent implements OnInit {
       this.user = user;
       this.loadUserInfo();
       this.checkFollowStatus(this.user.id);
+      this.loadPhotosForPerfil(this.user.id);
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
