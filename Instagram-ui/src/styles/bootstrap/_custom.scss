@@ -80,9 +80,15 @@
 .sm-loved {
     background-image: url("insta_icons.png");
     background-position: -204px -65px;
+    background-size: 229px 207px;
     height: 12px;
     width: 12px;
     display: inline-block;
+}
+
+.sm-loved:hover {
+    background-position: -204px -78px;
+    border-radius: 6px;
 }
 
 
