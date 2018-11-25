@@ -23,6 +23,7 @@ export class ImageModalComponent implements OnInit {
     @Input() postId: number;
 
     @ViewChild('modalUpload') modalUpload: ElementRef;
+    @ViewChild('cmnt') cmnt:ElementRef;
 
     constructor(private router: ActivatedRoute, private userService: UserService,
         private ruta: Router, private authenticationService: authService,
@@ -111,6 +112,43 @@ export class ImageModalComponent implements OnInit {
             this.checkFollowStatus(this.post.idUser);
             }
         );
+    }
+
+    sendLikeComment(comment_id: number) {
+        //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
+        //    response => {
+        //    this.AjotitaTest(this.post.idPost);
+        //    }
+        //);
+    }
+
+    sendDislikeComment(comment_id: number) {
+        //this.likeService.dislikeComment(this.authenticationService.logUser.id, comment_id).subscribe(
+        //    response => {
+        //    this.AjotitaTest(this.post.idPost);
+        //    }
+        //);
+    }
+
+    sendLike() {
+        //this.likeService.likePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
+        //    response => {
+        //    this.AjotitaTest(this.post.idPost);
+        //    }
+        //);
+    }
+
+    sendDislike() {
+        //this.likeService.dislikePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
+        //    response => {
+        //    this.AjotitaTest(this.post.idPost);
+        //    }
+        //);
+    }
+
+    sendComment(text: string){
+        console.log('sending comment: ' + text);
+        this.cmnt.nativeElement.value = '';
     }
     
 }

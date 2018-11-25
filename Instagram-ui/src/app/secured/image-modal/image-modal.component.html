@@ -28,7 +28,8 @@
                         <b (click)="d('Cross click')" [routerLink]="['/', comment.name]" style="cursor: pointer; outline-width: 0;">{{comment.name}}</b> 
                         {{comment.content}}
                     </span>
-                    <span *ngIf="isLogged()" style="float: right" onclick="toggleLikeSm(this)" class='sm-love'></span>
+                    <span *ngIf="isLogged() && !comment.liked" style="float: right" (click)="sendLikeComment(comment.idComment)" class='sm-love'></span>
+                    <span *ngIf="isLogged() && comment.liked" style="float: right" (click)="sendDislikeComment(comment.idComment)" class='sm-loved'></span>
                 </div>
             </div>
 
@@ -36,6 +37,8 @@
         <div id="tray_react" style="border-bottom: 1px solid #f8f8f8; margin: 20px;">
             <div class='react'>
                 <span style="cursor: pointer;" onclick="toggleLike(this)" class='love'></span>
+                <span style="float: right" (click)="sendLike()" class='love'></span>
+                <span style="float: right" (click)="sendDislike()" class='loved'></span>
                 <span style="cursor: pointer;" onclick="focusComment()" class='comment'></span>
                 <span style="float: right; cursor: pointer;"  onclick="toggleSaved(this)" class='save'></span>                   
             </div>
@@ -45,7 +48,9 @@
         </div>
         <div id="comment-section" style="border-bottom: 1px solid #f8f8f8; margin-left: 20px; margin-right: 20px;">
             <span class='dot02'></span>
-            <input type='text' id='cmnt' placeholder='Add a comment...'>                    
+            <form (submit)="sendComment(cmnt.value)">
+                <input type='text' id='cmnt' placeholder='Add a comment...' #cmnt name="cmnt">  
+            </form>                              
         </div>
     </div>
 </div>
