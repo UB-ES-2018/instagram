@@ -86,4 +86,13 @@ export class UserService {
     return this.httpClient.post<PostDto>(CONST.URL_UPLOAD_IMAGE, postDto);
   }
 
+  updatePerfilPhoto(idUser: number, photo: string) {
+    const url = CONST.URL_PUT_UPDATE_PERFIL_PHOTO.replace('{idUser}', idUser.toString());
+    return this.httpClient.put<User>(url,photo)
+      .pipe(
+        tap(user => console.log('updated user photo')),
+        catchError(handleError('failed to update photo'))
+      );
+  }
+
 }

@@ -34,7 +34,7 @@ public class PostController {
 	private PostService postService;
 	
 	@RequestMapping(value = "/load/{idPost}", method = RequestMethod.GET)
-	public ResponseEntity<PostLoadDto> getPostLoad(@PathVariable int idPost, @RequestParam(value = "idUser" , required = false) String idUser) {
+	public ResponseEntity<PostLoadDto> getPostLoad(@PathVariable int idPost, @RequestParam(value = "idUser" , required = false) String idUser) throws BusinessException{
 		logger.info("PostController -> getPostLoad");
 		
 		int valueUser = -1;

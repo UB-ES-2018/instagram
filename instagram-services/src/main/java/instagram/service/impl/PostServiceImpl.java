@@ -73,7 +73,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostLoad getPostByIdAndLoggedUser(int idPost, int idUser) {
+	public PostLoad getPostByIdAndLoggedUser(int idPost, int idUser) throws BusinessException {
 		
 		PostLoad postLoad = new PostLoad();
 		postLoad.setComents(new ArrayList<CommentLoad>());
@@ -81,6 +81,8 @@ public class PostServiceImpl implements PostService {
 		postLoad.loadFromPostModel(post);
 		
 		postLoad.setOwnerName(this.userService.getUsername(postLoad.getIdUser()));
+		
+		postLoad.setPhotoPerfil(this.userService.getUserById(post.getIdUser()).getPhoto());
 		
 		List<Comment> comments = this.commentService.getCommentsByPost(idPost);
 		

@@ -11,6 +11,8 @@ public class PostLoad {
 	
 	private String photo;
 	
+	private String photoPerfil;
+	
 	private String description;
 	
 	private Date createdAt;
@@ -83,5 +85,15 @@ public class PostLoad {
 		this.idUser = post.getIdUser();
 		
 	}
+
+	public String getPhotoPerfil() {
+		return photoPerfil;
+	}
+
+	public void setPhotoPerfil(String photoPerfil) {
+		this.photoPerfil = photoPerfil;
+	}
+	
+	
 
 }
