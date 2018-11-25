@@ -49,6 +49,8 @@
     height: 24px;
     width: 24px;
     display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
 }
 .react .love:hover {
     background-position: -408px -130px;
@@ -61,6 +63,8 @@
     height: 24px;
     width: 24px;
     display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
 }
 
 .sm-love {
@@ -70,6 +74,8 @@
     height: 12px;
     width: 12px;
     display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
 }
 
 .sm-love:hover {
@@ -84,12 +90,10 @@
     height: 12px;
     width: 12px;
     display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
 }
 
-.sm-loved:hover {
-    background-position: -204px -78px;
-    border-radius: 6px;
-}
 
 
 
