@@ -32,4 +32,6 @@ public interface UserService {
 	User getLogin(String username, String password) throws BusinessException;
 	
 	String getUsername(int idUser);
+	
+	User updatePhoto(int idUser, String photo) throws BusinessException;
 }

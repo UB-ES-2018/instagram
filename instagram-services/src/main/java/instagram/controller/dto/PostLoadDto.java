@@ -14,6 +14,8 @@ public class PostLoadDto {
 	
 	private String photo;
 	
+	private String photoPerfil;
+	
 	private String description;
 	
 	private Date createdAt;
@@ -78,9 +80,19 @@ public class PostLoadDto {
 		this.coments = coments;
 	}
 	
+	
+	public String getPhotoPerfil() {
+		return photoPerfil;
+	}
+
+	public void setPhotoPerfil(String photoPerfil) {
+		this.photoPerfil = photoPerfil;
+	}
+
 	public void loadFromPostLoad(PostLoad postLoad) {
 		this.idPost = postLoad.getIdPost();
 		this.idUser = postLoad.getIdUser();
+		this.photoPerfil = postLoad.getPhotoPerfil();
 		this.coments = postLoad.getComents();
 		this.ownerName = postLoad.getOwnerName();
 		this.photo = postLoad.getPhoto();
