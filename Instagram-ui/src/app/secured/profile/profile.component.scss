@@ -81,17 +81,7 @@
     width:100%;
 }
 
-.celda{
-    width:33%;
-    position: relative;
-    float: left;
-}
 
-.celda img{
-    margin-top: 20px;
-    width:300px;
-    height: 300px;
-}
 
 .labels:hover{
     cursor: pointer;
@@ -158,4 +148,63 @@
     position: relative;
     text-align: center;
     padding: 5px;
+}
+
+.celda{
+    width:33%;
+    position: relative;
+    float: left;
+    top:0;
+    left: 0;
+}
+
+.celda img{
+    margin-top: 20px;
+    width:300px;
+    height: 300px;
+    position: relative;
+    top:0;
+    left: 0;
+}
+
+.datosFoto{
+    opacity: 1;
+    position: static;
+    text-align: center;
+    width:300px;
+    padding-top: 48%;
+    position: absolute;
+    float: left;
+    color: white;
+    display:none;
+    font-size: 18px;
+}
+
+.datosHidden{
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    width:300px;
+    height: 300px;
+    position: absolute;
+    float: left;
+    display:none;
+    opacity: 0.5;
+    background-color: black;
+}
+
+
+.celda:hover .datosHidden{
+    display: inline;
+    z-index: 2;
+}
+
+.celda:hover .datosFoto{
+    display: inline;
+    z-index: 3;
+}
+
+.contenedorFoto{
+    position: relative;
+    width:100%;
 }
