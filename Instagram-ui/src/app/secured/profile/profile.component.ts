@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit {
   foto: string;
   post: PostLoad;
   perfilPhotos: PostPerfil[];
+  fotoSubida: boolean;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -54,21 +55,21 @@ export class ProfileComponent implements OnInit {
       this.selfFollowedList();
     });
     this.imagePresent = false;
-
+    this.fotoSubida = false;
     this.AjotitaTest();
   }
-  private loadPhotosForPerfil(idUser: number){
+  private loadPhotosForPerfil(idUser: number) {
     this.postService.requestPhotosForPerfil(idUser).subscribe(
       postPerfil => {
         this.perfilPhotos = postPerfil;
         console.log(this.perfilPhotos);
       }
-    )
+    );
   }
-  private AjotitaTest(){
-    this.postService.requestIdPostByIdPostAndLoggin(1,6).subscribe(
-      postLoad =>{
-        this.post = postLoad
+  private AjotitaTest() {
+    this.postService.requestIdPostByIdPostAndLoggin(1, 6).subscribe(
+      postLoad => {
+        this.post = postLoad;
         console.log(this.post);
       }
     );
@@ -151,7 +152,6 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadPopup() {
-
     this.modalService.open(this.modalUpload, { centered: true, size: 'lg', windowClass: 'modal-cs' });
 
   }
@@ -189,6 +189,7 @@ export class ProfileComponent implements OnInit {
 
 
   subirFoto(event) {
+    this.fotoSubida = false;
     this.imagePresent = false;
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
@@ -206,6 +207,9 @@ export class ProfileComponent implements OnInit {
   enviarFoto() {
     this.userService.uploadImage(this.foto, this.descripcionFoto, this.authenticationService.logUser.id, new Date()).subscribe(resposta => {
       console.log('uploaded!');
+      this.fotoSubida = true;
+      this.imagePresent = false;
+      this.descripcionFoto = '';
     });
   }
 
