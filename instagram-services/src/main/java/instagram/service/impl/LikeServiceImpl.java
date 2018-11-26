@@ -60,4 +60,9 @@ public class LikeServiceImpl implements LikeService {
 		return likeRepository.findByIdPost(idPost);
 	}
 
+	@Override
+	public List<Like> findAllByIdPost(int idPost) {
+		return this.likeRepository.findAllByIdPost(idPost);
+	}
+
 }

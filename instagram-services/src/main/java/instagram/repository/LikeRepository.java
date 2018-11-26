@@ -16,4 +16,6 @@ public interface LikeRepository extends CrudRepository<Like, Integer> {
 	
 	Like findOneByIdPost(int idPost);
 	
+	List<Like> findAllByIdPost(int idPost);
+	
 }

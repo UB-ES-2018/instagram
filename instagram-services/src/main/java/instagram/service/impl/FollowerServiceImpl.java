@@ -75,6 +75,17 @@ public class FollowerServiceImpl implements FollowerService {
 		}
 		return follow;
 	}
+
+	@Override
+	public Boolean deleteFolllower(int follower, int followed, boolean acepted) throws BusinessException {
+		Follower follow = this.followerRepository.findOneByfollowAndFollowed(follower, followed);
+		Boolean check = false;
+		if(follow != null) {
+			this.followerRepository.delete(follow);
+			check = true;
+		}
+		return check;
+	}
 	
 
 }
