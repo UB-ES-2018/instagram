@@ -14,6 +14,7 @@ export class EditProfileDataComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authentiactionService: authService, private userService: UserService) { }
   form: FormGroup;
   username: string;
+  profileUpdated: boolean;
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: [this.authentiactionService.logUser.name],
@@ -25,40 +26,42 @@ export class EditProfileDataComponent implements OnInit {
       gender: [this.authentiactionService.logUser.gender]
     });
     this.username = this.authentiactionService.logUser.username;
+    this.profileUpdated = false;
   }
 
   enviar() {
-    var user = this.authentiactionService.logUser;
+    this.profileUpdated = false;
+    const user = this.authentiactionService.logUser;
 
     if (this.form.get('name').touched) {
       user.name = this.form.get('name').value
     }
 
-    if (this.form.get('username').touched){
+    if (this.form.get('username').touched) {
       user.username = this.form.get('username').value
     }
 
-    if (this.form.get('bio').touched){
+    if (this.form.get('bio').touched) {
       user.bio = this.form.get('bio').value
     }
-    if (this.form.get('email').touched){
+    if (this.form.get('email').touched) {
       user.email = this.form.get('email').value
     }
-    if (this.form.get('phoneNumber').touched){
+    if (this.form.get('phoneNumber').touched) {
       user.phoneNumber = this.form.get('phoneNumber').value
     }
-    if (this.form.get('gender').touched){
+    if (this.form.get('gender').touched) {
       user.gender = this.form.get('gender').value
     }
-    if(this.form.get('website').touched){
+    if (this.form.get('website').touched) {
       user.website = this.form.get('website').value
     }
-    console.log(user)
     this.userService.changeUserData(user).subscribe(
-      response=>{
+      response => {
         this.authentiactionService.logUser = response;
       }
-    )
+    );
+    this.profileUpdated = true;
   }
 
 

@@ -61,6 +61,15 @@ public class FollowerController {
 
 		return new ResponseEntity<FollowerDto>(follow, HttpStatus.ACCEPTED);
 	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> deleteFollow(@RequestBody FollowerDto followerDto) throws BusinessException {
+		logger.info("FollowerController -> deleteFollow");
+		
+		Boolean status = this.followerService.deleteFolllower(followerDto.getFollower(), followerDto.getFollowed(),followerDto.isAccepted());
+
+		return new ResponseEntity<Boolean>(status, HttpStatus.ACCEPTED);
+	}
 
 
 	@RequestMapping(value = "/getFollowers/{userid}", method = RequestMethod.GET)

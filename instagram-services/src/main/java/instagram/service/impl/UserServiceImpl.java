@@ -183,4 +183,19 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+
+	@Override
+	public String getUsername(int idUser) {
+		return this.userRepository.findById(idUser).get().getName();
+	}
+
+
+	@Override
+	public User updatePhoto(int idUser, String photo) throws BusinessException {
+		User user = this.getUserById(idUser);
+		user.setPhoto(photo);
+		this.userRepository.save(user);
+		return user;
+	}
+
 }

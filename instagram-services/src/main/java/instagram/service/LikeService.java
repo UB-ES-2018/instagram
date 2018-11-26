@@ -14,4 +14,6 @@ public interface LikeService {
 	void deleteLike(int id) throws BusinessException;
 
 	Like addLike(int idPost, int idUser) throws BusinessException;
+	
+	List<Like> findAllByIdPost(int idPost);
 }

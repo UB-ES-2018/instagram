@@ -49,4 +49,9 @@ public class LikeServiceImpl implements LikeService {
 		this.likeRepository.delete(like);
 	}
 
+	@Override
+	public List<Like> findAllByIdPost(int idPost) {
+		return this.likeRepository.findAllByIdPost(idPost);
+	}
+
 }
