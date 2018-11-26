@@ -107,4 +107,17 @@ public class UserController {
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 				
 	}
+	
+	@RequestMapping(value = "/update/photo/{idUser}", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updatePhoto(@PathVariable int idUser, @RequestBody String photo) throws BusinessException {
+		logger.info("UserController -> updatePhoto");
+		
+		User user = this.userService.updatePhoto(idUser, photo);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	
 }

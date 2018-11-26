@@ -17,7 +17,7 @@
         <div id="datosmid">
             <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}}
                 Followers</div>
-            <div id="publications">{{posts}} publications</div>
+            <div id="publications">{{perfilPhotos?.length}} publications</div>
             <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}}
                 Following</div>
         </div>
@@ -29,16 +29,20 @@
         <div class="quadradoTabla">
             <div id="subirFoto" (click)="uploadPopup()" class="celda" *ngIf="isAuthUser()">
                 <img alt="" src="assets/images/camara.png" width="200px" />
-                <!--<input type="file" id="inputFoto" (change)=subirFoto($event) style="display:none;" accept="image/*" />-->
             </div>
+            <div class="celda" *ngFor="let photo of perfilPhotos">
+                <div class="contenedorFoto">
+                    <div class="datosHidden">
 
+                    </div>
+                    <div class="datosFoto">
+                        <i class="fa fa-heart" ></i>{{photo.numLikes}}
+                        <i class="fa fa-comment" style="margin-left: 5%;"></i>{{photo.numComments}}
+                    </div>
+                    <img [src]="photo.photo" />
+                </div>
 
-            <!--<div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>-->
+            </div>
         </div>
 
     </div>
@@ -80,23 +84,27 @@
     </div>
 </ng-template>
 
-<ng-template #modalUpload let-c="close" let-d="dismiss" >
+<ng-template #modalUpload let-c="close" let-d="dismiss">
     <div id="contenidoSubirFoto">
         <div id="tituloSubirFoto">
             <a>Subir Imagen</a>
         </div>
         <div id="inputFoto">
             <label for="inputFotoHid" class="btn btn-primary btn-sm">Examinar</label>
-            <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event) accept="image/*" />
+            <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event)
+                accept="image/*" />
         </div>
-        <div id="espacioFoto">
+        <div id="espacioFoto" *ngIf="!fotoSubida">
             <img id="fotoSubir" alt="" [src]="foto" />
         </div>
-        <div id="descFoto"  *ngIf="imagePresent">
-            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descripcion</textarea>
+        <div id="descFoto" *ngIf="imagePresent">
+            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descipcion</textarea>
         </div>
         <div *ngIf="imagePresent" id="enviarFoto">
             <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />
+        </div>
+        <div  style="color:green; font-weight: 600; width: 100%; text-align: center; margin-bottom: 20px;"*ngIf="fotoSubida">
+            <a>Imagen subida</a>
         </div>
     </div>
 </ng-template>

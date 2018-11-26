@@ -12,6 +12,7 @@ import { loadQueryList } from '@angular/core/src/render3/instructions';
 import { PostService } from '../../service/post.service';
 import { PostLoad } from '../../model/PostLoad';
 import { ImageModalComponent } from '../image-modal/image-modal.component';
+import { PostPerfil } from '../../model/PostPerfil';
 
 
 @Component({
@@ -41,6 +42,8 @@ export class ProfileComponent implements OnInit {
   descripcionFoto: string;
   foto: string;
   post: PostLoad;
+  perfilPhotos: PostPerfil[];
+  fotoSubida: boolean;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -54,13 +57,21 @@ export class ProfileComponent implements OnInit {
       this.selfFollowedList();
     });
     this.imagePresent = false;
-
+    this.fotoSubida = false;
     this.AjotitaTest();
   }
-  private AjotitaTest(){
-    this.postService.requestIdPostByIdPostAndLoggin(1,6).subscribe(
-      postLoad =>{
-        this.post = postLoad
+  private loadPhotosForPerfil(idUser: number) {
+    this.postService.requestPhotosForPerfil(idUser).subscribe(
+      postPerfil => {
+        this.perfilPhotos = postPerfil;
+        console.log(this.perfilPhotos);
+      }
+    );
+  }
+  private AjotitaTest() {
+    this.postService.requestIdPostByIdPostAndLoggin(1, 6).subscribe(
+      postLoad => {
+        this.post = postLoad;
         console.log(this.post);
       }
     );
@@ -70,6 +81,7 @@ export class ProfileComponent implements OnInit {
       this.user = user;
       this.loadUserInfo();
       this.checkFollowStatus(this.user.id);
+      this.loadPhotosForPerfil(this.user.id);
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
@@ -142,7 +154,6 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadPopup() {
-
     this.modalService.open(this.modalUpload, { centered: true, size: 'lg', windowClass: 'modal-cs' });
 
   }
@@ -180,6 +191,7 @@ export class ProfileComponent implements OnInit {
 
 
   subirFoto(event) {
+    this.fotoSubida = false;
     this.imagePresent = false;
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
@@ -197,6 +209,9 @@ export class ProfileComponent implements OnInit {
   enviarFoto() {
     this.userService.uploadImage(this.foto, this.descripcionFoto, this.authenticationService.logUser.id, new Date()).subscribe(resposta => {
       console.log('uploaded!');
+      this.fotoSubida = true;
+      this.imagePresent = false;
+      this.descripcionFoto = '';
     });
   }
 
