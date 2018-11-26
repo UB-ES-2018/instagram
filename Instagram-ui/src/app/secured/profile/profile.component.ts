@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
   post: PostLoad;
   perfilPhotos: PostPerfil[];
   fotoSubida: boolean;
+  clickedImageId: number;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -64,9 +65,11 @@ export class ProfileComponent implements OnInit {
     this.postService.requestPhotosForPerfil(idUser).subscribe(
       postPerfil => {
         this.perfilPhotos = postPerfil;
+        this.perfilPhotos = this.perfilPhotos.slice().reverse()
         console.log(this.perfilPhotos);
       }
     );
+    
   }
   private AjotitaTest() {
     this.postService.requestIdPostByIdPostAndLoggin(1, 6).subscribe(
@@ -215,7 +218,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  imagePopUp(){
+  imagePopUp(id_image: number){
+    this.clickedImageId = id_image;
     this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})   
   }
 
