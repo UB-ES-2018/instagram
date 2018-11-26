@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { loadQueryList } from '@angular/core/src/render3/instructions';
 import { PostService } from '../../service/post.service';
 import { PostLoad } from '../../model/PostLoad';
+import { ImageModalComponent } from '../image-modal/image-modal.component';
 import { PostPerfil } from '../../model/PostPerfil';
 
 
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowed') modalFollowed: ElementRef;
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
+  @ViewChild('modalImage') modalImage: ElementRef;
 
   profileID: string;
   user: User;
@@ -171,7 +173,7 @@ export class ProfileComponent implements OnInit {
       return false;
     }
   }
-  // Follower status checking, will use auth user followers
+  // Follower status checking, will use auth-user followers
   checkFollowedStatus(followed_id: number) {
     if (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0) {
       return true;
@@ -213,4 +215,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  imagePopUp(){
+    this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})   
+  }
+
 }
+
