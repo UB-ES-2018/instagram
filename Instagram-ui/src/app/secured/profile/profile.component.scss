@@ -57,6 +57,23 @@
     cursor: pointer;
 }
 
+#settings{
+    padding-top: 10px;
+    flex-shrink: 0;
+    margin-left: 25px; 
+}
+#botonSettings{
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    font-weight: 600;
+}
+#botonSettings:hover{
+    cursor: pointer; 
+}
+
 
 #followers{
     position: relative;
