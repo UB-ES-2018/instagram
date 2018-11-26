@@ -14,7 +14,9 @@
                     <button id="botonOpciones" routerLink="/accounts">Editar Perfil</button>
                 </div>
                 <div *ngIf="isAuthUser()" (click)="settingsPopUp()" id="settings">
-                    <img src="http://icons-for-free.com/free-icons/png/512/2246806.png" alt="Settings images" width="60px" height="60px">
+                    <button id="botonSettings">
+                        <img src="http://icons-for-free.com/free-icons/png/512/2246806.png" alt="Settings images" width="60px" height="60px">
+                    </button>
                 </div>
             </div>
         <div id="datosmid">
