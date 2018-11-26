@@ -31,7 +31,7 @@
                 <img alt="" src="assets/images/camara.png" width="200px" />
             </div>
             <div class="celda" *ngFor="let photo of perfilPhotos">
-                <div class="contenedorFoto">
+                <div (click)="imagePopUp(photo.id)" class="contenedorFoto">
                     <div class="datosHidden">
 
                     </div>
@@ -46,8 +46,6 @@
         </div>
 
     </div>
-    <button id="testImg" (click)="imagePopUp()" class="btn btn-primary btn-sm">test</button>
-
 
 </div>
 
@@ -141,5 +139,5 @@
 </ng-template>
 
 <ng-template #modalImage let-c="close" let-d="dismiss">
-    <app-image-modal postId=1></app-image-modal>
+    <app-image-modal postId={{clickedImageId}}></app-image-modal>
 </ng-template>

@@ -17,7 +17,7 @@
                 <br>
             </div>
         </div>
-        <div id="comments" style="height: 365px; overflow-y: scroll; border-bottom: 1px solid #f8f8f8; width:315px">
+        <div id="comments" style="height: 365px; overflow-y: scroll; width:315px">
             <div *ngIf="post.description != null" id="description" style="margin: 20px; font-size: 14px;">
                 <b> {{post.ownerName}}</b> {{post.description}}
             </div>
@@ -34,7 +34,7 @@
             </div>
 
         </div>
-        <div id="tray_react" style="border-bottom: 1px solid #f8f8f8; margin: 20px;">
+        <div id="tray_react" style="border-bottom: 1px solid #f8f8f8; border-top: 1px solid #f8f8f8; margin: 20px;">
             <div class='react'>
                 <span style="cursor: pointer;" onclick="toggleLike(this)" class='love'></span>
                 <span style="float: right" (click)="sendLike()" class='love'></span>
