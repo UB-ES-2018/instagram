@@ -27,18 +27,21 @@ export const CONST = {
     URL_COMMENT_GET_BY_ID_POST: environment.api + 'comments/getByPost/',
     URL_COMMENT_GET_BY_ID_USER: environment.api + 'comments/getByUser/',
     URL_PUT_COMMENT_CONTENT: environment.api + 'comments/update/content/',
+    URL_DELETE_COMMENT: environment.api + 'comments/delete/{id}',
 
     URL_LIKE_ADD: environment.api + 'likes/add/',
     URL_LIKE_ALL: environment.api + 'likes/all/',
     URL_LIKE_GET_BY_ID: environment.api + 'likes/getById/',
     URL_LIKE_GET_BY_ID_POST: environment.api + 'likes/getByIdPost/',
     URL_LIKE_GET_LIKERS: environment.api + 'likes/getLikers/',
+    URL_DELETE_LIKE: environment.api + 'likes/delete/{id}',
 
     URL_COMMENT_LIKE_ADD: environment.api + 'commentLikes/add/',
     URL_COMMENT_LIKE_ALL: environment.api + 'commentLikes/all/',
     URL_COMMENT_LIKE_GET_BY_ID: environment.api + 'commentLikes/getById/',
     URL_COMMENT_LIKE_GET_BY_ID_COMMENT: environment.api + 'commentLikes/getByIdComment/',
     URL_COMMENT_LIKE_GET_COMMENT_LIKERS: environment.api + 'commentLikes/getCommentLikers/',
+    URL_DELETE_COMMENT_LIKE: environment.api + 'commentLikes/delete/{id}',
 
     URL_HASH_TAG_ADD: environment.api + 'hashTags/add/',
     URL_HASH_TAG_ALL: environment.api + 'hashTags/all/',
