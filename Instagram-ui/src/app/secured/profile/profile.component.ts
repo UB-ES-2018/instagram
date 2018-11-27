@@ -7,10 +7,11 @@ import { User } from '../../model/User';
 import { Follow } from '../../model/Follow';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { loadQueryList } from '@angular/core/src/render3/instructions';
 import { PostService } from '../../service/post.service';
 import { PostLoad } from '../../model/PostLoad';
+import { ImageModalComponent } from '../image-modal/image-modal.component';
 import { PostPerfil } from '../../model/PostPerfil';
 
 
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowed') modalFollowed: ElementRef;
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
+  @ViewChild('modalImage') modalImage: ElementRef;
 
   profileID: string;
   user: User;
@@ -42,6 +44,9 @@ export class ProfileComponent implements OnInit {
   post: PostLoad;
   perfilPhotos: PostPerfil[];
   fotoSubida: boolean;
+  clickedImageId: number;
+
+  imageRef: NgbModalRef;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -62,9 +67,11 @@ export class ProfileComponent implements OnInit {
     this.postService.requestPhotosForPerfil(idUser).subscribe(
       postPerfil => {
         this.perfilPhotos = postPerfil;
+        this.perfilPhotos = this.perfilPhotos.slice().reverse()
         console.log(this.perfilPhotos);
       }
     );
+    
   }
   private AjotitaTest() {
     this.postService.requestIdPostByIdPostAndLoggin(1, 6).subscribe(
@@ -159,32 +166,28 @@ export class ProfileComponent implements OnInit {
 
   // Profile button check, called on init
   checkFollowStatus(followed: number) {
-    this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
-      this.follow_check = follow_check;
-    }, error => console.error('error checking follow ' + error));
+    if(this.authenticationService.logStatus){
+      this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
+        this.follow_check = follow_check;
+      }, error => console.error('error checking follow ' + error));
+    }    
   }
 
   selfFollowCheck(id: number) {
-    if (id !== this.authenticationService.logUser.id) {
-      return true;
-    } else {
-      return false;
-    }
+    return (id !== this.authenticationService.logUser.id);
   }
-  // Follower status checking, will use auth user followers
+  // Follower status checking, will use auth-user followers
   checkFollowedStatus(followed_id: number) {
-    if (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0);
   }
 
   //
   selfFollowedList() {
-    this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
-      this.self_followed_list = self_followed_list;
-    }, error => console.error('Error retrieving the self followed list ' + error));
+    if(this.authenticationService.logStatus){
+      this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
+        this.self_followed_list = self_followed_list;
+      }, error => console.error('Error retrieving the self followed list ' + error));
+    }
   }
 
 
@@ -213,4 +216,14 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  imagePopUp(id_image: number){
+    this.clickedImageId = id_image;
+    this.imageRef = this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})  
+  }
+
+  closeImage(){
+    this.imageRef.close();
+  }
+
 }
+
