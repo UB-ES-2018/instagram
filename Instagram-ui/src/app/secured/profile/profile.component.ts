@@ -144,7 +144,7 @@ export class ProfileComponent implements OnInit {
   }
   followedPopUp() {
     if (this.authenticationService.logUser && this.user) {
-      this.modalService.open(this.modalFollowed, { centered: true, size: 'lg', windowClass: 'modal-cs' });
+      this.modalService.open(this.modalFollowed, { centered: true, size: 'sm', windowClass: 'modal-cs' });
     } else {
       this.ruta.navigate(['login']);
     }
@@ -152,7 +152,7 @@ export class ProfileComponent implements OnInit {
 
   followersPopUp() {
     if (this.authenticationService.logUser && this.user) {
-      this.modalService.open(this.modalFollowers, { centered: true, size: 'lg', windowClass: 'modal-cs' });
+      this.modalService.open(this.modalFollowers, { centered: true, size: 'sm', windowClass: 'modal-cs' });
     } else {
       this.ruta.navigate(['login']);
     }
