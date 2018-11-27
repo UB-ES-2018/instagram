@@ -31,6 +31,7 @@
     float: left;
     font-size: 30px;
     margin-right: 20px;
+    padding-top: 5px;
 
 }
 
@@ -38,7 +39,6 @@
 
 
 #opciones{
-    padding-top: 10px;
     flex-shrink: 0;
     margin-left: 25px; 
 }
@@ -177,31 +177,31 @@
     padding: 5px;
 }
 
-#settings_model_list {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
+#settingsWheel{
+    width: 60px;
 }
 
-#settings_model_list li {
-    text-decoration: none;
-    margin: 0 auto;
-    width: 100%;
-    display: block;
-    float: left;
-    border-bottom: 1px solid #ccc;
-
-}
-
-#settings_model_list li:last-child {
-
-    border-bottom: none;
-}
-
-#settings_model_list li button {
-    border: none;
-}
-
-#settings_model_list li button:hover {
+#settingsWheel:hover{
     cursor: pointer;
+}
+
+
+.botonOpt{
+    margin-top: 15px;
+}
+
+
+#settings_modal button {
+    border: none;
+    background-color: white;
+}
+
+#settings_modal button:hover {
+    cursor: pointer;
+}
+
+#settings_modal div{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }

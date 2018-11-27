@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
   @ViewChild('modalSettings') modalSettings: ElementRef;
-  
+
 
   profileID: string;
   user: User;
@@ -185,15 +185,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  settingsPopUp(){
-    if(this.authenticationService.logUser && this.user){
-      this.modalService.open(this.modalSettings, {centered: true, size:'lg', windowClass: 'modal-cs'})
-    }else{
+  settingsPopUp() {
+    if (this.authenticationService.logUser && this.user) {
+      this.modalService.open(this.modalSettings, { centered: true, size: 'lg', windowClass: 'modal-cs' })
+    } else {
       this.ruta.navigate(['login']);
-    }    
+    }
   }
 
-  logOut(){
+  logOut() {
     this.authenticationService.removeLogin();
     this.ruta.navigate(['login']);
   }
