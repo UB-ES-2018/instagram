@@ -172,8 +172,19 @@ export class ImageModalComponent implements OnInit {
     }
 
     sendComment(text: string){
-        console.log('sending comment: ' + text);
-        this.cmnt.nativeElement.value = '';
+        if(this.authenticationService.logStatus){
+            //this.commentService.sendComment(this.authenticationService.logUser.id, this.post.idPost, text).subscribe(
+            //    response => {
+            //    this.AjotitaTest(this.post.idPost);
+            //    }
+            //);
+            console.log('sending comment: ' + text);
+            this.cmnt.nativeElement.value = '';
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);
+        }
+        
     }
     
 }
