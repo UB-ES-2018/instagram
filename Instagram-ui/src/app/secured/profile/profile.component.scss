@@ -1,7 +1,30 @@
+@media all and (min-width: 640px) and (max-width: 1023px){
+    #contenido{
+        margin-left: 10px;
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1280px){
+    #contenido{
+        margin-left: 12.5%;
+    }
+}
+
+@media all and (min-width: 1281px) and (max-width: 1599px){
+    #contenido{
+        margin-left: 19%;
+    }
+}
+
+@media all and (min-width: 1600px){
+    #contenido{
+        margin-left: 25%;
+    }
+}
+
 #contenido{
     padding-top: 70px;
     width:1000px;
-    margin-left:20%;
 }
 
 #logo{
@@ -81,6 +104,9 @@
     width:100%;
 }
 
+#subirFoto:hover{
+    cursor: pointer;
+}
 
 
 .labels:hover{
