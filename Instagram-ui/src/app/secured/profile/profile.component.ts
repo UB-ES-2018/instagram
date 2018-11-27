@@ -7,7 +7,7 @@ import { User } from '../../model/User';
 import { Follow } from '../../model/Follow';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { loadQueryList } from '@angular/core/src/render3/instructions';
 import { PostService } from '../../service/post.service';
 import { PostLoad } from '../../model/PostLoad';
@@ -45,6 +45,8 @@ export class ProfileComponent implements OnInit {
   perfilPhotos: PostPerfil[];
   fotoSubida: boolean;
   clickedImageId: number;
+
+  imageRef: NgbModalRef;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -220,7 +222,11 @@ export class ProfileComponent implements OnInit {
 
   imagePopUp(id_image: number){
     this.clickedImageId = id_image;
-    this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})   
+    this.imageRef = this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})  
+  }
+
+  closeImage(){
+    this.imageRef.close();
   }
 
 }

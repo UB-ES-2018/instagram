@@ -139,5 +139,5 @@
 </ng-template>
 
 <ng-template #modalImage let-c="close" let-d="dismiss">
-    <app-image-modal postId={{clickedImageId}}></app-image-modal>
+    <app-image-modal postId={{clickedImageId}} [c]="this.c" [d]="this.d"></app-image-modal>
 </ng-template>

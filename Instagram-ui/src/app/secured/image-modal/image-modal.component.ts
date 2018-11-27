@@ -21,8 +21,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class ImageModalComponent implements OnInit {
     @Input() postId: number;
+    @Input() c;
+    @Input() d;
 
-    @ViewChild('modalUpload') modalUpload: ElementRef;
     @ViewChild('cmnt') cmnt:ElementRef;
 
     constructor(private router: ActivatedRoute, private userService: UserService,
@@ -149,6 +150,10 @@ export class ImageModalComponent implements OnInit {
     sendComment(text: string){
         console.log('sending comment: ' + text);
         this.cmnt.nativeElement.value = '';
+    }
+
+    close(){
+        this.c.close()
     }
     
 }
