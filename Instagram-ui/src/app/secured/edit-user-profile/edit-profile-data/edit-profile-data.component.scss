@@ -91,18 +91,29 @@ select{
     padding-left: 20px;
 }
 
+#titleChangeMenu{
+    position: relative;
+    width:100%;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    font-weight: 600;
+}
+
 #menu_change_photo {
     margin: 0 auto;
     text-align: center;
     width: 100%;
+    list-style-position:inside;
+    
 }
 
 #menu_change_photo li {
+
     text-decoration: none;
     margin: 0 auto;
     width: 100%;
-    display: block;
-    float: left;
+    display: inline-block;
     border-bottom: 1px solid #ccc;
 
 }
@@ -118,4 +129,20 @@ select{
 
 #menu_change_photo li button:hover {
     cursor: pointer;
+}
+
+#espacioFoto{
+    float: left;
+    position: relative;
+    width:100%;
+    max-width: 800px;
+    max-height: 800px;
+    text-align: center;
+}
+
+#fotoCambiar{
+    max-width: 395px;
+    max-height: 395px;
+    text-align: center;
+
 }

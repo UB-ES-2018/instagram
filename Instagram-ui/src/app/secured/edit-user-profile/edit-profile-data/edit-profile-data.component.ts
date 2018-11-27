@@ -19,6 +19,8 @@ export class EditProfileDataComponent implements OnInit {
   profileUpdated: boolean;
   imagePresent: boolean;
   fotoPerfil: string;
+  fotoSubida: boolean;
+  foto: string;
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -75,33 +77,39 @@ export class EditProfileDataComponent implements OnInit {
   }
 
   subirFoto(event) {
+    this.fotoSubida = false;
     this.imagePresent = false;
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        this.fotoPerfil = reader.result.toString();
+        this.foto = reader.result.toString();
       };
     }
-    if (this.fotoPerfil !== '') {
+    if (this.foto !== '') {
       this.imagePresent = true;
     }
   }
 
   
   enviarFoto() {
-    this.authentiactionService.logUser.photo = this.fotoPerfil;
-    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.fotoPerfil).subscribe(resposta => {
+    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.foto).subscribe(resposta => {
       console.log('updated!');
+      this.fotoSubida = true;
+      this.imagePresent = false;
+      this.fotoPerfil = this.foto;
     });
   }
   
 
   eliminarFoto(){
-    this.fotoPerfil = "assets/images/defaultlogo.png";
-    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.fotoPerfil).subscribe(resposta => {
+    this.foto = "assets/images/defaultlogo.png";
+    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.foto).subscribe(resposta => {
       console.log('updated!');
+      this.fotoSubida = true;
+      this.imagePresent = false;
+      this.fotoPerfil = this.foto;
     }); 
   }
 }
