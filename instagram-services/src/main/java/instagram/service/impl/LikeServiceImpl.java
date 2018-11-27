@@ -1,7 +1,6 @@
 package instagram.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 
 import instagram.exception.BusinessException;
+import instagram.exception.ErrorCodes;
 import instagram.model.Like;
 import instagram.repository.LikeRepository;
 import instagram.service.LikeService;
@@ -43,10 +43,26 @@ public class LikeServiceImpl implements LikeService {
 
 	@Override
 	public void deleteLike(int id) throws BusinessException{
-		Optional<Like> optionalLike = this.likeRepository.findById(id);
-		Like like = optionalLike.get();
-		// Delete user itself
-		this.likeRepository.delete(like);
+		if (likeRepository.existsById(id)) {
+			likeRepository.deleteById(id);
+		} else {
+			throw new BusinessException(ErrorCodes.LIKE_NOT_FOUND);
+		}
+	}
+
+	@Override
+	public Like getById(int id) throws BusinessException {
+		return likeRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCodes.LIKE_NOT_FOUND));
+	}
+
+	@Override
+	public List<Like> getByIdPost(int idPost) {
+		return likeRepository.findByIdPost(idPost);
+	}
+
+	@Override
+	public List<Like> findAllByIdPost(int idPost) {
+		return this.likeRepository.findAllByIdPost(idPost);
 	}
 
 }

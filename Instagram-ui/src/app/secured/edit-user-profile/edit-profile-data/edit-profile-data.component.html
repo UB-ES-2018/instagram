@@ -2,12 +2,12 @@
     <form [formGroup]="form" (submit)="enviar()">
         <div>
             <div id="nameTitle">
-                <div class="left">
-                    <img alt="" src="assets/images/defaultlogo.png" width="40px" />
+                <div class="left" id="cambiarFotoPerfil" (click)="changePhotoProfilePopup()" style="cursor: pointer;">
+                    <img alt="Profile image" [src]="fotoPerfil" width="40px" />
                 </div>
                 <div class="right">
                     <div><a id="nombUsu">{{username}}</a></div>
-                    <div><a style="color:rgb(65, 168, 202); font-weight: 600">Cambiar foto del perfil</a></div>
+                    <div id="cambiarFotoPerfil" (click)="changePhotoProfilePopup()" style="cursor: pointer;"><a style="color:rgb(0, 170, 255); font-weight: 600">Cambiar foto del perfil</a></div>
 
                 </div>
             </div>
@@ -48,3 +48,34 @@
         </div>
     </form>
 </div>
+
+<ng-template #modalChangePhotoProfile let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="titleChangeMenu">Cambiar foto de perfil</h4>
+    </div>
+    <ul id="menu_change_photo">
+        <li *ngIf="!imagePresent">
+            <button id="inputFotoPerfil">
+                <label for="inputFotoHid"><a style="color:rgb(0, 170, 255); font-weight: 600">Subir foto</a></label>
+                <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event) accept="image/*"/>
+            </button>
+        </li>
+        <li *ngIf="!imagePresent">
+            <button (click)="eliminarFoto()" (click)="d('Cross click')">
+                <a style="color:rgb(248, 0, 0); font-weight: 600">Eliminar foto</a>
+            </button>
+        </li>
+        <li *ngIf="!imagePresent">
+            <button (click)="d('Cross click')">
+                Cancelar
+            </button>
+        </li>
+    </ul>
+    <div id="espacioFoto" *ngIf="imagePresent">
+        <img id="fotoCambiar" alt="" [src]="foto" />
+    </div>
+    <div *ngIf="imagePresent" id="enviarFoto" style="cursor: pointer;">
+        <input type="button" value="Cambiar" (click)="enviarFoto()" (click)="d('Cross click')" class="btn btn-primary btn-sm" />
+    </div>
+    
+</ng-template>

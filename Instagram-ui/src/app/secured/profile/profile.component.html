@@ -1,6 +1,5 @@
 <div id="contenido">
-    <div id="logo"><img alt="" src="assets/images/defaultlogo.png" width="200px" /></div>
-    <!--<img alt="" src="assets/images/logo.png" width="200px"/>-->
+    <div id="logo"><img alt="profile image" [src]="user.photo" width="200px" /></div>
     <div id="datosusuario">
         <div id="datostop">
             <div id="nick">{{user?.username}}</div>
@@ -19,7 +18,7 @@
         <div id="datosmid">
             <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}}
                 Followers</div>
-            <div id="publications">{{posts}} publications</div>
+            <div id="publications">{{perfilPhotos?.length}} publications</div>
             <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}}
                 Following</div>
         </div>
@@ -30,17 +29,21 @@
     <div id="fotos">
         <div class="quadradoTabla">
             <div id="subirFoto" (click)="uploadPopup()" class="celda" *ngIf="isAuthUser()">
-                <img alt="" src="assets/images/camara.png" width="200px" />
-                <!--<input type="file" id="inputFoto" (change)=subirFoto($event) style="display:none;" accept="image/*" />-->
+                <img alt="" src="assets/images/plus.png" width="200px" />
             </div>
+            <div class="celda" *ngFor="let photo of perfilPhotos">
+                <div (click)="imagePopUp(photo.id)" class="contenedorFoto">
+                    <div class="datosHidden">
 
+                    </div>
+                    <div class="datosFoto">
+                        <i class="fa fa-heart" ></i>{{photo.numLikes}}
+                        <i class="fa fa-comment" style="margin-left: 5%;"></i>{{photo.numComments}}
+                    </div>
+                    <img [src]="photo.photo" />
+                </div>
 
-            <!--<div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>
-        <div class="celda"><img src="/assets/images/X.png" /></div>-->
+            </div>
         </div>
 
     </div>
@@ -90,7 +93,7 @@
             <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event)
                 accept="image/*" />
         </div>
-        <div id="espacioFoto">
+        <div id="espacioFoto" *ngIf="!fotoSubida">
             <img id="fotoSubir" alt="" [src]="foto" />
         </div>
         <div id="descFoto" *ngIf="imagePresent">
@@ -98,6 +101,9 @@
         </div>
         <div *ngIf="imagePresent" id="enviarFoto">
             <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />
+        </div>
+        <div  style="color:green; font-weight: 600; width: 100%; text-align: center; margin-bottom: 20px;"*ngIf="fotoSubida">
+            <a>Imagen subida</a>
         </div>
     </div>
 </ng-template>
@@ -157,4 +163,7 @@
             <button (click)="d('Cross click')">Cancelar</button>
         </div>
     </div>
+
+<ng-template #modalImage let-c="close" let-d="dismiss">
+    <app-image-modal postId={{clickedImageId}} [c]="this.c" [d]="this.d"></app-image-modal>
 </ng-template>

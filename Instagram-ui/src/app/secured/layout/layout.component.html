@@ -15,8 +15,9 @@
     <i class="fa fa-user fa-2x" [routerLink]="'/' + profilename"></i><!--profile-->
   </div>
   <div id="botones" *ngIf="!authenticationService.logUser">
-    <button [routerLink]="[ '/login']">login</button>
-    <button [routerLink]="[ '/signup']">register</button>
+    <button class="btn btn-primary" [routerLink]="[ '/login']">login</button>
+    &nbsp;
+    <button class="btn btn-primary" [routerLink]="[ '/signup']">register</button>
   </div>
   
 </div>

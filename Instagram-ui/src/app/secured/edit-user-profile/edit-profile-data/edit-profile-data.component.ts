@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { authService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../../model/User';
 
 @Component({
@@ -10,11 +11,17 @@ import { User } from '../../../model/User';
   styleUrls: ['./edit-profile-data.component.scss']
 })
 export class EditProfileDataComponent implements OnInit {
+  @ViewChild('modalChangePhotoProfile') modalChangePhotoProfile: ElementRef;
 
-  constructor(private formBuilder: FormBuilder, private authentiactionService: authService, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private authentiactionService: authService, private userService: UserService, private modalService: NgbModal) { }
   form: FormGroup;
   username: string;
   profileUpdated: boolean;
+  imagePresent: boolean;
+  fotoPerfil: string;
+  fotoSubida: boolean;
+  foto: string;
+
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: [this.authentiactionService.logUser.name],
@@ -27,6 +34,7 @@ export class EditProfileDataComponent implements OnInit {
     });
     this.username = this.authentiactionService.logUser.username;
     this.profileUpdated = false;
+    this.fotoPerfil = this.authentiactionService.logUser.photo;
   }
 
   enviar() {
@@ -64,5 +72,44 @@ export class EditProfileDataComponent implements OnInit {
     this.profileUpdated = true;
   }
 
+  changePhotoProfilePopup() {
+    this.modalService.open(this.modalChangePhotoProfile, { centered: true, size: 'lg', windowClass: 'modal-cs' });
+  }
 
+  subirFoto(event) {
+    this.fotoSubida = false;
+    this.imagePresent = false;
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        this.foto = reader.result.toString();
+      };
+    }
+    if (this.foto !== '') {
+      this.imagePresent = true;
+    }
+  }
+
+  
+  enviarFoto() {
+    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.foto).subscribe(resposta => {
+      console.log('updated!');
+      this.fotoSubida = true;
+      this.imagePresent = false;
+      this.fotoPerfil = this.foto;
+    });
+  }
+  
+
+  eliminarFoto(){
+    this.foto = "assets/images/defaultlogo.png";
+    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.foto).subscribe(resposta => {
+      console.log('updated!');
+      this.fotoSubida = true;
+      this.imagePresent = false;
+      this.fotoPerfil = this.foto;
+    }); 
+  }
 }
