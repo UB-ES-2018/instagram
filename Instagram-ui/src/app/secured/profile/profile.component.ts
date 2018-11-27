@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
   post: PostLoad;
   perfilPhotos: PostPerfil[];
   fotoSubida: boolean;
+  fotoPerfil: string;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -57,6 +58,7 @@ export class ProfileComponent implements OnInit {
     this.imagePresent = false;
     this.fotoSubida = false;
     this.AjotitaTest();
+    this.fotoPerfil = this.authenticationService.logUser.photo;
   }
   private loadPhotosForPerfil(idUser: number) {
     this.postService.requestPhotosForPerfil(idUser).subscribe(

@@ -90,3 +90,32 @@ select{
     float: left;
     padding-left: 20px;
 }
+
+#menu_change_photo {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+#menu_change_photo li {
+    text-decoration: none;
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+    float: left;
+    border-bottom: 1px solid #ccc;
+
+}
+
+#menu_change_photoli:last-child {
+
+    border-bottom: none;
+}
+
+#menu_change_photo li button {
+    border: none;
+}
+
+#menu_change_photo li button:hover {
+    cursor: pointer;
+}
