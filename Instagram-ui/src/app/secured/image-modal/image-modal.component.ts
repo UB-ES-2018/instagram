@@ -68,9 +68,11 @@ export class ImageModalComponent implements OnInit {
     
 
     checkFollowStatus(followed: number) {
-        this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
-            this.follow_check = follow_check;
-        }, error => console.error('error checking follow ' + error));
+        if(this.authenticationService.logStatus){
+            this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
+                this.follow_check = follow_check;
+            }, error => console.error('error checking follow ' + error));
+        }
     }
 
     // Follower status checking, will use auth-user followers
@@ -84,76 +86,94 @@ export class ImageModalComponent implements OnInit {
     }
 
     isLogged() {
-        if (this.authenticationService.logUser) {
-            return true;
-        } else {
-            return false;
-        }
+        return (this.authenticationService.logUser);
     }
 
     selfFollowCheck(id: number) {
-        if (id !== this.authenticationService.logUser.id) {
-            return true;
-        } else {
-            return false;
-        }
+        return (id !== this.authenticationService.logUser.id);
     }
 
     sendFollow(followed_id: number) {
-        this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe(
-            response => {
-            this.checkFollowStatus(this.post.idUser);
-            }
-        );
+        if(this.authenticationService.logStatus){
+            this.followService.requestFollow(this.authenticationService.logUser.id, followed_id).subscribe(
+                response => {
+                this.checkFollowStatus(this.post.idUser);
+                }
+            );
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);
+        }
     }
 
     sendUnfollow(followed_id: number) {
-        this.followService.unFollow(this.authenticationService.logUser.id, followed_id).subscribe(
-            response => {
-            this.checkFollowStatus(this.post.idUser);
-            }
-        );
+        if(this.authenticationService.logStatus){
+            this.followService.unFollow(this.authenticationService.logUser.id, followed_id).subscribe(
+                response => {
+                this.checkFollowStatus(this.post.idUser);
+                }
+            );
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);
+        }
     }
 
     sendLikeComment(comment_id: number) {
-        //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
-        //    response => {
-        //    this.AjotitaTest(this.post.idPost);
-        //    }
-        //);
+        if(this.authenticationService.logStatus){
+            //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
+            //    response => {
+            //    this.AjotitaTest(this.post.idPost);
+            //    }
+            //);
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);
+        }
     }
 
     sendDislikeComment(comment_id: number) {
-        //this.likeService.dislikeComment(this.authenticationService.logUser.id, comment_id).subscribe(
-        //    response => {
-        //    this.AjotitaTest(this.post.idPost);
-        //    }
-        //);
+        if(this.authenticationService.logStatus){
+            //this.likeService.dislikeComment(this.authenticationService.logUser.id, comment_id).subscribe(
+            //    response => {
+            //    this.AjotitaTest(this.post.idPost);
+            //    }
+            //);
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);
+        }
     }
 
     sendLike() {
-        //this.likeService.likePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
-        //    response => {
-        //    this.AjotitaTest(this.post.idPost);
-        //    }
-        //);
+        if(this.authenticationService.logStatus){
+            //this.likeService.likePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
+            //    response => {
+            //    this.AjotitaTest(this.post.idPost);
+            //    }
+            //);
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);
+        }
     }
 
     sendDislike() {
-        //this.likeService.dislikePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
-        //    response => {
-        //    this.AjotitaTest(this.post.idPost);
-        //    }
-        //);
+        if(this.authenticationService.logStatus){
+            //this.likeService.dislikePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
+            //    response => {
+            //    this.AjotitaTest(this.post.idPost);
+            //    }
+            //);
+        }else{
+            this.c('Close click')
+            this.ruta.navigate(['login']);            
+        }
     }
 
     sendComment(text: string){
         console.log('sending comment: ' + text);
         this.cmnt.nativeElement.value = '';
-    }
-
-    close(){
-        this.c.close()
     }
     
 }

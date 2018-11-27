@@ -166,32 +166,28 @@ export class ProfileComponent implements OnInit {
 
   // Profile button check, called on init
   checkFollowStatus(followed: number) {
-    this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
-      this.follow_check = follow_check;
-    }, error => console.error('error checking follow ' + error));
+    if(this.authenticationService.logStatus){
+      this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
+        this.follow_check = follow_check;
+      }, error => console.error('error checking follow ' + error));
+    }    
   }
 
   selfFollowCheck(id: number) {
-    if (id !== this.authenticationService.logUser.id) {
-      return true;
-    } else {
-      return false;
-    }
+    return (id !== this.authenticationService.logUser.id);
   }
   // Follower status checking, will use auth-user followers
   checkFollowedStatus(followed_id: number) {
-    if (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0);
   }
 
   //
   selfFollowedList() {
-    this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
-      this.self_followed_list = self_followed_list;
-    }, error => console.error('Error retrieving the self followed list ' + error));
+    if(this.authenticationService.logStatus){
+      this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
+        this.self_followed_list = self_followed_list;
+      }, error => console.error('Error retrieving the self followed list ' + error));
+    }
   }
 
 
