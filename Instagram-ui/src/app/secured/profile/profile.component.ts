@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
   @ViewChild('modalImage') modalImage: ElementRef;
+  @ViewChild('modalsettings') modalSettings: ElementRef;
+
 
   profileID: string;
   user: User;
@@ -223,6 +225,19 @@ export class ProfileComponent implements OnInit {
 
   closeImage(){
     this.imageRef.close();
+  }
+
+  settingsPopUp() {
+    if (this.authenticationService.logUser && this.user) {
+      this.modalService.open(this.modalSettings, { centered: true, size: 'sm', windowClass: 'modal-cs' })
+    } else {
+      this.ruta.navigate(['login']);
+    }
+  }
+ 
+  logOut() {
+    this.authenticationService.removeLogin();
+    this.ruta.navigate(['login']);
   }
 
 }

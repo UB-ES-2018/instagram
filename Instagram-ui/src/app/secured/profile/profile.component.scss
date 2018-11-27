@@ -234,3 +234,24 @@
     position: relative;
     width:100%;
 }
+
+#settingsWheel{
+    width: 60px;
+ }
+ 
+ #settingsWheel:hover{
+    cursor: pointer;
+ }
+ 
+ 
+ .botonOpt{
+    margin-top: 15px;
+ }
+ 
+ #settings_modal button:hover {
+    cursor: pointer;
+ }
+
+ #botonSettings:hover{
+    cursor: pointer;
+ }

@@ -36,7 +36,7 @@ export const CONST = {
     URL_LIKE_GET_LIKERS: environment.api + 'likes/getLikers/',
     URL_DELETE_LIKE: environment.api + 'likes/delete/{id}',
 
-    URL_COMMENT_LIKE_ADD: environment.api + 'commentLikes/add/',
+    URL_COMMENT_LIKE_ADD: environment.api + 'commentLikes/add',
     URL_COMMENT_LIKE_ALL: environment.api + 'commentLikes/all/',
     URL_COMMENT_LIKE_GET_BY_ID: environment.api + 'commentLikes/getById/',
     URL_COMMENT_LIKE_GET_BY_ID_COMMENT: environment.api + 'commentLikes/getByIdComment/',
@@ -58,6 +58,8 @@ export const CONST = {
     URL_UPDATE_WEB: environment.api + 'users/{username}/update/web',
     URL_UPDATE_USERNAME: environment.api + 'users/{username}/update/userName',
     URL_UPDATE_EMAIL: environment.api + 'users/{username}/update/email',
+
+    URL_POST_ADD_COMMENT: environment.api + 'comments/add',
 
 
 

@@ -11,6 +11,9 @@ import { Like } from '../../model/Like';
 import { authService } from '../../service/auth.service';
 import { FollowService } from '../../service/follow.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommentService } from '../../service/CommentService';
+import { LikeCommentService } from '../../service/LikeComment';
+import { LikeService } from '../../service/LikeService';
 
 @Component({
     selector: 'app-image-modal',
@@ -29,7 +32,10 @@ export class ImageModalComponent implements OnInit {
     constructor(private router: ActivatedRoute, private userService: UserService,
         private ruta: Router, private authenticationService: authService,
         private followService: FollowService, private modalService: NgbModal,
-        private postService: PostService) { }
+        private postService: PostService,
+        private commentService: CommentService,
+        private likeCommentService: LikeCommentService,
+        private likeService: LikeService) { }
 
 
     post: PostLoad = PostLoad.createDummy();;
@@ -121,6 +127,11 @@ export class ImageModalComponent implements OnInit {
 
     sendLikeComment(comment_id: number) {
         if(this.authenticationService.logStatus){
+            this.likeCommentService.submitNewLikeToComment(comment_id,this.authenticationService.logUser.id).subscribe(
+                response =>{
+                    console.log(response);
+                }
+            )
             //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
             //    response => {
             //    this.AjotitaTest(this.post.idPost);
@@ -134,6 +145,11 @@ export class ImageModalComponent implements OnInit {
 
     sendDislikeComment(comment_id: number) {
         if(this.authenticationService.logStatus){
+            this.likeCommentService.deleteLikeToComment(comment_id).subscribe(
+                response => {
+                    console.log(response);
+                }
+            )
             //this.likeService.dislikeComment(this.authenticationService.logUser.id, comment_id).subscribe(
             //    response => {
             //    this.AjotitaTest(this.post.idPost);
@@ -147,6 +163,11 @@ export class ImageModalComponent implements OnInit {
 
     sendLike() {
         if(this.authenticationService.logStatus){
+            this.likeService.submitLikeToImage(this.post.idPost,this.authenticationService.logUser.id).subscribe(
+                response => {
+                    console.log(response);
+                }
+            )
             //this.likeService.likePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
             //    response => {
             //    this.AjotitaTest(this.post.idPost);
@@ -160,6 +181,11 @@ export class ImageModalComponent implements OnInit {
 
     sendDislike() {
         if(this.authenticationService.logStatus){
+            this.likeService.deleteLike(1).subscribe(
+                response => {
+                    console.log(response);
+                }
+            )
             //this.likeService.dislikePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
             //    response => {
             //    this.AjotitaTest(this.post.idPost);
@@ -173,11 +199,13 @@ export class ImageModalComponent implements OnInit {
 
     sendComment(text: string){
         if(this.authenticationService.logStatus){
-            //this.commentService.sendComment(this.authenticationService.logUser.id, this.post.idPost, text).subscribe(
-            //    response => {
-            //    this.AjotitaTest(this.post.idPost);
-            //    }
-            //);
+            this.commentService.submitNewComment(this.post.idPost,this.authenticationService.logUser.id,text).subscribe(
+                response => {
+                    //podria solicitar de nuevo todo que me da pereza hacer de una manera eficiente :D
+                    //this.ngOnInit();
+                    console.log(response);
+                }
+            )
             console.log('sending comment: ' + text);
             this.cmnt.nativeElement.value = '';
         }else{
@@ -185,6 +213,16 @@ export class ImageModalComponent implements OnInit {
             this.ruta.navigate(['login']);
         }
         
+    }
+    //no se si hace falta pero esta implementado
+    deleteComment(idComment: number){
+        if(this.authenticationService.logStatus){
+            this.commentService.deleteCommentById(idComment).subscribe(
+                response => {
+                    console.log(response);
+                }
+            )
+        }
     }
     
 }
