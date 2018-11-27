@@ -55,10 +55,10 @@
     </div>
     <ul id="menu_change_photo">
         <li *ngIf="!imagePresent">
-            <button id="inputFotoPerfil">
+            <div id="inputFotoPerfil">
                 <label for="inputFotoHid"><a style="color:rgb(0, 170, 255); font-weight: 600">Subir foto</a></label>
                 <input type="file" id="inputFotoHid" style="display: none;" [(ngModel)]="image64" (change)=subirFoto($event) accept="image/*"/>
-            </button>
+            </div>
         </li>
         <li *ngIf="!imagePresent">
             <button (click)="eliminarFoto()" (click)="d('Cross click')">
