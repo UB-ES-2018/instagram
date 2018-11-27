@@ -31,10 +31,19 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	public List<Post> getNinePostsFromUser(int idUser){
+		List<Post> llista = this.postRepository.findAllByUser(idUser);
+		if(llista.size() <= 9) {
+			return llista;
+		}else {
+			return llista.subList(0, 8);
+		}
+	}
+	
+	@Override
 	public Post getPostById(int id) {
 		return this.postRepository.findOneById(id);
 	}
-	
 	@Override
 	public Post addPost(int idUser, String photo, String description, Date createdAt) {
 		Post post = new Post();
