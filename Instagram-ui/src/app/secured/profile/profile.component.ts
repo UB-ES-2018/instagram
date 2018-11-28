@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
 
   profileID: string;
-  user: User;
+  user: User = User.createDummy();
   followers: number;
   followeds: number;
   follower_list: User[];
