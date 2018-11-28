@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('modalFollowers') modalFollowers: ElementRef;
   @ViewChild('modalUpload') modalUpload: ElementRef;
   @ViewChild('modalImage') modalImage: ElementRef;
-  @ViewChild('modalsettings') modalSettings: ElementRef;
+  @ViewChild('modalSettings') modalSettings: ElementRef;
 
 
   profileID: string;

@@ -208,6 +208,7 @@ export class ImageModalComponent implements OnInit {
             )
             console.log('sending comment: ' + text);
             this.cmnt.nativeElement.value = '';
+            this.AjotitaTest(this.postId);
         }else{
             this.c('Close click')
             this.ruta.navigate(['login']);
