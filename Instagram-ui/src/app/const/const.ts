@@ -34,14 +34,14 @@ export const CONST = {
     URL_LIKE_GET_BY_ID: environment.api + 'likes/getById/',
     URL_LIKE_GET_BY_ID_POST: environment.api + 'likes/getByIdPost/',
     URL_LIKE_GET_LIKERS: environment.api + 'likes/getLikers/',
-    URL_DELETE_LIKE: environment.api + 'likes/delete/{id}',
+    URL_DELETE_LIKE: environment.api + 'likes/delete',
 
-    URL_COMMENT_LIKE_ADD: environment.api + 'commentLikes/add/',
+    URL_COMMENT_LIKE_ADD: environment.api + 'commentLikes/add',
     URL_COMMENT_LIKE_ALL: environment.api + 'commentLikes/all/',
     URL_COMMENT_LIKE_GET_BY_ID: environment.api + 'commentLikes/getById/',
     URL_COMMENT_LIKE_GET_BY_ID_COMMENT: environment.api + 'commentLikes/getByIdComment/',
     URL_COMMENT_LIKE_GET_COMMENT_LIKERS: environment.api + 'commentLikes/getCommentLikers/',
-    URL_DELETE_COMMENT_LIKE: environment.api + 'commentLikes/delete/{id}',
+    URL_DELETE_COMMENT_LIKE: environment.api + 'commentLikes/delete/{idComment}/{idUser}',
 
     URL_HASH_TAG_ADD: environment.api + 'hashTags/add/',
     URL_HASH_TAG_ALL: environment.api + 'hashTags/all/',
@@ -58,6 +58,8 @@ export const CONST = {
     URL_UPDATE_WEB: environment.api + 'users/{username}/update/web',
     URL_UPDATE_USERNAME: environment.api + 'users/{username}/update/userName',
     URL_UPDATE_EMAIL: environment.api + 'users/{username}/update/email',
+
+    URL_POST_ADD_COMMENT: environment.api + 'comments/add',
 
 
 

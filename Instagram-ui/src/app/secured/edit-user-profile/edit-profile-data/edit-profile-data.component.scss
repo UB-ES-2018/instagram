@@ -90,3 +90,53 @@ select{
     float: left;
     padding-left: 20px;
 }
+
+#titleChangeMenu{
+    position: relative;
+    width:100%;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    font-weight: 600;
+}
+
+#menu_change_photo {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    list-style-position:inside;
+    margin-bottom: 10px;   
+}
+
+
+
+.editPerfilOpt{
+    float: left;
+    position: relative;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.editPerfilOpt:hover{
+    font-weight: bold;
+    background-color: gray;
+    cursor: pointer;
+}
+
+
+
+#espacioFoto{
+    float: left;
+    position: relative;
+    width:100%;
+    max-width: 800px;
+    max-height: 800px;
+    text-align: center;
+}
+
+#fotoCambiar{
+    max-width: 395px;
+    max-height: 395px;
+    text-align: center;
+
+}

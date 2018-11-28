@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
+import instagram.controller.dto.LikeDto;
 import instagram.exception.BusinessException;
 import instagram.exception.ErrorCodes;
 import instagram.model.Like;
@@ -42,12 +43,9 @@ public class LikeServiceImpl implements LikeService {
 	}
 
 	@Override
-	public void deleteLike(int id) throws BusinessException{
-		if (likeRepository.existsById(id)) {
-			likeRepository.deleteById(id);
-		} else {
-			throw new BusinessException(ErrorCodes.LIKE_NOT_FOUND);
-		}
+	public void deleteLike(LikeDto like){
+		Like lik = this.likeRepository.findOneByIdPostAndIdUser(like.getIdPost(), like.getIdUser());
+		this.likeRepository.deleteById(lik.getId());
 	}
 
 	@Override
@@ -63,6 +61,15 @@ public class LikeServiceImpl implements LikeService {
 	@Override
 	public List<Like> findAllByIdPost(int idPost) {
 		return this.likeRepository.findAllByIdPost(idPost);
+	}
+
+	@Override
+	public boolean isLike(int idPost, int idUser) {
+		Like like = this.likeRepository.findOneByIdPostAndIdUser(idPost, idUser);
+		if(like != null) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -16,4 +16,6 @@ public interface CommentLikeRepository extends CrudRepository<CommentLike, Integ
 	
 	CommentLike findOneByIdComment(int idComment);
 	
+	CommentLike findOneByIdCommentAndIdUser(int idComment, int idUser);
+	
 }
