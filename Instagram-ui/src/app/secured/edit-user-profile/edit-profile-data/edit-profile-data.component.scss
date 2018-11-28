@@ -105,31 +105,25 @@ select{
     text-align: center;
     width: 100%;
     list-style-position:inside;
-    
+    margin-bottom: 10px;   
 }
 
-#menu_change_photo li {
 
-    text-decoration: none;
-    margin: 0 auto;
+
+.editPerfilOpt{
+    float: left;
+    position: relative;
     width: 100%;
-    display: inline-block;
-    border-bottom: 1px solid #ccc;
-
+    padding-top: 5px;
 }
 
-#menu_change_photoli:last-child {
-
-    border-bottom: none;
-}
-
-#menu_change_photo li button {
-    border: none;
-}
-
-#menu_change_photo li button:hover {
+.editPerfilOpt:hover{
+    font-weight: bold;
+    background-color: gray;
     cursor: pointer;
 }
+
+
 
 #espacioFoto{
     float: left;

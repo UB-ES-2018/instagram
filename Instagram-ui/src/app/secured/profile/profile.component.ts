@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.perfilPhotos);
       }
     );
-    
+
   }
   private AjotitaTest() {
     this.postService.requestIdPostByIdPostAndLoggin(1, 6).subscribe(
@@ -161,18 +161,18 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadPopup() {
-    this.modalService.open(this.modalUpload, { centered: true, size: 'lg', windowClass: 'modal-cs' });
+    this.modalService.open(this.modalUpload, { centered: true, size: 'sm', windowClass: 'modal-cs' });
 
   }
 
 
   // Profile button check, called on init
   checkFollowStatus(followed: number) {
-    if(this.authenticationService.logStatus){
+    if (this.authenticationService.logStatus) {
       this.followService.checkFollow(followed, this.authenticationService.logUser.id).subscribe(follow_check => {
         this.follow_check = follow_check;
       }, error => console.error('error checking follow ' + error));
-    }    
+    }
   }
 
   selfFollowCheck(id: number) {
@@ -185,7 +185,7 @@ export class ProfileComponent implements OnInit {
 
   //
   selfFollowedList() {
-    if(this.authenticationService.logStatus){
+    if (this.authenticationService.logStatus) {
       this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
         this.self_followed_list = self_followed_list;
       }, error => console.error('Error retrieving the self followed list ' + error));
@@ -219,23 +219,23 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  imagePopUp(id_image: number){
+  imagePopUp(id_image: number) {
     this.clickedImageId = id_image;
-    this.imageRef = this.modalService.open(this.modalImage, {centered: true, size:'lg', windowClass: 'modal-img'})  
+    this.imageRef = this.modalService.open(this.modalImage, { centered: true, size: 'lg', windowClass: 'modal-img' });
   }
 
-  closeImage(){
+  closeImage() {
     this.imageRef.close();
   }
 
   settingsPopUp() {
     if (this.authenticationService.logUser && this.user) {
-      this.modalService.open(this.modalSettings, { centered: true, size: 'sm', windowClass: 'modal-cs' })
+      this.modalService.open(this.modalSettings, { centered: true, size: 'sm', windowClass: 'modal-cs' });
     } else {
       this.ruta.navigate(['login']);
     }
   }
- 
+
   logOut() {
     this.authenticationService.removeLogin();
     this.ruta.navigate(['login']);

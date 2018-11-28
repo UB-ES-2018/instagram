@@ -13,7 +13,8 @@ import { User } from '../../../model/User';
 export class EditProfileDataComponent implements OnInit {
   @ViewChild('modalChangePhotoProfile') modalChangePhotoProfile: ElementRef;
 
-  constructor(private formBuilder: FormBuilder, private authentiactionService: authService, private userService: UserService, private modalService: NgbModal) { }
+  constructor(private formBuilder: FormBuilder, private authentiactionService: authService, private userService: UserService,
+    private modalService: NgbModal) { }
   form: FormGroup;
   username: string;
   profileUpdated: boolean;
@@ -21,6 +22,7 @@ export class EditProfileDataComponent implements OnInit {
   fotoPerfil: string;
   fotoSubida: boolean;
   foto: string;
+  image64: string;
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -42,27 +44,27 @@ export class EditProfileDataComponent implements OnInit {
     const user = this.authentiactionService.logUser;
 
     if (this.form.get('name').touched) {
-      user.name = this.form.get('name').value
+      user.name = this.form.get('name').value;
     }
 
     if (this.form.get('username').touched) {
-      user.username = this.form.get('username').value
+      user.username = this.form.get('username').value;
     }
 
     if (this.form.get('bio').touched) {
-      user.bio = this.form.get('bio').value
+      user.bio = this.form.get('bio').value;
     }
     if (this.form.get('email').touched) {
-      user.email = this.form.get('email').value
+      user.email = this.form.get('email').value;
     }
     if (this.form.get('phoneNumber').touched) {
-      user.phoneNumber = this.form.get('phoneNumber').value
+      user.phoneNumber = this.form.get('phoneNumber').value;
     }
     if (this.form.get('gender').touched) {
-      user.gender = this.form.get('gender').value
+      user.gender = this.form.get('gender').value;
     }
     if (this.form.get('website').touched) {
-      user.website = this.form.get('website').value
+      user.website = this.form.get('website').value;
     }
     this.userService.changeUserData(user).subscribe(
       response => {
@@ -73,7 +75,7 @@ export class EditProfileDataComponent implements OnInit {
   }
 
   changePhotoProfilePopup() {
-    this.modalService.open(this.modalChangePhotoProfile, { centered: true, size: 'lg', windowClass: 'modal-cs' });
+    this.modalService.open(this.modalChangePhotoProfile, { centered: true, size: 'sm', windowClass: 'modal-cs' });
   }
 
   subirFoto(event) {
@@ -92,24 +94,26 @@ export class EditProfileDataComponent implements OnInit {
     }
   }
 
-  
+
   enviarFoto() {
-    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.foto).subscribe(resposta => {
+    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id, this.foto).subscribe(resposta => {
       console.log('updated!');
       this.fotoSubida = true;
       this.imagePresent = false;
       this.fotoPerfil = this.foto;
+      this.authentiactionService.logUser.photo = this.foto;
     });
   }
-  
 
-  eliminarFoto(){
-    this.foto = "assets/images/defaultlogo.png";
-    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id,this.foto).subscribe(resposta => {
+
+  eliminarFoto() {
+    this.foto = 'assets/images/defaultlogo.png';
+    this.userService.updatePerfilPhoto(this.authentiactionService.logUser.id, this.foto).subscribe(resposta => {
       console.log('updated!');
       this.fotoSubida = true;
       this.imagePresent = false;
       this.fotoPerfil = this.foto;
-    }); 
+      this.authentiactionService.logUser.photo = this.foto;
+    });
   }
 }
