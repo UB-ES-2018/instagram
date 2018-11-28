@@ -129,7 +129,7 @@ export class ImageModalComponent implements OnInit {
         if(this.authenticationService.logStatus){
             this.likeCommentService.submitNewLikeToComment(comment_id,this.authenticationService.logUser.id).subscribe(
                 response =>{
-                    console.log(response);
+                    console.log('puta que oferton ' + response);
                 }
             )
             //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
@@ -137,6 +137,7 @@ export class ImageModalComponent implements OnInit {
             //    this.AjotitaTest(this.post.idPost);
             //    }
             //);
+            this.AjotitaTest(this.postId);
         }else{
             this.c('Close click')
             this.ruta.navigate(['login']);
@@ -155,6 +156,7 @@ export class ImageModalComponent implements OnInit {
             //    this.AjotitaTest(this.post.idPost);
             //    }
             //);
+            this.AjotitaTest(this.postId);
         }else{
             this.c('Close click')
             this.ruta.navigate(['login']);
@@ -173,6 +175,7 @@ export class ImageModalComponent implements OnInit {
             //    this.AjotitaTest(this.post.idPost);
             //    }
             //);
+            this.AjotitaTest(this.postId);
         }else{
             this.c('Close click')
             this.ruta.navigate(['login']);
@@ -191,6 +194,7 @@ export class ImageModalComponent implements OnInit {
             //    this.AjotitaTest(this.post.idPost);
             //    }
             //);
+            this.AjotitaTest(this.postId);
         }else{
             this.c('Close click')
             this.ruta.navigate(['login']);            

@@ -235,18 +235,7 @@
     width:100%;
 }
 
-#settingsWheel{
-    width: 60px;
- }
- 
- #settingsWheel:hover{
-    cursor: pointer;
- }
- 
- 
- .botonOpt{
-    margin-top: 15px;
- }
+
  
  #settings_modal button:hover {
     cursor: pointer;
@@ -254,4 +243,46 @@
 
  #botonSettings:hover{
     cursor: pointer;
+ }
+
+
+ #settingsWheel{
+    width: 60px;
+}
+
+#settingsWheel:hover{
+    cursor: pointer;
+}
+
+
+.botonOpt{
+    margin-top: 15px;
+}
+
+
+#settings_modal button {
+    border: none;
+    background-color: white;
+}
+
+#settings_modal button:hover {
+    cursor: pointer;
+}
+
+#settings_modal div{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ #subirFoto{
+     background-image: url("/assets/images/plus.png");
+     background-size: cover;  
+     width: 300px;
+     height: 300px;
+     margin-right: 30px;
+ }
+
+ #subirFoto:hover{
+     background-image: url("/assets/images/plusHover.png")
  }

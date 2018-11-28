@@ -215,6 +215,7 @@ export class ProfileComponent implements OnInit {
       this.fotoSubida = true;
       this.imagePresent = false;
       this.descripcionFoto = '';
+      this.loadPhotosForPerfil(this.authenticationService.logUser.id);
     });
   }
 
