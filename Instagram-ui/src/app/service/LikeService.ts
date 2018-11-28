@@ -29,7 +29,7 @@ export class LikeService {
     const likeDto = new Like();
     likeDto.idPost = idPost;
     likeDto.idUser = idUser;
-    const url = CONST.URL_DELETE_COMMENT_LIKE;
+    const url = CONST.URL_DELETE_LIKE;
     return this.httpClient.post<Boolean>(url,likeDto)
       .pipe(
         tap(deleted => console.log('deleted like')),
