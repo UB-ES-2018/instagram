@@ -39,8 +39,9 @@ export class authService {
   }
 
   removeLogin() {
-    this.logUser = User.createDummy();
+    this.logUser = null;
     this.logStatus = false;
+    sessionStorage.removeItem('authenticatedUser');
   }
 
 }

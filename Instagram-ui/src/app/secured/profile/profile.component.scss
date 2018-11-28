@@ -1,7 +1,30 @@
+@media all and (min-width: 640px) and (max-width: 1023px){
+    #contenido{
+        margin-left: 10px;
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1280px){
+    #contenido{
+        margin-left: 12.5%;
+    }
+}
+
+@media all and (min-width: 1281px) and (max-width: 1599px){
+    #contenido{
+        margin-left: 19%;
+    }
+}
+
+@media all and (min-width: 1600px){
+    #contenido{
+        margin-left: 25%;
+    }
+}
+
 #contenido{
     padding-top: 70px;
     width:1000px;
-    margin-left:20%;
 }
 
 #logo{
@@ -31,7 +54,7 @@
     float: left;
     font-size: 30px;
     margin-right: 20px;
-
+    padding-top: 10px;
 }
 
 
@@ -81,6 +104,9 @@
     width:100%;
 }
 
+#subirFoto:hover{
+    cursor: pointer;
+}
 
 
 .labels:hover{
@@ -208,3 +234,55 @@
     position: relative;
     width:100%;
 }
+
+
+ 
+ #settings_modal button:hover {
+    cursor: pointer;
+ }
+
+ #botonSettings:hover{
+    cursor: pointer;
+ }
+
+
+ #settingsWheel{
+    width: 60px;
+}
+
+#settingsWheel:hover{
+    cursor: pointer;
+}
+
+
+.botonOpt{
+    margin-top: 15px;
+}
+
+
+#settings_modal button {
+    border: none;
+    background-color: white;
+}
+
+#settings_modal button:hover {
+    cursor: pointer;
+}
+
+#settings_modal div{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ #subirFoto{
+     background-image: url("/assets/images/plus.png");
+     background-size: cover;  
+     width: 300px;
+     height: 300px;
+     margin-right: 30px;
+ }
+
+ #subirFoto:hover{
+     background-image: url("/assets/images/plusHover.png")
+ }

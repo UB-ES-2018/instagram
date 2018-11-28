@@ -1,0 +1,127 @@
+.comment-section {
+    position: relative;
+    display: inline-block;
+    border-top: 1px solid #efefef;
+    padding: 26px 26px 26px 0;
+    margin-top: 4px;
+    overflow: hidden
+}
+#cmnt {
+    outline: none;
+    overflow-x: scroll;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #262626;
+    width: 90%;
+    height: 18px;
+    max-height: 80px;
+    resize: none;
+    font-size: 14px;
+}
+.dot02 {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    background-image: url("insta_icons.png");
+    background-repeat: no-repeat;
+    background-position: -434px -345px;
+    height: 16px;
+    width: 16px;
+}
+
+.react {
+    margin-top: 4px;
+    position: relative;
+}
+.react a {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.react a:last-child {
+    margin-right: 0
+}
+.react .love {
+    background-image: url("insta_icons.png");
+    background-position: -408px -156px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
+.react .love:hover {
+    background-position: -408px -130px;
+    border-radius: 6px;
+}
+
+.react .loved {
+    background-image: url("insta_icons.png");
+    background-position: -408px -130px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
+
+.sm-love {
+    background-image: url("insta_icons.png");
+    background-position: -204px -78px;
+    background-size: 229px 207px;
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
+
+.sm-love:hover {
+    background-position: -204px -65px;
+    border-radius: 6px;
+}
+
+.sm-loved {
+    background-image: url("insta_icons.png");
+    background-position: -204px -65px;
+    background-size: 229px 207px;
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
+
+
+
+
+.react .comment {
+    background-image: url("insta_icons.png");
+    background-position: -408px -26px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}
+.react .save {
+    background-image: url("insta_icons.png");
+    background-repeat: no-repeat;
+    background-position: -104px -389px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}
+.react .save:hover {
+    background-position: -348px -351px;
+    border-radius: 6px;
+}
+
+.react .saved {
+    background-image: url("insta_icons.png");
+    background-repeat: no-repeat;
+    background-position: -348px -351px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}

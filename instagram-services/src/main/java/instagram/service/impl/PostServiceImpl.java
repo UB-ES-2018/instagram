@@ -104,6 +104,10 @@ public class PostServiceImpl implements PostService {
 		
 		List<Comment> comments = this.commentService.getCommentsByPost(idPost);
 		
+		postLoad.setNumLikes(this.likeService.findAllByIdPost(post.getId()).size());
+		
+		postLoad.setLiked(this.likeService.isLike(idPost, idUser));
+		
 		for(Comment comment: comments) {
 			CommentLoad commentLoad = new CommentLoad();
 			commentLoad.loadDataFromComment(comment);

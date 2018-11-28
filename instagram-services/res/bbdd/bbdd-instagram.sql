@@ -172,7 +172,7 @@ ENGINE = InnoDB;
 -- Table `instagram`.`LIKESCOMENT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `instagram`.`LIKESCOMENT` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_user` INT(11) NOT NULL,
   `id_coment` INT(11) NOT NULL,
   PRIMARY KEY (`id`),

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 //import com.google.common.collect.Lists;
 
 import instagram.exception.BusinessException;
+import instagram.exception.ErrorCodes;
 import instagram.model.Comment;
 import instagram.repository.CommentRepository;
 import instagram.service.CommentService;
@@ -21,7 +22,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment getCommentById(int id) throws BusinessException {
-		return commentRepository.findById(id).orElseThrow(() -> new BusinessException(null)); // error code TODO
+		return commentRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCodes.COMMENT_NOT_FOUND));
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment editComment(int id, String newContent) throws BusinessException {
-		Comment comment = commentRepository.findById(id).orElseThrow(() -> new BusinessException(null)); // error code TODO
+		Comment comment = commentRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCodes.COMMENT_NOT_FOUND));
 		
 		comment.setContent(newContent);
 		comment.setUpdatedAt(new Date());
@@ -53,7 +54,11 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public void deleteComment(int id) throws BusinessException {
-		commentRepository.deleteById(id);
+		if (commentRepository.existsById(id)) {
+			commentRepository.deleteById(id);
+		} else {
+			throw new BusinessException(ErrorCodes.COMMENT_NOT_FOUND);
+		}
 	}
 
 	@Override
@@ -65,7 +70,5 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment> getCommentsByPost(int idPost) {
 		return commentRepository.findAllByIdPost(idPost);
 	}
-
-	
 
 }
