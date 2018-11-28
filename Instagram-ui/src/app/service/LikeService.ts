@@ -25,9 +25,12 @@ export class LikeService {
         ));
   }
 
-  deleteLike(idLike: number) {
-    const url = CONST.URL_DELETE_COMMENT_LIKE.replace('{id}', idLike.toString());
-    return this.httpClient.get<Boolean>(url)
+  deleteLike(idPost: number, idUser:number) {
+    const likeDto = new Like();
+    likeDto.idPost = idPost;
+    likeDto.idUser = idUser;
+    const url = CONST.URL_DELETE_COMMENT_LIKE;
+    return this.httpClient.post<Boolean>(url,likeDto)
       .pipe(
         tap(deleted => console.log('deleted like')),
         catchError(handleError('failed to delete like', false))

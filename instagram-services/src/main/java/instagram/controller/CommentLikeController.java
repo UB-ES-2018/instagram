@@ -108,11 +108,11 @@ public class CommentLikeController {
 		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
 	}
 
-	@RequestMapping(value ="/delete/{id}", method = RequestMethod.GET)
-	public ResponseEntity<ResponseDto> deleteCommentLikeByID(@PathVariable int id) throws BusinessException{
+	@RequestMapping(value ="/delete/{idComment}/{idUser}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseDto> deleteCommentLikeByID(@PathVariable int idComment, @PathVariable int idUser) throws BusinessException{
 		logger.info("CommentLikeController -> deleteCommentLikeByID");
 				
-		this.commentLikeService.deleteCommentLike(id);
+		this.commentLikeService.deleteCommentLike(idComment, idUser);
 		
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setOk(true);

@@ -9,6 +9,8 @@ export class PostLoad {
     createdAt: string;
     ownerName: string;
     coments: Array<Coment>;
+    numLikes: number;
+    liked: boolean;
 
     public static createDummy(): PostLoad {
         const post = new PostLoad();

@@ -41,12 +41,10 @@ public class CommentLikeServiceImpl implements CommentLikeService {
 	}
 
 	@Override
-	public void deleteCommentLike(int id) throws BusinessException{
-		if (commentLikeRepository.existsById(id)) {
-			commentLikeRepository.deleteById(id);
-		} else {
-			throw new BusinessException(null);
-		}
+	public void deleteCommentLike(int idComment, int idUser){
+		CommentLike like = this.commentLikeRepository.findOneByIdCommentAndIdUser(idComment, idUser);
+		this.commentLikeRepository.deleteById(like.getId());
+		
 	}
 
 	@Override

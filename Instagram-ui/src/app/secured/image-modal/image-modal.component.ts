@@ -145,7 +145,7 @@ export class ImageModalComponent implements OnInit {
 
     sendDislikeComment(comment_id: number) {
         if(this.authenticationService.logStatus){
-            this.likeCommentService.deleteLikeToComment(comment_id).subscribe(
+            this.likeCommentService.deleteLikeToComment(comment_id,this.authenticationService.logUser.id).subscribe(
                 response => {
                     console.log(response);
                 }
@@ -181,7 +181,7 @@ export class ImageModalComponent implements OnInit {
 
     sendDislike() {
         if(this.authenticationService.logStatus){
-            this.likeService.deleteLike(1).subscribe(
+            this.likeService.deleteLike(this.post.idPost,this.authenticationService.logUser.id).subscribe(
                 response => {
                     console.log(response);
                 }

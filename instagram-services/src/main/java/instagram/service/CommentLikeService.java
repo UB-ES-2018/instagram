@@ -15,7 +15,7 @@ public interface CommentLikeService {
 	
 	List<CommentLike> getByIdComment(int idComment);
 
-	void deleteCommentLike(int id) throws BusinessException;
+	void deleteCommentLike(int idComment, int idUser) throws BusinessException;
 
 	CommentLike addCommentLike(int idComment, int idUser) throws BusinessException;
 }

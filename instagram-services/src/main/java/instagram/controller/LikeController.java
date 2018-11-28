@@ -108,11 +108,11 @@ public class LikeController {
 		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
 	}
 
-	@RequestMapping(value ="/delete/{id}", method = RequestMethod.GET)
-	public ResponseEntity<ResponseDto> deleteLikeByID(@PathVariable int id) throws BusinessException{
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public ResponseEntity<ResponseDto> deleteLikeByID(@RequestBody LikeDto likeDto) throws BusinessException{
 		logger.info("LikeController -> deleteLikeByID");
 				
-		this.likeService.deleteLike(id);
+		this.likeService.deleteLike(likeDto);
 		
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setOk(true);

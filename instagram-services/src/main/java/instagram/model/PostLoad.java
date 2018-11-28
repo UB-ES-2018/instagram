@@ -19,6 +19,10 @@ public class PostLoad {
 	
 	private String ownerName;
 	
+	private int numLikes;
+	
+	private boolean liked;
+	
 	private List<CommentLoad> coments;
 
 	public int getIdPost() {
@@ -27,6 +31,24 @@ public class PostLoad {
 
 	public void setIdPost(int idPost) {
 		this.idPost = idPost;
+	}
+
+	
+	
+	public int getNumLikes() {
+		return numLikes;
+	}
+
+	public void setNumLikes(int numLikes) {
+		this.numLikes = numLikes;
+	}
+
+	public boolean isLiked() {
+		return liked;
+	}
+
+	public void setLiked(boolean liked) {
+		this.liked = liked;
 	}
 
 	public int getIdUser() {

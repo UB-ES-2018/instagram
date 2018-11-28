@@ -26,8 +26,9 @@ export class LikeCommentService {
         ));
   }
 
-  deleteLikeToComment(idComment: number) {
-    const url = CONST.URL_DELETE_COMMENT_LIKE.replace('{id}', idComment.toString());
+  deleteLikeToComment(idComment: number,idUser: number) {
+    let url = CONST.URL_DELETE_COMMENT_LIKE.replace('{idComment}', idComment.toString());
+    url = url.replace('{idUser}', idUser.toString());
     return this.httpClient.get<Boolean>(url)
       .pipe(
         tap(deleted => console.log('deleted Comment')),
