@@ -21,6 +21,7 @@ export const CONST = {
     URL_UPLOAD_IMAGE: environment.api + 'post/add/',
     URL_GET_POST_BY_IDPOST_AND_IDUSER_LOGGED: environment.api + 'post/load/{idPost}',
     URL_GET_POSTS_BY_IDUSER: environment.api + 'post/getPostIDUser/{idUser}',
+    URL_GET_USERS_BY_TEXT: environment.api + 'users/getBynoseke/', // QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
 
     URL_COMMENT_ADD: environment.api + 'comments/add/',
     URL_COMMENT_GET_BY_ID: environment.api + 'comments/getById/',
@@ -45,11 +46,11 @@ export const CONST = {
 
     URL_HASH_TAG_ADD: environment.api + 'hashTags/add/',
     URL_HASH_TAG_ALL: environment.api + 'hashTags/all/',
-    
+
     URL_POST_TAG_ADD: environment.api + 'postTags/add/',
     URL_POST_TAG_ALL: environment.api + 'postTags/all/',
-    
-    
+
+
     URL_UPDATE_NAME: environment.api + 'users/{username}/update/name',
     URL_UPDATE_BIO: environment.api + 'users/{username}/update/bio',
     URL_UPDATE_PHONE: environment.api + 'users/{username}/update/phoneNumber',

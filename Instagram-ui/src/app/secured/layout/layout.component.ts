@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { authService } from '../../service/auth.service';
+import { UserService } from '../../service/user.service';
+import { User } from '../../model/User';
+
+
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +13,8 @@ import { authService } from '../../service/auth.service';
 })
 export class LayoutComponent implements OnInit {
   profilename: string;
-  constructor(private router: Router, public authenticationService: authService) { }
+  searchResult: User[];
+  constructor(private router: Router, public authenticationService: authService, private userService: UserService) { }
   ngOnInit() {
     // this.profilename = this.authenticationService.logUser.name;
     if (this.authenticationService.logUser) {
@@ -28,8 +33,23 @@ export class LayoutComponent implements OnInit {
     localStorage.removeItem('isLoggedin');
   }
 
-  /*buscador(idbuscador){
-    const abuscar = document.getElementById(idbuscador).nodeValue;
-    this.router.navigate([abuscar]);
-  }*/
+  private loadUsersSearch(text: string) {
+    this.userService.searchUsers(text).subscribe(
+      searchResult => {
+        this.searchResult = searchResult;
+      }
+    );
+  }
+
+  buscadorKeyPress() {
+
+  }
+
+  buscadorFocus() {
+
+  }
+  buscadorFree() {
+
+  }
+
 }
