@@ -1,6 +1,9 @@
 package instagram.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,5 +122,20 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
+	@RequestMapping(value = "/search/", method = RequestMethod.GET)
+	public ResponseEntity<List<UserDto>> searchUser(@RequestBody String query) throws BusinessException {
+		logger.info("UserController -> getUser");
+
+		List<User> users = userService.searchUser(query);
+		List<UserDto> result = new ArrayList<UserDto>();
+		
+		for (User user : users) {
+			UserDto found = new UserDto();
+			found.loadFromModel(user);
+			result.add(found);
+		}
+
+		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
+	}
 	
 }

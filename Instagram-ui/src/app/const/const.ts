@@ -10,6 +10,7 @@ export const CONST = {
     URL_PUT_USER_PASSWORD: environment.api + 'users/update/password',
     URL_PUT_UPDATE_ALL: environment.api + 'users/update/all',
     URL_PUT_UPDATE_PERFIL_PHOTO: environment.api + 'users/update/photo/{idUser}',
+    URL_USER_SEARCH: environment.api + 'users/search/',
 
     URL_FOLLOW_CHECK: environment.api + 'followers/check/',
     URL_FOLLOWER_REQUEST: environment.api + 'followers/request',
