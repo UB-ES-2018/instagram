@@ -1,4 +1,4 @@
-<div id="layout">
+<div id="layout" >
   <div id="logo">
     <img src="assets/images/logo.png" />
     <!--logo-->
@@ -6,11 +6,15 @@
   <div id="buscadorDiv">
     <!--<input value="Busca" id="buscador"/>buscador-->
 
-    <input class="XTCLo x3qfX " type="text" autocapitalize="none" id="buscador" placeholder="Busca" value="">
+    <input class="XTCLo x3qfX " type="text" autocapitalize="none" id="buscador"
+      placeholder="&#61442; Busca" [(ngModel)]="toSearch" (keypress)="loadUsersSearch()" value="">
     <span class="mlrQa coreSpriteSearchIcon"></span>
     <div class="aIYm8 coreSpriteSearchClear" role="button" tabindex="0"></div>
-    <div id="resultadoSearch">
-      <div class="user" [routerLink]="'/' + zzzz" *ngFor="let user of searchResult">
+    <div class="resultadoSearch" *ngIf="toSearch">
+      <div class="user" *ngIf="amountFound === 0">
+        No se han encontrado resultados.
+      </div>
+      <div class="user" (click)="changeUser(user.username)" [routerLink]="'/'+user.username" *ngFor="let user of searchResult">
         <div class="fotoUserSearch">
           <img [src]="user.photo" />
         </div>

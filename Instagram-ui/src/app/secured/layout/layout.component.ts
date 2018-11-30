@@ -14,6 +14,9 @@ import { User } from '../../model/User';
 export class LayoutComponent implements OnInit {
   profilename: string;
   searchResult: User[];
+  toSearch: string;
+  showSearch: boolean;
+  amountFound: number;
   constructor(private router: Router, public authenticationService: authService, private userService: UserService) { }
   ngOnInit() {
     // this.profilename = this.authenticationService.logUser.name;
@@ -22,7 +25,8 @@ export class LayoutComponent implements OnInit {
     } else {
       this.profilename = null;
     }
-
+    this.showSearch = false;
+    this.amountFound = 0;
   }
 
   onKeydown(event) {
@@ -33,23 +37,41 @@ export class LayoutComponent implements OnInit {
     localStorage.removeItem('isLoggedin');
   }
 
-  private loadUsersSearch(text: string) {
-    this.userService.searchUsers(text).subscribe(
+  private keyManagement(event) {
+    if (event.key === 'arrowdown') {
+      this.showSearch = true;
+    } else if (event.key === 'arrowup') {
+
+    } else {
+      this.loadUsersSearch();
+    }
+  }
+
+  private loadUsersSearch() {
+    const text = this.toSearch;
+    /*if (text === '') {
+      console.log('nothing to search');
+      this.showSearch = false;
+    }*/
+    /*this.userService.searchUsers(text).subscribe(
       searchResult => {
         this.searchResult = searchResult;
       }
-    );
+    );*/
+    this.searchResult = new Array(20).fill(this.authenticationService.logUser);
+    this.amountFound = this.searchResult.length;
   }
 
-  buscadorKeyPress() {
-
+  private changeUser(usuario: string) {
+    this.toSearch = '';
+    this.router.navigate([usuario]);
   }
 
   buscadorFocus() {
-
+    this.showSearch = true;
   }
   buscadorFree() {
-
+    this.showSearch = false;
   }
 
 }

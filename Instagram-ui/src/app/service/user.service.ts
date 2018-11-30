@@ -98,7 +98,7 @@ export class UserService {
   searchUsers(text: string) {
     return this.httpClient.get<User[]>(CONST.URL_GET_USERS_BY_TEXT + text)
       .pipe(
-        tap(searchResult => console.log('requiested photos for perfil')),
+        tap(searchResult => console.log('requested users')),
         catchError(handleError('failed to load photos for perfil', []))
       );
   }

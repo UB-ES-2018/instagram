@@ -21,7 +21,7 @@ img{
     width: 20%;
     position: relative;
     float: left;
-    margin-left:100px;
+    margin-left:150px;
 }
 #logo{
     padding-top:23px;
@@ -45,7 +45,7 @@ img{
     margin-top:25px;
     position: relative;
     float: left;
-    margin-left: 100px;
+    margin-left: 230px;
 }
 
 i{
@@ -122,12 +122,14 @@ i:hover{
 
 .fotoUserSearch img{
     width: 50px;
+    height: 50px;
 }
 .nameUserSearch{
     width: 140px;
     height: 25px;
     position: relative;
     float: left;
+    font-weight: bold;
 }
 
 .usernameUserSearch{
@@ -135,6 +137,8 @@ i:hover{
     width: 140px;
     position: relative;
     float: left;
+    font-weight: 100;
+    color: gray;
 }
 
 .user{
@@ -147,3 +151,28 @@ i:hover{
     background-color: white;
     border-bottom: solid rgb(230, 230, 230) 1px;
 }
+
+.user:hover{
+    background-color: rgb(236, 236, 236); 
+}
+
+.resultadoSearch{
+    overflow-y: auto;
+    max-height: 370px;
+    width: 250px;
+    position:absolute;
+    top: 35px;
+    right: -10px;
+    z-index: 5;
+    display:none;
+}
+
+.resultadoSearch:hover{
+    display:inline;
+}
+
+
+#buscador:focus ~ .resultadoSearch{
+    display:inline;
+}
+
