@@ -46,3 +46,23 @@ i{
 i:hover{
     cursor: pointer;
 }
+
+.notifications{
+    width: 500px;
+    height: 364px;
+    
+}
+
+:host /deep/ .popover{
+    width: 500px !important;
+    height: 300px !important;
+    max-width: 500px !important;
+    min-width: 500px !important;
+    top: 56px !important;
+    left: -340px !important;
+    overflow-y: scroll;
+ }
+
+ :host /deep/ .popover .arrow{
+    left: 447px !important;
+ }
