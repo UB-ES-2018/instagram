@@ -13,6 +13,7 @@ import { PostService } from '../../service/post.service';
 import { PostLoad } from '../../model/PostLoad';
 import { ImageModalComponent } from '../image-modal/image-modal.component';
 import { PostPerfil } from '../../model/PostPerfil';
+import { NotificationService } from '../../service/notification.service';
 
 
 @Component({
@@ -53,7 +54,8 @@ export class ProfileComponent implements OnInit {
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
     private followService: FollowService, private modalService: NgbModal,
-    private postService: PostService) { }
+    private postService: PostService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -64,7 +66,24 @@ export class ProfileComponent implements OnInit {
     this.imagePresent = false;
     this.fotoSubida = false;
     this.AjotitaTest();
+    this.getNotifications();
+    this.getRequest();
   }
+  private getNotifications() {
+    this.notificationService.getNotification(this.authenticationService.logUser.id).subscribe(
+      load => {
+        console.log(load);
+      }
+    )
+  }
+  private getRequest(){
+    this.notificationService.getRequest(this.authenticationService.logUser.id).subscribe(
+      load => {
+        console.log(load);
+      }
+    )
+  }
+
   private loadPhotosForPerfil(idUser: number) {
     this.postService.requestPhotosForPerfil(idUser).subscribe(
       postPerfil => {
