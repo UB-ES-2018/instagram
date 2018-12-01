@@ -1,7 +1,7 @@
 
 <div id="layout">
-  <div id="logo">
-      <img src="assets/images/logo.png" /><!--logo-->
+  <div id="logo" style=" cursor: pointer;">
+      <img src="assets/images/logo.png" [routerLink]="[ '/feed']"/><!--logo-->
     </div>
     <div id="buscador">
         <input (keydown.enter)="onKeydown($event)" id="buscador"/><!--buscador-->
@@ -11,7 +11,7 @@
   
   <div id="botones" *ngIf="authenticationService.logUser">
     <i class="fa fa-compass fa-2x" id="primero" routerLink="/explore"></i><!--explore-->
-    <i class="fa fa-heart fa-2x"  routerLink="/"></i><!--feed-->
+    <i class="fa fa-heart fa-2x"></i><!--notificacions-->
     <i class="fa fa-user fa-2x" [routerLink]="'/' + profilename"></i><!--profile-->
   </div>
   <div id="botones" *ngIf="!authenticationService.logUser">
