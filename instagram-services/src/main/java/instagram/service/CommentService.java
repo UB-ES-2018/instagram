@@ -7,7 +7,7 @@ import instagram.model.Comment;
 
 public interface CommentService {
 	
-	Comment getCommentById(int id) throws BusinessException;
+	Comment getCommentById(int id);
 	
 	Comment addComment(int idUser, int idPost, String content) throws BusinessException;
 
