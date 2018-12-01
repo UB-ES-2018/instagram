@@ -28,7 +28,7 @@
 </div>
 
 <ng-template #popContent>
-  <div id="follow_notifications" style="margin: 20px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
+  <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
     <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
     <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">6</b>
     <span style="display: inline-block; width: 80%; overflow: hidden;">            
@@ -40,14 +40,38 @@
   </div>
 
   <div id="notifications">
-    <div id={{notification.idNotification}} style="margin: 20px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
+    <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+          display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
         <img src="assets/images/defaultlogo.png" style="width: 10%"/>
         <span style="width: 80%; overflow: hidden;">            
             <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
             T'ha fet una trolejada.
+            <i style="color: gray">2w</i>
         </span>
         <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
     </div>
+    <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+          display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+        <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+        <span style="width: 80%; overflow: hidden;">            
+            <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+            T'ha fet una trolejada.
+            <i style="color: gray">2w</i>
+        </span>
+        <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+    </div>
+    <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+          display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+        <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+        <span style="width: 80%; overflow: hidden;">            
+            <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+            T'ha fet una trolejada.
+            <i style="color: gray">2w</i>
+        </span>
+        <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+    </div>
+
+    
 
 
   </div>
