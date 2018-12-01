@@ -66,3 +66,13 @@ i:hover{
  :host /deep/ .popover .arrow{
     left: 447px !important;
  }
+
+ .arrow_follows {
+    background-image: url("/assets/images/insta_icons.png");
+    background-position: -321px -295px;
+    height: 30px;
+    width: 24px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
