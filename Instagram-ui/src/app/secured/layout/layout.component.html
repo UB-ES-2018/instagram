@@ -28,48 +28,109 @@
 </div>
 
 <ng-template #popContent>
-  <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
-    <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
-    <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">6</b>
-    <span style="display: inline-block; width: 80%; overflow: hidden;">            
-        <b style="margin-left: 20px; cursor: pointer; outline-width: 0;">Follow requests</b> 
-        <br>
-        <i style="margin-left: 20px; color:gray">Approve or ignore requests</i>
-    </span>
-    <span class='requests_button'></span>
+  <div *ngIf="false" id="requests_pop">
+    <div id="requests_back">
+
+    </div>
+
+    <div id="requests">
+      <span style="display:inline;">
+          <img alt="" src="assets/images/defaultlogo.png" width="10%" />
+      </span>
+
+      <div style="display:inline-block; line-height: 1em">
+          <b (click)="d('Cross click')" [routerLink]="['/', user_following.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
+              user1</b>
+          <br>
+          <span style="font-size: 14px; color: gray; padding-left: 1em">Joan pera</span>
+      </div>
+      <span style="display:inline; float: right;">
+          <button (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Accept</button>
+          <button (click)="sendUnfollow(user_following.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
+      </span>
+
+    </div>
+
+
   </div>
 
-  <div id="notifications">
-    <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
-          display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
-        <img src="assets/images/defaultlogo.png" style="width: 10%"/>
-        <span style="width: 80%; overflow: hidden;">            
-            <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
-            T'ha fet una trolejada.
-            <i style="color: gray">2w</i>
+
+  <div id="content" style="overflow-y:scroll; max-height: 290px">
+    <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
+        <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
+        <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">6</b>
+        <span style="display: inline-block; width: 80%; overflow: hidden;">            
+            <b style="margin-left: 20px; cursor: pointer; outline-width: 0;">Follow requests</b> 
+            <br>
+            <i style="margin-left: 20px; color:gray">Approve or ignore requests</i>
         </span>
-        <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
-    </div>
-    <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
-          display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
-        <img src="assets/images/defaultlogo.png" style="width: 10%"/>
-        <span style="width: 80%; overflow: hidden;">            
-            <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
-            T'ha fet una trolejada.
-            <i style="color: gray">2w</i>
-        </span>
-        <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
-    </div>
-    <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
-          display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
-        <img src="assets/images/defaultlogo.png" style="width: 10%"/>
-        <span style="width: 80%; overflow: hidden;">            
-            <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
-            T'ha fet una trolejada.
-            <i style="color: gray">2w</i>
-        </span>
-        <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
-    </div>
+        <span class='requests_button'></span>
+      </div>
+    
+      <div id="notifications">
+        <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+            <span style="width: 80%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+                T'ha fet una trolejada.
+                <i style="color: gray">2w</i>
+            </span>
+            <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+        </div>
+        <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+            <span style="width: 80%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+                T'ha fet una trolejada.
+                <i style="color: gray">2w</i>
+            </span>
+            <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+        </div>
+        <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+            <span style="width: 80%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+                T'ha fet una trolejada.
+                <i style="color: gray">2w</i>
+            </span>
+            <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+        </div>
+        <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+            <span style="width: 80%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+                T'ha fet una trolejada.
+                <i style="color: gray">2w</i>
+            </span>
+            <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+        </div>
+        <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+            <span style="width: 80%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+                T'ha fet una trolejada.
+                <i style="color: gray">2w</i>
+            </span>
+            <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+        </div>
+        <div id={{notification.idNotification}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img src="assets/images/defaultlogo.png" style="width: 10%"/>
+            <span style="width: 80%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">user1</b> 
+                T'ha fet una trolejada.
+                <i style="color: gray">2w</i>
+            </span>
+            <img src="assets/images/defaultlogo.png" style="float: right; width: 10%"/>
+        </div>
+
+  </div>
+  
 
     
 
