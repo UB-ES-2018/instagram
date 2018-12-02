@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { authService } from '../../service/auth.service';
 import { NgbPopover, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationService } from '../../service/notification.service';
+import { Notification } from '../../model/Notification';
 
 @Component({
   selector: 'app-layout',
@@ -15,16 +17,42 @@ export class LayoutComponent implements OnInit {
   //@ViewChild('popContent') popContent: ElementRef;
 
   profilename: string;
-  constructor(private router: Router, public authenticationService: authService) { 
+  notifications: Notification[];
+  requests: Notification[];
+
+
+  constructor(private router: Router, public authenticationService: authService, private notificationService: NotificationService) { 
   }
   ngOnInit() {
     // this.profilename = this.authenticationService.logUser.name;
     if (this.authenticationService.logUser) {
       this.profilename = this.authenticationService.logUser.username;
+      this.getNotifications();
+      this.getRequest();
     } else {
       this.profilename = null;
     }
 
+
+  }
+
+  private getNotifications() {
+    this.notificationService.getNotification(this.authenticationService.logUser.id).subscribe(
+      load => {
+        this.notifications = load;
+        this.notifications = this.notifications.slice().reverse()
+        console.log("Notifications loaded: " + load);
+      }
+    )
+  }
+  private getRequest(){
+    this.notificationService.getRequest(this.authenticationService.logUser.id).subscribe(
+      load => {
+        this.requests = load;
+        this.requests = this.requests.slice().reverse()
+        console.log("Requests loaded: " + load);
+      }
+    )
   }
 
   onKeydown(event) {
