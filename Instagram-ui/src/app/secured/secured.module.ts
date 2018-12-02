@@ -9,10 +9,11 @@ import { ExploreComponent } from './explore/explore.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ImageModalComponent } from './image-modal/image-modal.component';
+import { ClosePopoverOnClickOutsideDirective } from './layout/closePop.component'
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-const components = [SecuredComponent, LayoutComponent, ProfileComponent, ImageModalComponent];
+const components = [SecuredComponent, LayoutComponent, ProfileComponent, ImageModalComponent, ClosePopoverOnClickOutsideDirective];
 
 @NgModule({
   imports: [
