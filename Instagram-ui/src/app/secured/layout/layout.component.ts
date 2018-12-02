@@ -84,13 +84,8 @@ export class LayoutComponent implements OnInit {
     localStorage.removeItem('isLoggedin');
   }
 
-  /*buscador(idbuscador){
-    const abuscar = document.getElementById(idbuscador).nodeValue;
-    this.router.navigate([abuscar]);
-  }*/
 
-  test(){
-    //this.popService.open(this.popContent, { centered: true, size: 'sm', windowClass: 'modal-cs' });
-    //this.popService.open()
+  toggleRequests(){
+    this.showRequests = !this.showRequests;
   }
 }
