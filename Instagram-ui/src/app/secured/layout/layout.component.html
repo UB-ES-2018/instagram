@@ -31,7 +31,7 @@
 <ng-template #popContent>
   <div class="popup_div"> 
     <div *ngIf="showRequests" id="requests_pop" class="popup_div">
-      <div id="requests_back" style="cursor: pointer; border-bottom: 1px solid #d8d8d8;">
+      <div id="requests_back" style="border-bottom: 1px solid #d8d8d8;">
           <span class='requests_back_button' (click)="toggleRequests()"></span>
           <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Follow requests</b>
       </div>
@@ -56,13 +56,13 @@
 
 
     <div *ngIf="!showRequests" id="content" style="overflow-y:scroll; max-height: 290px" class="popup_div">
-      <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8; cursor: pointer; ">
+      <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
           <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
           <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">{{requestQuantity}}</b>
           <span style="display: inline-block; width: 80%; overflow: hidden;">            
-              <b class="popup_div" style="margin-left: 20px; cursor: pointer; outline-width: 0;">Follow requests</b> 
+              <b class="popup_div" style="margin-left: 20px; outline-width: 0;">Follow requests</b> 
               <br>
-              <i style="margin-left: 20px; color:gray">Approve or ignore requests</i>
+              <a style="margin-left: 20px; color:gray">Approve or ignore requests</a>
           </span>
           <span class='requests_button' (click)="toggleRequests()"></span>
         </div>
