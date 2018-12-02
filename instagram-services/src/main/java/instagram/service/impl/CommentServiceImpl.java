@@ -2,6 +2,7 @@ package instagram.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,12 @@ public class CommentServiceImpl implements CommentService {
 	private CommentRepository commentRepository;
 
 	@Override
-	public Comment getCommentById(int id) throws BusinessException {
-		return commentRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCodes.COMMENT_NOT_FOUND));
+	public Comment getCommentById(int id) {
+		Optional<Comment> optional = commentRepository.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
 	}
 
 	@Override

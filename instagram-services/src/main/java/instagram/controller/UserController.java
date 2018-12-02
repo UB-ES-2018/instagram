@@ -1,6 +1,10 @@
 package instagram.controller;
 
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import instagram.controller.dto.PassChangerDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.controller.dto.UserDto;
 import instagram.exception.BusinessException;
+import instagram.model.Comment;
 import instagram.model.User;
 import instagram.service.UserService;
 
@@ -26,6 +31,7 @@ import instagram.service.UserService;
 public class UserController {
 
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
+		
 
 	@Autowired
 	private UserService userService;
@@ -119,5 +125,16 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ResponseEntity<UserDto> test() throws BusinessException, SecurityException, IOException {
+		logger.info("UserController -> updatePhoto");
+		
+				
+		User user = this.userService.getUserById(1);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
 	
 }

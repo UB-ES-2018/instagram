@@ -17,6 +17,7 @@ export class EditProfileDataComponent implements OnInit {
     private modalService: NgbModal) { }
   form: FormGroup;
   username: string;
+  name: string;
   profileUpdated: boolean;
   imagePresent: boolean;
   fotoPerfil: string;
@@ -35,6 +36,7 @@ export class EditProfileDataComponent implements OnInit {
       gender: [this.authentiactionService.logUser.gender]
     });
     this.username = this.authentiactionService.logUser.username;
+    this.name = this.authentiactionService.logUser.name;
     this.profileUpdated = false;
     this.fotoPerfil = this.authentiactionService.logUser.photo;
   }
@@ -69,6 +71,7 @@ export class EditProfileDataComponent implements OnInit {
     this.userService.changeUserData(user).subscribe(
       response => {
         this.authentiactionService.logUser = response;
+        this.name = response.name;
       }
     );
     this.profileUpdated = true;

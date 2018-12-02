@@ -21,4 +21,6 @@ public interface PostService {
 	void deletePost(int id) throws BusinessException;
 	
 	PostLoad getPostByIdAndLoggedUser(int idPost, int idUser) throws BusinessException;
+	
+	int getUserIdByPost(int idPost);
 }
