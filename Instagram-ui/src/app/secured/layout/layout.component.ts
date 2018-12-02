@@ -13,9 +13,6 @@ import { Notification } from '../../model/Notification';
 })
 export class LayoutComponent implements OnInit {
 
-  //@ViewChild('popTitle') popTitle: ElementRef;
-  //@ViewChild('popContent') popContent: ElementRef;
-
   profilename: string;
   notifications: Notification[];
   requests: Notification[];
@@ -25,7 +22,6 @@ export class LayoutComponent implements OnInit {
   constructor(private router: Router, public authenticationService: authService, private notificationService: NotificationService) { 
   }
   ngOnInit() {
-    // this.profilename = this.authenticationService.logUser.name;
     if (this.authenticationService.logUser) {
       this.profilename = this.authenticationService.logUser.username;
       this.getNotifications();
@@ -88,5 +84,13 @@ export class LayoutComponent implements OnInit {
 
   toggleRequests(){
     this.showRequests = !this.showRequests;
+  }
+
+  acceptFollow(id: number){
+
+  }
+
+  hideFollow(id: number){
+
   }
 }

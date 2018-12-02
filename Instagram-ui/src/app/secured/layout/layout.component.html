@@ -45,8 +45,8 @@
             <span style="font-size: 14px; color: gray; padding-left: 10px;">{{request.actionUser.name}}</span>
           </div>
           <span style="display:inline; float: right;">
-            <button (click)="sendFollow(request.actionUser.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Approve</button>
-            <button (click)="sendUnfollow(request.actionUser.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
+            <button (click)="acceptFollow(request.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Approve</button>
+            <button (click)="hideFollow(request.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
           </span>
 
 
