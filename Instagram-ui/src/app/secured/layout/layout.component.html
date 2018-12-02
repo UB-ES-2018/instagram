@@ -70,11 +70,13 @@
             <img [src]="notification.actionUser.photo" style="width: 10%"/>
             <span style="width: 80%; overflow: hidden;">            
                 <b (click)="c('Close click')" [routerLink]="['/', notification.actionUser.name]" style="margin-left: 20px; cursor: pointer; outline-width: 0;">{{notification.actionUser.name}}</b> 
-                {{notification.message}}.
-                <span *ngIf="notification.comment != null">
-                    {{notification.comment.content}}
+                <span *ngIf="notification.comment == null">
+                    {{notification.message}}.
                 </span>
-                <i style="color: gray">2w</i>
+                <span *ngIf="notification.comment != null">
+                    Ha comentado: {{notification.comment.content}}
+                </span>
+                <i style="color: gray">{{notification.createdString}}</i>
             </span>
             <img [src]="notification.post.photo" style="float: right; width: 10%"/>
         </div>

@@ -12,4 +12,5 @@ export class Notification {
     message: string;
     request: boolean;
     createdAt: number;
+    createdString: string;
 }

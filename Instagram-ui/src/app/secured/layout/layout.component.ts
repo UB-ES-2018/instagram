@@ -41,6 +41,7 @@ export class LayoutComponent implements OnInit {
       load => {
         this.notifications = load;
         this.notifications = this.notifications.slice().reverse()
+        this.formatDate(this.notifications);
         console.log("Notifications loaded: " + load);
       }
     )
@@ -53,6 +54,23 @@ export class LayoutComponent implements OnInit {
         console.log("Requests loaded: " + load);
       }
     )
+  }
+
+
+  formatDate(list: Notification[]){
+    for(let notification of list){
+      const time = (new Date).getTime();
+      const time_diff = (time - notification.createdAt)/1000;
+      if(time_diff < 6000){
+        notification.createdString = (Math.floor(time_diff/60) + "m");
+      }else if(time_diff < 144000){
+        notification.createdString = (Math.floor(time_diff/1440) + "h");
+      }else if(time_diff < 720000){
+        notification.createdString = (Math.floor(time_diff/7200) + "d");
+      }else{
+        notification.createdString = (Math.floor(time_diff/50400) + "w");
+      }  
+    }  
   }
 
   onKeydown(event) {
