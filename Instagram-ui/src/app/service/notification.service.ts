@@ -18,7 +18,7 @@ export class NotificationService {
     return this.httpClient.get<Notification[]>(url)
       .pipe(
         tap(notification => console.log('get Notifications')),
-        catchError(handleError('failed to add like', [])
+        catchError(handleError('failed to get notifications', [])
         ));
   }
 
@@ -27,7 +27,7 @@ export class NotificationService {
     return this.httpClient.get<Notification[]>(url)
       .pipe(
         tap(deleted => console.log('get Request')),
-        catchError(handleError('failed to delete like', []))
+        catchError(handleError('failed to get request', []))
       );
   }
 
