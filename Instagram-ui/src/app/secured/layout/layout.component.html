@@ -28,7 +28,7 @@
 </div>
 
 <ng-template #popContent>
-  <div *ngIf="false" id="requests_pop">
+  <div *ngIf="showRequests" id="requests_pop">
     <div id="requests_back">
 
     </div>
@@ -51,10 +51,10 @@
   </div>
 
 
-  <div id="content" style="overflow-y:scroll; max-height: 290px">
+  <div *ngIf="!showRequests" id="content" style="overflow-y:scroll; max-height: 290px">
     <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
         <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
-        <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">6</b>
+        <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">{{requestQuantity}}</b>
         <span style="display: inline-block; width: 80%; overflow: hidden;">            
             <b style="margin-left: 20px; cursor: pointer; outline-width: 0;">Follow requests</b> 
             <br>

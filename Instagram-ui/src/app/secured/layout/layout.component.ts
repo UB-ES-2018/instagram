@@ -19,7 +19,8 @@ export class LayoutComponent implements OnInit {
   profilename: string;
   notifications: Notification[];
   requests: Notification[];
-
+  showRequests: boolean;
+  requestQuantity: number;
 
   constructor(private router: Router, public authenticationService: authService, private notificationService: NotificationService) { 
   }
@@ -29,6 +30,7 @@ export class LayoutComponent implements OnInit {
       this.profilename = this.authenticationService.logUser.username;
       this.getNotifications();
       this.getRequest();
+      this.showRequests = false;
     } else {
       this.profilename = null;
     }
@@ -51,6 +53,7 @@ export class LayoutComponent implements OnInit {
       load => {
         this.requests = load;
         this.requests = this.requests.slice().reverse()
+        this.requestQuantity = this.requests.length;
         console.log("Requests loaded: " + load);
       }
     )
