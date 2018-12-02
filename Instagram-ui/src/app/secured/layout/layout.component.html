@@ -34,20 +34,21 @@
         <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Follow requests</b>
     </div>
     <div id="requests">
-      <span style="display:inline;">
-          <img alt="" src="assets/images/defaultlogo.png" width="10%" />
-      </span>
-
-      <div style="display:inline-block; line-height: 1em">
-          <b (click)="d('Cross click')" [routerLink]="['/', user_following.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
-              user1</b>
+      <div *ngFor="let request of requests" class="column" style="line-height: 5em">
+        <img alt="" [src]="request.actionUser.photo" style="width: 10%;" />
+        <div style="display:inline-block; line-height: 1em">
+          <b (click)="d('Cross click')" [routerLink]="['/', request.actionUser.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
+          {{request.actionUser.username}}</b>
           <br>
-          <span style="font-size: 14px; color: gray; padding-left: 1em">Joan pera</span>
+          <span style="font-size: 14px; color: gray; padding-left: 10px;">{{request.actionUser.name}}</span>
+        </div>
+        <span style="display:inline; float: right;">
+          <button (click)="sendFollow(request.actionUser.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Approve</button>
+          <button (click)="sendUnfollow(request.actionUser.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
+        </span>
+
+
       </div>
-      <span style="display:inline; float: right;">
-          <button (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Accept</button>
-          <button (click)="sendUnfollow(user_following.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
-      </span>
     </div>
   </div>
 

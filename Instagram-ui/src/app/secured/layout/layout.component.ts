@@ -55,6 +55,7 @@ export class LayoutComponent implements OnInit {
         this.requests = this.requests.slice().reverse()
         this.requestQuantity = this.requests.length;
         console.log("Requests loaded: " + load);
+        console.log(load)
       }
     )
   }
