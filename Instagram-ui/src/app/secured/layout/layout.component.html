@@ -71,7 +71,7 @@
               display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
             <img [src]="notification.actionUser.photo" style="float:left; width: 10%"/>
             <span style="display: inline-block; width: 70%; overflow: hidden;">            
-                <b (click)="c('Close click')" [routerLink]="['/', notification.actionUser.name]" style="float:left; margin-left: 20px; margin-right: 10px; cursor: pointer; outline-width: 0;">{{notification.actionUser.name}}</b> 
+                <b (click)="$event.stopPropagation()" [routerLink]="['/', notification.actionUser.name]" style="float:left; margin-left: 20px; margin-right: 10px; cursor: pointer; outline-width: 0;">{{notification.actionUser.name}}</b> 
                 <span *ngIf="notification.comment == null" style="display: table-cell;">
                     {{notification.message}}. <a style="color: gray;">{{notification.createdString}}</a>
                 </span>
