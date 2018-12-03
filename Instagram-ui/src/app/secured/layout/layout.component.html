@@ -29,60 +29,62 @@
 
 
 <ng-template #popContent>
-  <div class="popup_div"> 
     <div *ngIf="showRequests" id="requests_pop" class="popup_div">
-      <div id="requests_back" style="border-bottom: 1px solid #d8d8d8;">
-          <span class='requests_back_button' (click)="toggleRequests()"></span>
-          <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Follow requests</b>
+    <div id="requests_back" style="border-bottom: 1px solid #d8d8d8;">
+        <span class='requests_back_button' (click)="toggleRequests()"></span>
+        <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Follow requests</b>
+    </div>
+    <div id="requests" class="popup_div">
+      <div *ngFor="let request of requests" class="column" style="line-height: 5em">
+        <img alt="" [src]="request.actionUser.photo" style="width: 10%;" />
+        <div style="display:inline-block; line-height: 1em">
+          <b (click)="d('Cross click')" [routerLink]="['/', request.actionUser.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
+          {{request.actionUser.username}}</b>
+          <br>
+          <span style="font-size: 14px; color: gray; padding-left: 10px;">{{request.actionUser.name}}</span>
+        </div>
+        <span style="display:inline; float: right;">
+          <button (click)="acceptFollow(request.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Approve</button>
+          <button (click)="hideFollow(request.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
+        </span>
+
+
       </div>
-      <div id="requests" class="popup_div">
-        <div *ngFor="let request of requests" class="column" style="line-height: 5em">
-          <img alt="" [src]="request.actionUser.photo" style="width: 10%;" />
-          <div style="display:inline-block; line-height: 1em">
-            <b (click)="d('Cross click')" [routerLink]="['/', request.actionUser.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
-            {{request.actionUser.username}}</b>
+    </div>
+  </div>
+
+
+  <div *ngIf="!showRequests" id="content" style="overflow-y:scroll; max-height: 290px">
+    <div class="popup_div" id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
+        <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
+        <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">{{requestQuantity}}</b>
+        <span style="display: inline-block; width: 80%; overflow: hidden;">            
+            <b class="popup_div" style="margin-left: 20px; outline-width: 0;">Follow requests</b> 
             <br>
-            <span style="font-size: 14px; color: gray; padding-left: 10px;">{{request.actionUser.name}}</span>
-          </div>
-          <span style="display:inline; float: right;">
-            <button (click)="acceptFollow(request.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Approve</button>
-            <button (click)="hideFollow(request.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
-          </span>
-
-
+            <a style="margin-left: 20px; color:gray">Approve or ignore requests</a>
+        </span>
+        <span class='requests_button' (click)="toggleRequests()"></span>
+      </div>
+    
+      <div *ngFor="let notification of notifications" id="notifications">        
+        <div id={{notification.id}} (click)="imagePopUp(notification.post.id)" style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img [src]="notification.actionUser.photo" style="float:left; width: 10%"/>
+            <span style="display: inline-block; width: 70%; overflow: hidden;">            
+                <b (click)="c('Close click')" [routerLink]="['/', notification.actionUser.name]" style="float:left; margin-left: 20px; margin-right: 10px; cursor: pointer; outline-width: 0;">{{notification.actionUser.name}}</b> 
+                <span *ngIf="notification.comment == null" style="display: table-cell;">
+                    {{notification.message}}. <a style="color: gray;">{{notification.createdString}}</a>
+                </span>
+                <span *ngIf="notification.comment != null" style="overflow:hidden; display: table-cell;">
+                    Ha comentado: {{notification.comment.content}} <a style="color: gray;">{{notification.createdString}}</a>
+                </span>
+            </span>
+            <img [src]="notification.post.photo" style="float: right; width: 10%"/>
         </div>
       </div>
-    </div>
-
-
-    <div *ngIf="!showRequests" id="content" style="overflow-y:scroll; max-height: 290px" class="popup_div">
-      <div id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
-          <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
-          <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">{{requestQuantity}}</b>
-          <span style="display: inline-block; width: 80%; overflow: hidden;">            
-              <b class="popup_div" style="margin-left: 20px; outline-width: 0;">Follow requests</b> 
-              <br>
-              <a style="margin-left: 20px; color:gray">Approve or ignore requests</a>
-          </span>
-          <span class='requests_button' (click)="toggleRequests()"></span>
-        </div>
-      
-        <div *ngFor="let notification of notifications" id="notifications">        
-          <div id={{notification.id}} style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
-                display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
-              <img [src]="notification.actionUser.photo" style="float:left; width: 10%"/>
-              <span style="display: inline-block; width: 70%; overflow: hidden;">            
-                  <b (click)="c('Close click')" [routerLink]="['/', notification.actionUser.name]" style="float:left; margin-left: 20px; margin-right: 10px; cursor: pointer; outline-width: 0;">{{notification.actionUser.name}}</b> 
-                  <span *ngIf="notification.comment == null" style="display: table-cell;">
-                      {{notification.message}}. <a style="color: gray;">{{notification.createdString}}</a>
-                  </span>
-                  <span *ngIf="notification.comment != null" style="overflow:hidden; display: table-cell;">
-                      Ha comentado: {{notification.comment.content}} <a style="color: gray;">{{notification.createdString}}</a>
-                  </span>
-              </span>
-              <img [src]="notification.post.photo" style="float: right; width: 10%"/>
-          </div>
-        </div>
-    </div>
-  </div>  
+  </div>
   </ng-template>
+
+  <ng-template #modalImage let-c="close" let-d="dismiss">
+    <app-image-modal postId={{clickedImageId}} [c]="this.c" [d]="this.d"></app-image-modal>
+</ng-template>

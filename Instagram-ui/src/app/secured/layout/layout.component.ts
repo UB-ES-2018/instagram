@@ -4,6 +4,7 @@ import { authService } from '../../service/auth.service';
 import { NgbPopover, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../service/notification.service';
 import { Notification } from '../../model/Notification';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-layout',
@@ -13,13 +14,18 @@ import { Notification } from '../../model/Notification';
 })
 export class LayoutComponent implements OnInit {
 
+  @ViewChild('modalImage') modalImage: ElementRef;
+
   profilename: string;
   notifications: Notification[];
   requests: Notification[];
   showRequests: boolean;
   requestQuantity: number;
+  clickedImageId: number;
+  imageRef: NgbModalRef;
 
-  constructor(private router: Router, public authenticationService: authService, private notificationService: NotificationService) { 
+  constructor(private router: Router, public authenticationService: authService, private notificationService: NotificationService,
+    private modalService: NgbModal,) { 
   }
   ngOnInit() {
     if (this.authenticationService.logUser) {
@@ -92,5 +98,10 @@ export class LayoutComponent implements OnInit {
 
   hideFollow(id: number){
 
+  }
+
+  imagePopUp(id_image: number) {
+    this.clickedImageId = id_image;
+    this.imageRef = this.modalService.open(this.modalImage, { centered: true, size: 'lg', windowClass: 'modal-img' });
   }
 }
