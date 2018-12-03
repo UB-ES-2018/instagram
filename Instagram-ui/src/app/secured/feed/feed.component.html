@@ -1,29 +1,60 @@
 <div class="content">
-  <div class="titulosec">
-    <h1>FEED</h1>
-  </div>
-  <div>
-    <div style="flex-direction: column; padding-bottom: 14976px; padding-top: 0px" *ngFor="let photo of perfilPhotos">
-      <article class="publish1">
+  <div >
+    <div style="flex-direction: column; padding-bottom: 14976px; padding-top: 0px">
+      <article class="publish1" *ngFor="let photo of perfilPhotos">
         <header class="header">
           
           <div class="user" role="button" tabindex="0" style=" cursor: pointer;">
-            <a [routerLink]="'/user2'">user2</a>
+            <a [routerLink]="'/user1'">user1</a>
           </div>
 
         </header>
         <div class="image">
 
           <div>
-            <img alt="feed image" [src]="photo.photo" width="200px" height="200px"/>
+            <img alt="feed image" [src]="photo.photo" width="600px" height="600px"/>
           </div>
           
         </div>
-        <div>
-          feedback
+        <div class="likes" style="border-bottom: 1px solid #f8f8f8; border-top: 1px solid #f8f8f8; margin: 20px;">
+            <!--
+            <div class='react'>
+                <span *ngIf="!post.liked" (click)="sendLike()" class='love'></span>
+                <span *ngIf="post.liked" (click)="sendDislike()" class='loved'></span>
+                <span style="cursor: pointer;" onclick="focusComment()" class='comment'></span>
+                <span style="float: right; cursor: pointer;"  onclick="toggleSaved(this)" class='save'></span>                   
+            </div>
+            -->
+            <b>{{photo.numLikes}} likes</b>
         </div>
-        <div>
-          opciones
+        
+        <div class="comments" style=" overflow-y: scroll;">
+            <!--
+            <div *ngIf="post.description != null" id="description" style="margin: 20px; font-size: 14px;">
+                <b> {{post.ownerName}}</b> {{post.description}}
+            </div>
+
+            <div *ngFor="let comment of post.coments">
+                <div id={{comment.idComment}} style="margin: 20px; font-size: 14px;">
+                    <span style="display: inline-block; width: 80%; overflow: hidden;">
+                        <b (click)="c('Close click')" [routerLink]="['/', comment.name]" style="cursor: pointer; outline-width: 0;">{{comment.name}}</b> 
+                        {{comment.content}}
+                    </span>
+                    <span *ngIf="isLogged() && !comment.liked" style="float: right" (click)="sendLikeComment(comment.idComment)" class='sm-love'></span>
+                    <span *ngIf="isLogged() && comment.liked" style="float: right" (click)="sendDislikeComment(comment.idComment)" class='sm-loved'></span>
+                </div>
+            </div>
+            <br>
+            <i id="date" style="color: gray; font-size: 13px;">{{post.createdAt}}</i>
+            -->
+            <b>{{photo.numComments}} comments</b>
+        </div>
+        
+        <div class="comment-section" style="border-bottom: 1px solid #f8f8f8; margin-left: 20px; margin-right: 20px;">
+            <span class='dot02'></span>
+            <form> <!--(submit)="sendComment(cmnt.value)"-->
+                <input type='text' id='cmnt' placeholder='Add a comment...' #cmnt name="cmnt">  
+            </form>                              
         </div>
       </article>
     </div>
