@@ -63,6 +63,7 @@ public class NotificationServiceImpl implements NotificationService {
 		event.setIdActionUser(idActionUser);
 		event.setIdOwnerUser(postService.getUserIdByPost(idPost));
 		event.setIdPost(idPost);
+		event.setIdComent(idComment);
 		event.setRequest(false);
 		
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());

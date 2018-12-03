@@ -36,15 +36,13 @@ public class CommentController {
 	private NotificationService notificationService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity<CommentDto> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
+	public ResponseEntity<Integer> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
 		logger.info("CommentController -> addComment");
 
-		Comment comment = commentService.addComment(commentDto.getIdUser(), commentDto.getIdPost(), commentDto.getContent());
-		notificationService.addedCommentToPost(comment.getIdPost(), comment.getId(), comment.getIdUser());
-		CommentDto result = new CommentDto();
-		result.loadFromModel(comment);
+		int idComment = commentService.addComment(commentDto.getIdPost(), commentDto.getIdPost(), commentDto.getContent());
+		notificationService.addedCommentToPost(commentDto.getIdPost(), idComment, commentDto.getIdPost());
 
-		return new ResponseEntity<CommentDto>(result, HttpStatus.CREATED);
+		return new ResponseEntity<Integer>(idComment, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)

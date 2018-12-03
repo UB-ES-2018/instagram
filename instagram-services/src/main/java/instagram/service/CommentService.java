@@ -9,7 +9,7 @@ public interface CommentService {
 	
 	Comment getCommentById(int id);
 	
-	Comment addComment(int idUser, int idPost, String content) throws BusinessException;
+	int addComment(int idUser, int idPost, String content) throws BusinessException;
 
 	Comment editComment(int id, String newContent) throws BusinessException;
 
