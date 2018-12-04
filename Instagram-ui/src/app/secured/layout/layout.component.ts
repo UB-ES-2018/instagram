@@ -29,23 +29,12 @@ export class LayoutComponent implements OnInit {
     this.amountFound = 0;
   }
 
-  onKeydown(event) {
-    this.router.navigate([event.target.value]);
-  }
-
-  logout() {
-    localStorage.removeItem('isLoggedin');
-  }
-
 
   loadUsersSearch() {
-    const text = this.toSearch;
     this.userService.searchUsers(this.toSearch).subscribe(val => {
       this.searchResult = val;
       this.amountFound = this.searchResult.length;
     });
-
-
   }
 
   changeUser(usuario: string) {
