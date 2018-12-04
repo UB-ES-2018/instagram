@@ -5,6 +5,12 @@
 /tmp
 /out-tsc
 
+# code coverage
+/coverage
+/coverage/*
+**/coverage
+**/coverage/*
+
 # dependencies
 /node_modules
 **/node_modules
