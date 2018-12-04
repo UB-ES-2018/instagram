@@ -1,12 +1,3 @@
-script:
-  - cd Instagram-ui
-  - npm install
-  - node node_modules/@angular/cli/bin/ng test
-  - cd ../
-  - cd instagram-services
-  - gradle clean build
-
-
 sudo: required
 addons:
   chrome: stable
