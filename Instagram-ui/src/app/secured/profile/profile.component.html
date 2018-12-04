@@ -25,7 +25,14 @@
         <div id="name"><b>{{user?.name}}</b></div>
         <div id="bio">{{user?.bio}}</div>
     </div>
-    <div id="fotos">
+    <div *ngIf="privacy && !followed" style="background:white;" id="private">
+        <br>
+        <b style="text-align: center;">Este perfil es privado.</b>
+        <br>
+        <a style="text-align: center;">Sigue a este usuario para ver sus fotos.</a>
+    </div>
+    
+    <div *ngIf="!privacy || privacy && followed" id="fotos">
         <div class="quadradoTabla">
             <div id="subirFoto" (click)="uploadPopup()" class="celda" *ngIf="isAuthUser()">
             </div>
