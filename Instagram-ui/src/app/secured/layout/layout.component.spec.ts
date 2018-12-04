@@ -34,6 +34,13 @@ describe('LayoutComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should not show buttons if not logged in', () => {
+    expect(component).toBeTruthy();
+    AuthService.logUser = null;
+    component.ngOnInit();
+    expect(component.profilename).toEqual(null);
+  });
+
   it('should send a text and receive a list of users', () => {
     expect(component).toBeTruthy();
     const arrayOfUsers = [new User()];

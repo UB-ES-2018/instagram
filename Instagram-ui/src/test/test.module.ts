@@ -4,6 +4,7 @@ import { UserService } from '../app/service/user.service';
 import { AuthServiceTest } from './auth.service.test';
 import { UserServiceTest } from './user.service.test';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormBuilder } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { RouterTestingModule } from '@angular/router/testing';
         }, {
             provide: UserService,
             useClass: UserServiceTest
-        }
+        },
+        FormBuilder
     ],
     exports: [RouterTestingModule]
 })
