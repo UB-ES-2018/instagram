@@ -122,8 +122,8 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
-	@RequestMapping(value = "/search/", method = RequestMethod.GET)
-	public ResponseEntity<List<UserDto>> searchUser(@RequestBody String query) throws BusinessException {
+	@RequestMapping(value = "/search/{query}", method = RequestMethod.GET)
+	public ResponseEntity<List<UserDto>> searchUser(@PathVariable String query) throws BusinessException {
 		logger.info("UserController -> getUser");
 
 		List<User> users = userService.searchUser(query);
