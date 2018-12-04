@@ -32,7 +32,7 @@
     <div *ngIf="showRequests" id="requests_pop" class="popup_div">
     <div id="requests_back" style="border-bottom: 1px solid #d8d8d8;">
         <span class='requests_back_button' (click)="toggleRequests()"></span>
-        <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Follow requests</b>
+        <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Peticiones de seguimiento</b>
     </div>
     <div id="requests" class="popup_div">
       <div *ngFor="let request of requests" class="column" style="line-height: 5em">
@@ -44,8 +44,8 @@
           <span style="font-size: 14px; color: gray; padding-left: 10px;">{{request.actionUser.name}}</span>
         </div>
         <span style="display:inline; float: right;">
-          <button (click)="acceptFollow(request.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Approve</button>
-          <button (click)="hideFollow(request.id)" class="btn btn-outline-secondary btn-sm">Hide</button>
+          <button (click)="acceptFollow(request.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Aprobar</button>
+          <button (click)="hideFollow(request.id)" class="btn btn-outline-secondary btn-sm">Ignorar</button>
         </span>
 
 
@@ -59,9 +59,9 @@
         <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
         <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">{{requestQuantity}}</b>
         <span style="display: inline-block; width: 80%; overflow: hidden;">            
-            <b class="popup_div" style="margin-left: 20px; outline-width: 0;">Follow requests</b> 
+            <b class="popup_div" style="margin-left: 20px; outline-width: 0;">Peticiones de seguimiento</b> 
             <br>
-            <a style="margin-left: 20px; color:gray">Approve or ignore requests</a>
+            <a style="margin-left: 20px; color:gray">Aprueba o ignora peticiones de seguimiento</a>
         </span>
         <span class='requests_button' (click)="toggleRequests()"></span>
       </div>
