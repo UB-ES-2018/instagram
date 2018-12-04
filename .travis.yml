@@ -1,11 +1,8 @@
 language: java
 jdk: oraclejdk8
-before_install:
-  - cd Instagram-ui
-  - npm install ng-common
-  - cd ..
 script:
   - cd Instagram-ui
+  - npm install
   - ng test --code-coverage --watch=false
   - ng test
   - cd ../
