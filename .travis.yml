@@ -1,0 +1,10 @@
+language: java
+jdk: oraclejdk8
+
+script:
+  - cd Instagram-ui
+  - ng test --code-coverage --watch=false
+  - ng test
+  - cd ../
+  - cd instagram-services
+  - gradle clean build
