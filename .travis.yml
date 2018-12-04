@@ -17,6 +17,7 @@ node_js:
 
 before_script:
   - npm install -g @angular/cli
+  - npm i @angular-devkit/build-angular
 
 script:
   - cd Instagram-ui
