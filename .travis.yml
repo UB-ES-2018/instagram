@@ -10,6 +10,7 @@ before_script:
   - cd Instagram-ui
   - npm install -g @angular/cli
   - npm ci
+  - cd ..
 
 script:
   - cd Instagram-ui
