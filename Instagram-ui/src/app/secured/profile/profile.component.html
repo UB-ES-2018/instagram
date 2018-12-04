@@ -15,12 +15,13 @@
             </div>
         </div>
         <div id="datosmid">
-            <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}}
-                Followers</div>
-            <div id="publications">{{perfilPhotos?.length}} publications</div>
-            <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}}
-                Following</div>
+            <div id="publications"><b>{{perfilPhotos?.length}}</b> publicaciones</div>
+            <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;"><b>{{followers}}</b>
+                    Seguidores</div>
+            <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;"><b>{{followeds}}</b>
+                Seguidos</div>
         </div>
+        <br>
         <br>
         <div id="name"><b>{{user?.name}}</b></div>
         <div id="bio">{{user?.bio}}</div>
@@ -57,7 +58,7 @@
 
 <ng-template #modalFollowed let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" style="padding-left: 5em">Following</h4>
+        <h4 class="modal-title" style="padding-left: 5em">Seguidos</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -102,7 +103,7 @@
             <img id="fotoSubir" alt="" [src]="foto" />
         </div>
         <div id="descFoto" *ngIf="imagePresent">
-            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descipcion</textarea>
+            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descripcion</textarea>
         </div>
         <div *ngIf="imagePresent" id="enviarFoto">
             <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />
@@ -115,7 +116,7 @@
 
 <ng-template #modalFollowers let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" style="padding-left: 5em">Followers</h4>
+        <h4 class="modal-title" style="padding-left: 5em">Seguidores</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
