@@ -14,8 +14,8 @@ before_script:
 
 script:
   - cd Instagram-ui
-  - ng build --prod --aot
-  - ng test
+  #- ng build --prod --aot
+  #- ng test
   - cd ../
   - cd instagram-services
   - gradle build
