@@ -3,7 +3,7 @@ jdk: oraclejdk8
 script:
   - cd Instagram-ui
   - npm install
-  - node instagram-ui/node_modules/@angular/cli/bin/ng test
+  - node node_modules/@angular/cli/bin/ng test
   - cd ../
   - cd instagram-services
   - gradle clean build
