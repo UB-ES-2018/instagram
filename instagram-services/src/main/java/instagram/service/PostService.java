@@ -14,6 +14,8 @@ public interface PostService {
 	
 	List<Post> getNinePostsFromUser(int idUser);
 	
+	List<Post> getFeedUser(List<Integer> usersIDList);
+	
 	Post getPostById(int id);
 	
 	Post addPost(int idUser, String photo, String description, Date createdAt);

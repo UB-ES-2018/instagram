@@ -2,6 +2,7 @@ package instagram.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.*;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class PostServiceImpl implements PostService {
 		}else {
 			return llista.subList(0, 8);
 		}
+	}
+	
+	@Override
+	public List<Post> getFeedUser(List<Integer> usersIDList){
+		List<Post> llista = this.postRepository.findAllByFollowers(usersIDList);
+		Collections.reverse(llista);
+		return llista;
 	}
 	
 	@Override
