@@ -22,7 +22,6 @@ export class User {
         user.phoneNumber = 0;
         user.gender = '';
         user.photo = '';
-        
         return user;
     }
 }
