@@ -8,7 +8,7 @@
         "build": "ng build --prod",
         "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-6/master/dist/",
         "test": "ng test",
-        "test-ci": "ng test --code-coverage --watch=false",
+        "test-ci": "ng test --code-coverage --watch=false --browsers=ChromeHeadless",
         "lint": "ng lint",
         "e2e": "ng e2e"
     },
