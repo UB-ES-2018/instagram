@@ -22,6 +22,8 @@ public class UserDto {
 	private int phoneNumber;
 	
 	private String gender;
+	
+	private String photo;
 
 	
 	public int getId() {
@@ -96,6 +98,15 @@ public class UserDto {
 		this.gender = gender;
 	}
 	
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	public void loadFromModel(User user) {
 		id = user.getId();
 		username = user.getUsername();
@@ -105,5 +116,6 @@ public class UserDto {
 		website = user.getWebsite();
 		phoneNumber = user.getPhoneNumber();
 		gender = user.getGender();
+		photo = user.getPhoto();
 	}
 }

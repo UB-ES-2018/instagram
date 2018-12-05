@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import instagram.model.Post;
+import instagram.model.PostLoad;
+import instagram.model.PostPerfil;
 import instagram.controller.dto.PostDto;
+import instagram.controller.dto.PostLoadDto;
+import instagram.controller.dto.PostPerfilDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.service.PostService;
 import instagram.exception.BusinessException;
@@ -30,18 +35,37 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-	@RequestMapping(value = "/getPostIDUser/{id_user}", method = RequestMethod.GET)
-	public ResponseEntity<List<PostDto>> getUsersPosts(@PathVariable int id_user) throws BusinessException{
+	@RequestMapping(value = "/load/{idPost}", method = RequestMethod.GET)
+	public ResponseEntity<PostLoadDto> getPostLoad(@PathVariable int idPost, @RequestParam(value = "idUser" , required = false) String idUser) throws BusinessException{
+		logger.info("PostController -> getPostLoad");
+		
+		int valueUser = -1;
+		if(idUser != null) {
+			valueUser = Integer.parseInt(idUser);
+		}
+
+		PostLoad postLoad = this.postService.getPostByIdAndLoggedUser(idPost, valueUser);
+		PostLoadDto result = new PostLoadDto();
+		result.loadFromPostLoad(postLoad);
+		
+		
+		return new ResponseEntity<PostLoadDto>(result,HttpStatus.OK);
+		
+		
+	}
+	
+	@RequestMapping(value = "/getPostIDUser/{idUser}", method = RequestMethod.GET)
+	public ResponseEntity<List<PostPerfilDto>> getUsersPosts(@PathVariable int idUser) throws BusinessException{
 		logger.info("PostController -> getUsersPosts");
 		
-		List<Post> posts = this.postService.getAllPostsFromUser(id_user);
-		List<PostDto> result = new ArrayList<PostDto>();
-		for(Post post : posts) {
-			PostDto checkedPost = new PostDto();
+		List<PostPerfil> posts = this.postService.getAllPostsFromUser(idUser);
+		List<PostPerfilDto> result = new ArrayList<PostPerfilDto>();
+		for(PostPerfil post : posts) {
+			PostPerfilDto checkedPost = new PostPerfilDto();
 			checkedPost.loadFromModel(post);
 			result.add(checkedPost);
 		}
-		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
+		return new ResponseEntity<List<PostPerfilDto>>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getNinePostsIDUser/{id_user}", method = RequestMethod.GET)

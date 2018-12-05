@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { authService } from '../../service/auth.service';
+import { UserService } from '../../service/user.service';
+import { User } from '../../model/User';
+
+
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +13,11 @@ import { authService } from '../../service/auth.service';
 })
 export class LayoutComponent implements OnInit {
   profilename: string;
-  constructor(private router: Router, public authenticationService: authService) { }
+  searchResult: User[];
+  toSearch: string;
+  showSearch: boolean;
+  amountFound: number;
+  constructor(private router: Router, public authenticationService: authService, private userService: UserService) { }
   ngOnInit() {
     // this.profilename = this.authenticationService.logUser.name;
     if (this.authenticationService.logUser) {
@@ -17,19 +25,28 @@ export class LayoutComponent implements OnInit {
     } else {
       this.profilename = null;
     }
-
+    this.showSearch = false;
+    this.amountFound = 0;
   }
 
-  onKeydown(event) {
-    this.router.navigate([event.target.value]);
+
+  loadUsersSearch() {
+    this.userService.searchUsers(this.toSearch).subscribe(val => {
+      this.searchResult = val;
+      this.amountFound = this.searchResult.length;
+    });
   }
 
-  logout() {
-    localStorage.removeItem('isLoggedin');
+  changeUser(usuario: string) {
+    this.toSearch = '';
+    this.router.navigate([usuario]);
   }
 
-  /*buscador(idbuscador){
-    const abuscar = document.getElementById(idbuscador).nodeValue;
-    this.router.navigate([abuscar]);
-  }*/
+  buscadorFocus() {
+    this.showSearch = true;
+  }
+  buscadorFree() {
+    this.showSearch = false;
+  }
+
 }

@@ -17,9 +17,10 @@ export class EditPasswordComponent implements OnInit {
   pass: string;
   passwordsMissmatch = false;
   oldPasswordWrong = false;
+  fotoPerfil: string;
   ngOnInit() {
     this.username = this.authentiactionService.logUser.username;
-
+    this.fotoPerfil = this.authentiactionService.logUser.photo;
   }
 
   cambiarPassword() {

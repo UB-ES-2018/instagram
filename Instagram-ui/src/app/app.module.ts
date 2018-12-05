@@ -13,6 +13,10 @@ import {UserService} from './service/user.service';
 import { authService } from './service/auth.service';
 import { FollowService } from './service/follow.service';
 import { AuthGuard } from './shared';
+import { PostService } from './service/post.service';
+import { CommentService } from './service/CommentService';
+import { LikeCommentService } from './service/LikeComment';
+import { LikeService } from './service/LikeService';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -45,7 +49,11 @@ export const createTranslateLoader = (http: HttpClient) => {
         authService,
         UserService,
         FollowService,
-        AuthGuard
+        AuthGuard,
+        PostService,
+        CommentService,
+        LikeCommentService,
+        LikeService
     ],
     bootstrap: [AppComponent]
 })

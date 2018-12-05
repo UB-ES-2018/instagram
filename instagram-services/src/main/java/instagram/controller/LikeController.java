@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import instagram.controller.dto.ResponseDto;
+import instagram.controller.dto.UserDto;
 import instagram.controller.dto.LikeDto;
 import instagram.exception.BusinessException;
 import instagram.model.Like;
 import instagram.service.LikeService;
+import instagram.service.UserService;
 
 @CrossOrigin
 @RestController
@@ -31,7 +33,10 @@ public class LikeController {
 	@Autowired
 	private LikeService likeService;
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@Autowired
+	private UserService userService;
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<LikeDto> addLike(@RequestBody LikeDto likeDto) throws BusinessException {
 		logger.info("LikeController -> addLike");
 		
@@ -45,11 +50,11 @@ public class LikeController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ResponseEntity<List<LikeDto>> getAll(){
-		logger.info("Post_TagController -> getAll");
+		logger.info("LikeController -> getAll");
 
 		List<Like> likes = likeService.getAll();
-
 		List<LikeDto> result = new ArrayList<LikeDto>();
+		
 		for (Like like : likes) {
 			LikeDto likedDto = new LikeDto();
 			likedDto.loadFromModel(like);
@@ -59,11 +64,55 @@ public class LikeController {
 		return new ResponseEntity<List<LikeDto>>(result, HttpStatus.OK);
 	}
 
-	@RequestMapping(value ="/delete/{id}", method = RequestMethod.GET)
-	public ResponseEntity<ResponseDto> deleteLikeByID(@PathVariable int id) throws BusinessException{
+	@RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
+	public ResponseEntity<LikeDto> getById(@PathVariable int id) throws BusinessException{
+		logger.info("LikeController -> getById");
+
+		Like like = likeService.getById(id);
+
+		LikeDto likeDto = new LikeDto();
+		likeDto.loadFromModel(like);
+
+		return new ResponseEntity<LikeDto>(likeDto, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/getByIdPost/{idPost}", method = RequestMethod.GET)
+	public ResponseEntity<List<LikeDto>> getByIdPost(@PathVariable int idPost) throws BusinessException{
+		logger.info("LikeController -> getByIdPost");
+
+		List<Like> likes = likeService.getByIdPost(idPost);
+		List<LikeDto> result = new ArrayList<LikeDto>();
+		
+		for (Like like : likes) {
+			LikeDto likedDto = new LikeDto();
+			likedDto.loadFromModel(like);
+			result.add(likedDto);
+		}
+		
+		return new ResponseEntity<List<LikeDto>>(result, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/getLikers/{idPost}", method = RequestMethod.GET)
+	public ResponseEntity<List<UserDto>> getLikers(@PathVariable int idPost) throws BusinessException{
+		logger.info("LikeController -> getLikers");
+
+		List<Like> likes = likeService.getByIdPost(idPost);
+		List<UserDto> result = new ArrayList<UserDto>();
+		
+		for (Like like : likes) {
+			UserDto userDto = new UserDto();
+			userDto.loadFromModel(userService.getUserById(like.getIdUser()));
+			result.add(userDto);
+		}
+		
+		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
+	}
+
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public ResponseEntity<ResponseDto> deleteLikeByID(@RequestBody LikeDto likeDto) throws BusinessException{
 		logger.info("LikeController -> deleteLikeByID");
 				
-		this.likeService.deleteLike(id);
+		this.likeService.deleteLike(likeDto);
 		
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setOk(true);

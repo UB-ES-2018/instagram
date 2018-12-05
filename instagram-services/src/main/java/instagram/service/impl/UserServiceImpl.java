@@ -1,5 +1,6 @@
 package instagram.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,6 +182,26 @@ public class UserServiceImpl implements UserService {
 		if(user == null)
 			throw new BusinessException(ErrorCodes.INVALID_CREDENTIAS);
 		return user;
+	}
+
+
+	@Override
+	public String getUsername(int idUser) {
+		return this.userRepository.findById(idUser).get().getName();
+	}
+
+
+	@Override
+	public User updatePhoto(int idUser, String photo) throws BusinessException {
+		User user = this.getUserById(idUser);
+		user.setPhoto(photo);
+		this.userRepository.save(user);
+		return user;
+	}
+	
+	@Override
+	public List<User> searchUser(String query) {
+		return userRepository.findByUsernameIgnoreCaseContainingOrNameIgnoreCaseContaining(query, query);
 	}
 
 }

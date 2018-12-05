@@ -8,6 +8,7 @@ export class User {
     website: string;
     phoneNumber: number;
     gender: string;
+    photo: string;
 
     public static createDummy(): User {
         const user = new User();
@@ -20,6 +21,7 @@ export class User {
         user.website = '';
         user.phoneNumber = 0;
         user.gender = '';
+        user.photo = '';
         return user;
     }
 }

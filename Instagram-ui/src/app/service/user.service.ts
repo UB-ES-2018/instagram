@@ -86,4 +86,21 @@ export class UserService {
     return this.httpClient.post<PostDto>(CONST.URL_UPLOAD_IMAGE, postDto);
   }
 
+  updatePerfilPhoto(idUser: number, photo: string) {
+    const url = CONST.URL_PUT_UPDATE_PERFIL_PHOTO.replace('{idUser}', idUser.toString());
+    return this.httpClient.put<User>(url, photo)
+      .pipe(
+        tap(user => console.log('updated user photo')),
+        catchError(handleError('failed to update photo'))
+      );
+  }
+
+  searchUsers(text: string) {
+    return this.httpClient.get<User[]>(CONST.URL_GET_USERS_BY_TEXT + text)
+      .pipe(
+        tap(searchResult => console.log('requested users')),
+        catchError(handleError('failed to load photos for perfil', []))
+      );
+  }
+
 }

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `instagram`.`USER` (
   `website` VARCHAR(45) NULL DEFAULT NULL,
   `phoneNumber` INT(20) NULL DEFAULT NULL,
   `gender` VARCHAR(45) NULL DEFAULT 'UNDEFINED',
+  `photo` LONGTEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -50,12 +51,7 @@ CREATE TABLE IF NOT EXISTS `instagram`.`POST` (
   `updated_at` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  INDEX `fk_user_idx` (`id_user` ASC),
-  CONSTRAINT `fk_user_post`
-    FOREIGN KEY (`id_user`)
-    REFERENCES `instagram`.`USER` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_user_idx` (`id_user` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -176,7 +172,7 @@ ENGINE = InnoDB;
 -- Table `instagram`.`LIKESCOMENT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `instagram`.`LIKESCOMENT` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_user` INT(11) NOT NULL,
   `id_coment` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
