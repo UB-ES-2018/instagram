@@ -8,14 +8,14 @@ node_js:
 
 before_script:
   - cd Instagram-ui
-  - npm install -g @angular/cli
+  - npm install
   - npm ci
   - cd ..
 
 script:
   - cd Instagram-ui
   #- ng build --prod --aot
-  #- ng test
+  - npm run test-ci
   - cd ../
   - cd instagram-services
   - gradle build
