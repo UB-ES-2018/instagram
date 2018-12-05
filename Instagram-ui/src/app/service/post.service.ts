@@ -35,4 +35,13 @@ export class PostService {
       );
   }
 
+  requestPhotosForFeed(idUser: number) {
+    const url = CONST.URL_GET_FEED_POSTS_BY_IDUSER.replace('{idUser}', idUser.toString());
+    return this.httpClient.get<PostLoad[]>(url)
+      .pipe(
+        tap(postFeed => console.log('requiested photos for feed')),
+        catchError(handleError('failed to load photos for feed', []))
+      );
+  }
+
 }
