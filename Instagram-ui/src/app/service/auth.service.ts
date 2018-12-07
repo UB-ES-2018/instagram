@@ -17,8 +17,8 @@ export class authService {
   constructor(private httpClient: HttpClient) {
     if (sessionStorage.getItem('authenticatedUser')) {
       this.logStatus = true;
-      this.logUser = JSON.parse( atob(sessionStorage.getItem('authenticatedUser')));
-      console.log('authService: recovered user -> ' + JSON.stringify(this.logUser) );
+      this.logUser = JSON.parse(atob(sessionStorage.getItem('authenticatedUser')));
+      console.log('authService: recovered user -> ' + JSON.stringify(this.logUser));
     }
   }
 
@@ -32,7 +32,7 @@ export class authService {
           console.log('Loging user');
           this.logUser = p;
           this.logStatus = true;
-          sessionStorage.setItem('authenticatedUser',  btoa(JSON.stringify(this.logUser)));
+          sessionStorage.setItem('authenticatedUser', btoa(JSON.stringify(this.logUser)));
         }),
         catchError(handleError('getUsers', User.createDummy()))
       );

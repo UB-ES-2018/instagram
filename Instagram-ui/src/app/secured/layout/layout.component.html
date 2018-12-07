@@ -1,14 +1,36 @@
 
-<div id="layout">
-  <div id="logo" style=" cursor: pointer;">
-      <img src="assets/images/logo.png" [routerLink]="'/'"/><!--logo-->
+<div id="layout" >
+  <div id="logo">
+    <img src="assets/images/logo.png" [routerLink]="'/'"/>
+    <!--logo-->
+  </div>
+  <div id="buscadorDiv">
+    <!--<input value="Busca" id="buscador"/>buscador-->
+
+    <input class="XTCLo x3qfX " type="text" autocapitalize="none" id="buscador"
+    placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" [(ngModel)]="toSearch" (keypress)="loadUsersSearch()" value="">
+    <span class="mlrQa coreSpriteSearchIcon"></span>
+    <div class="aIYm8 coreSpriteSearchClear" role="button" tabindex="0"></div>
+    <div class="resultadoSearch" *ngIf="toSearch">
+      <div class="user" *ngIf="amountFound === 0">
+        No se han encontrado resultados.
+      </div>
+      <div class="user" (click)="changeUser(user.username)" [routerLink]="'/'+user.username" *ngFor="let user of searchResult">
+        <div class="fotoUserSearch">
+          <img [src]="user.photo" />
+        </div>
+        <div class="nameUserSearch">
+          {{user.username}}
+        </div>
+        <div class="usernameUserSearch">
+          {{user.name}}
+        </div>
+      </div>
     </div>
-    <div id="buscador">
-        <input (keydown.enter)="onKeydown($event)" id="buscador"/><!--buscador-->
-    </div>
-      
-  
-  
+  </div>
+
+
+
   <div id="botones" *ngIf="authenticationService.logUser">
     <i class="fa fa-compass fa-2x" id="primero" routerLink="/explore"></i><!--explore-->
     <i class="fa fa-heart fa-2x"></i><!--notificacions-->
@@ -19,5 +41,5 @@
     &nbsp;
     <button class="btn btn-primary" [routerLink]="[ '/signup']">register</button>
   </div>
-  
+
 </div>

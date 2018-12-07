@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     this.postService.requestPhotosForPerfil(idUser).subscribe(
       postPerfil => {
         this.perfilPhotos = postPerfil;
-        this.perfilPhotos = this.perfilPhotos.slice().reverse()
+        this.perfilPhotos = this.perfilPhotos.slice().reverse();
         console.log(this.perfilPhotos);
       }
     );

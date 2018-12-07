@@ -68,6 +68,20 @@ public class PostController {
 		return new ResponseEntity<List<PostPerfilDto>>(result, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/getNinePostsIDUser/{id_user}", method = RequestMethod.GET)
+	public ResponseEntity<List<PostDto>> getNinePostsFromUser(@PathVariable int id_user) throws BusinessException{
+		logger.info("PostController -> getNinePostsFromUser");
+		
+		List<Post> posts = this.postService.getNinePostsFromUser(id_user);
+		List<PostDto> result = new ArrayList<PostDto>();
+		for(Post post : posts) {
+			PostDto checkedPost = new PostDto();
+			checkedPost.loadFromModel(post);
+			result.add(checkedPost);
+		}
+		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/getPost", method = RequestMethod.GET)
 	public ResponseEntity<List<PostDto>> getPosts() throws BusinessException{
 		logger.info("PostController -> getPosts");

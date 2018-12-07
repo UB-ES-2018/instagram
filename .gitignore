@@ -5,6 +5,12 @@
 /tmp
 /out-tsc
 
+# code coverage
+/coverage
+/coverage/*
+**/coverage
+**/coverage/*
+
 # dependencies
 /node_modules
 **/node_modules
@@ -12,7 +18,7 @@
 **/.project
 **/.classpath
 **/.settings
-**package-lock.json
+**/package-lock.json
 
 # IDEs and editors
 /.idea
