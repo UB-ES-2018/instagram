@@ -5,6 +5,10 @@ import { AuthServiceTest } from './auth.service.test';
 import { UserServiceTest } from './user.service.test';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder } from '@angular/forms';
+import { FollowService } from '../app/service/follow.service';
+import { FollowServiceTest } from './follow.service.test';
+import { PostService } from '../app/service/post.service';
+import { PostServiceTest } from './post.service.test';
 
 @NgModule({
     imports: [
@@ -18,6 +22,12 @@ import { FormBuilder } from '@angular/forms';
         }, {
             provide: UserService,
             useClass: UserServiceTest
+        }, {
+            provide: FollowService,
+            useClass: FollowServiceTest
+        }, {
+            provide: PostService,
+            useClass: PostServiceTest
         },
         FormBuilder
     ],
