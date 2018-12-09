@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { PostLoad } from '../app/model/PostLoad';
 
 
 @Injectable()
@@ -9,7 +10,7 @@ export class PostServiceTest {
   constructor() { }
 
   requestIdPostByIdPostAndLoggin(idPost: number, idLoggin: number) {
-    return null;
+    return of(PostLoad.createDummy());
   }
 
   requestPhotosForPerfil(idUser: number) {

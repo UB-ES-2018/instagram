@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Follow } from '../app/model/Follow';
 
 
@@ -6,11 +6,11 @@ export class FollowServiceTest {
 
 
     requestFollow(follower:number,followed:number): Observable<Follow> {
-        return null;
+        return of(Follow.createDummy());
     }
 
     unFollow(follower:number,followed:number){
-        return null;
+        return of(Follow.createDummy());
 
     }
 
