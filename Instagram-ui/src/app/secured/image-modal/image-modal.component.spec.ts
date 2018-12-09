@@ -46,17 +46,22 @@ describe('ImageModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
+    spyOn(component, "AjotitaTest");
+    const post = PostLoad.createDummy();
+    spyOn(postService, 'requestIdPostByIdPostAndLoggin');
     expect(component).toBeTruthy();
   });
 
   it('should not show buttons if not logged in', () => {
     expect(component).toBeTruthy();
-    AuthService.logUser = null;
+    AuthService.logUser = User.createDummy();
+    AuthService.logStatus = false;
     const follow = Follow.createDummy();
-    spyOn(followService, 'checkFollow').and.returnValue(of(follow));
+    component.follow_check = follow;
+    let temp = component.checkFollowedStatus(1);
     component.ngOnInit();
-    expect(component.follow_check.follower).toEqual(-1);
+    expect(temp).toEqual(false);
   });
 
   it('should send a text and receive a post', () => {
@@ -67,5 +72,30 @@ describe('ImageModalComponent', () => {
     component.AjotitaTest(id);
     expect(component.post).toEqual(post);
   });
+
+  it('function checkers should work', () => {
+    expect(component).toBeTruthy();
+    AuthService.logUser = User.createDummy();
+    let selfCheck = component.selfFollowCheck(12);    
+    expect(selfCheck == false);
+  });
+
+  it('should stay truthy after calling functions', () => {
+    expect(component).toBeTruthy();
+    AuthService.logUser = User.createDummy(); 
+    AuthService.logStatus = true;  
+    component.sendLikeComment(12);
+    component.sendDislikeComment(12);
+    component.sendLike();
+    component.sendDislike();
+    component.sendComment("test");
+    component.deleteComment(1);
+
+    expect(component).toBeTruthy();    
+  });
+
+
+
+
 
 });
