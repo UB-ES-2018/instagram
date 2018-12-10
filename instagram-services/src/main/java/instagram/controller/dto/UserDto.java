@@ -127,5 +127,6 @@ public class UserDto {
 		phoneNumber = user.getPhoneNumber();
 		gender = user.getGender();
 		photo = user.getPhoto();
+		privacity = user.getPrivacity();
 	}
 }
