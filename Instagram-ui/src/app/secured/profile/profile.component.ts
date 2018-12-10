@@ -51,6 +51,8 @@ export class ProfileComponent implements OnInit {
 
   imageRef: NgbModalRef;
 
+  privacy: boolean;
+
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
     private followService: FollowService, private modalService: NgbModal,
@@ -108,6 +110,8 @@ export class ProfileComponent implements OnInit {
       this.loadUserInfo();
       this.checkFollowStatus(this.user.id);
       this.loadPhotosForPerfil(this.user.id);
+      this.privacy = this.user.privacity;
+      console.log("JODER INUTIL" + this.privacy)
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
