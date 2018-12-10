@@ -63,8 +63,9 @@ export const CONST = {
     URL_POST_ADD_COMMENT: environment.api + 'comments/add',
 
     URL_GET_NOTIFICATION_ALL: environment.api + 'notification/all/{idUser}',
-    URL_GET_NOTIFICATION_REQUEST: environment.api + 'notification/request/{idUser}'
-
+    URL_GET_NOTIFICATION_REQUEST: environment.api + 'notification/request/{idUser}',
+    URL_GET_NOTIFICATION_ACCEPT: environment.api + 'notification/accept/{id}',
+    URL_GET_NOTIFICATION_HIDE: environment.api + 'notification/hide/{id}'
 
 
 

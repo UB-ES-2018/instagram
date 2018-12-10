@@ -18,6 +18,7 @@ import instagram.controller.dto.NotificationDto;
 import instagram.exception.BusinessException;
 import instagram.model.Notification;
 import instagram.service.CommentService;
+import instagram.service.FollowerService;
 import instagram.service.NotificationService;
 import instagram.service.PostService;
 import instagram.service.UserService;
@@ -40,6 +41,9 @@ public class NotificationController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private FollowerService followerService;
 	
 	@RequestMapping(value = "/request/{idOwnerUser}", method = RequestMethod.GET)
 	public ResponseEntity<List<NotificationDto>> getRequestForUser(@PathVariable int idOwnerUser) throws BusinessException {
@@ -98,9 +102,33 @@ public class NotificationController {
 			result.add(dto);
 		}
 		
-		
-		
 		return new ResponseEntity<List<NotificationDto>>(result,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value = "/accept/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> accept(@PathVariable int id) throws BusinessException {
+		
+		logger.info("NotificationController -> accept");
+		
+		Notification notification = notificationService.getByidNotification(id);
+		
+		this.followerService.acceptFolllower(notification.getIdActionUser(), notification.getIdOwnerUser(), true);
+		
+		notificationService.actionOverNotification(id);
+		
+		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value = "/hide/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> hide(@PathVariable int id) throws BusinessException {
+		
+		logger.info("NotificationController -> hide");
+						
+		notificationService.actionOverNotification(id);
+		
+		return new ResponseEntity<Boolean>(true,HttpStatus.OK);
 		
 	}
 }

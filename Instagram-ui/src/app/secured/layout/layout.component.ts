@@ -93,11 +93,11 @@ export class LayoutComponent implements OnInit {
   }
 
   acceptFollow(id: number){
-
+    this.notificationService.accept(id).subscribe();
   }
 
   hideFollow(id: number){
-
+    this.notificationService.hide(id).subscribe();
   }
 
   imagePopUp(id_image: number) {

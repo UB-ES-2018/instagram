@@ -135,4 +135,15 @@ public class NotificationServiceImpl implements NotificationService {
 		
 	}
 
+	@Override
+	public Notification getByidNotification(int idNotification) {
+		return this.notificationRepository.findById(idNotification).get();
+	}
+
+	@Override
+	public void actionOverNotification(int idNotification) {
+		Notification notification = this.notificationRepository.findById(idNotification).get();
+		this.notificationRepository.delete(notification);
+	}
+
 }

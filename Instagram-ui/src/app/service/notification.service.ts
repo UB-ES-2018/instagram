@@ -31,4 +31,22 @@ export class NotificationService {
       );
   }
 
+  accept(idNotification: number){
+    const url= CONST.URL_GET_NOTIFICATION_ACCEPT.replace('{id}', idNotification.toString());
+    return this.httpClient.get<Notification>(url)
+      .pipe(
+        tap(accepted => console.log('accepted')),
+        catchError(handleError('failed to get request'))
+      );
+  }
+
+  hide(idNotification: number){
+    const url= CONST.URL_GET_NOTIFICATION_HIDE.replace('{id}', idNotification.toString());
+    return this.httpClient.get<Notification>(url)
+      .pipe(
+        tap(accepted => console.log('hide')),
+        catchError(handleError('failed to hide'))
+      );
+  }
+
 }

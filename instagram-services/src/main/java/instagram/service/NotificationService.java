@@ -17,5 +17,9 @@ public interface NotificationService {
 	void addedFollowRequest(int idActionUser, int idOwnerUser, int idFollow);
 	
 	void addedLikeToComment(int idComment, int idActionUser);
+	
+	Notification getByidNotification(int idNotification);
+	
+	void actionOverNotification(int idNotification);
 
 }
