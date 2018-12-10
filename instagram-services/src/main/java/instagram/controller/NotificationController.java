@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import instagram.controller.dto.NotificationDto;
 import instagram.exception.BusinessException;
-import instagram.model.Comment;
 import instagram.model.Notification;
 import instagram.service.CommentService;
 import instagram.service.NotificationService;

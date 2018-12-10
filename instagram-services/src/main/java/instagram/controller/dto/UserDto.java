@@ -24,8 +24,18 @@ public class UserDto {
 	private String gender;
 	
 	private String photo;
-
 	
+	private Boolean privacity;
+	
+	
+	public Boolean getPrivacity() {
+		return privacity;
+	}
+
+	public void setPrivacity(Boolean privacity) {
+		this.privacity = privacity;
+	}
+
 	public int getId() {
 		return id;
 	}

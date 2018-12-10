@@ -39,8 +39,9 @@ public class CommentController {
 	public ResponseEntity<Integer> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
 		logger.info("CommentController -> addComment");
 
-		int idComment = commentService.addComment(commentDto.getIdPost(), commentDto.getIdPost(), commentDto.getContent());
-		notificationService.addedCommentToPost(commentDto.getIdPost(), idComment, commentDto.getIdPost());
+		int idComment = commentService.addComment(commentDto.getIdPost(), commentDto.getIdUser(), commentDto.getContent());
+		notificationService.addedCommentToPost(commentDto.getIdPost(), idComment, commentDto.getIdUser());
+
 
 		return new ResponseEntity<Integer>(idComment, HttpStatus.CREATED);
 	}

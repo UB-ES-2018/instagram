@@ -10,13 +10,17 @@ import instagram.exception.ErrorCodes;
 import instagram.model.Follower;
 import instagram.repository.FollowerRepository;
 import instagram.service.FollowerService;
+import instagram.service.UserService;
 
 @Service
 public class FollowerServiceImpl implements FollowerService {
 
 	@Autowired
 	private FollowerRepository followerRepository;
-
+	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public List<Integer> getAllFollowersFromUser(int userid) {
 		return this.followerRepository.findAllByFollowed(userid);
@@ -35,7 +39,12 @@ public class FollowerServiceImpl implements FollowerService {
 		Follower follow = new Follower();
 		follow.setFollowed(followed);
 		follow.setFollow(follower);
-		follow.setAccepted(true);
+		
+		if(userService.getUserById(followed).getPrivacity()) {
+			follow.setAccepted(false);
+		}else {
+			follow.setAccepted(true);
+		}
 		
 		this.followerRepository.save(follow);
 		return follow;
@@ -85,6 +94,11 @@ public class FollowerServiceImpl implements FollowerService {
 			check = true;
 		}
 		return check;
+	}
+
+	@Override
+	public Follower getFollowerById(int idFollow) {
+		return this.followerRepository.findById(idFollow).get();
 	}
 	
 

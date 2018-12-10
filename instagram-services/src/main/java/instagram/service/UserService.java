@@ -28,6 +28,8 @@ public interface UserService {
 	void changeEmail(String username, String email) throws BusinessException;
 	
 	void changeAll(String username, String email, String name, String bio, String website, int pNumber, String gender) throws BusinessException;
+	
+	User changePrivacity(int id, Boolean privacity) throws BusinessException;
 
 	User getLogin(String username, String password) throws BusinessException;
 	

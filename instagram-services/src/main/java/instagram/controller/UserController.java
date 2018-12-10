@@ -121,16 +121,23 @@ public class UserController {
 		User user = this.userService.updatePhoto(idUser, photo);
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
-
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ResponseEntity<UserDto> test() throws BusinessException, SecurityException, IOException {
 		logger.info("UserController -> updatePhoto");
-		
-				
 		User user = this.userService.getUserById(1);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
+
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(value = "/update/privacity/{idUser}", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> updatePrivacity(@PathVariable int idUser, @RequestBody Boolean privacity) throws BusinessException {
+		logger.info("UserController -> updatePrivacity");
+		User user = this.userService.changePrivacity(idUser, privacity);
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
 

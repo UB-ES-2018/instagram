@@ -95,4 +95,13 @@ export class UserService {
       );
   }
 
+  updatePrivacity(idUser: number, privacity: boolean){
+    const url = CONST.URL_PUT_UPDATE_PRIVACITY.replace('{idUser}', idUser.toString());
+    return this.httpClient.put<User>(url,privacity)
+      .pipe(
+        tap(user=> console.log('updated privacity')),
+        catchError(handleError('failed to update privacity'))
+      );
+  }
+
 }

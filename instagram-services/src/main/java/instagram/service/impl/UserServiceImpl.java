@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(password);
 		user.setEmail(email);
 		user.setGender("undefined");
+		user.setPrivacity(false);
 		
 		userRepository.save(user);
 
@@ -196,6 +197,14 @@ public class UserServiceImpl implements UserService {
 		user.setPhoto(photo);
 		this.userRepository.save(user);
 		return user;
+	}
+
+
+	@Override
+	public User changePrivacity(int idUser, Boolean privacity) throws BusinessException {
+		User user = getUserById(idUser);
+		user.setPrivacity(privacity);
+		return this.userRepository.save(user);
 	}
 
 }

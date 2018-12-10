@@ -9,6 +9,7 @@ export class User {
     phoneNumber: number;
     gender: string;
     photo: string;
+    privacity: boolean;
 
     public static createDummy(): User {
         const user = new User();

@@ -6,10 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import instagram.model.Follower;
 import instagram.model.Notification;
 import instagram.repository.NotificationRepository;
 import instagram.service.CommentService;
+import instagram.service.FollowerService;
 import instagram.service.NotificationService;
 import instagram.service.PostService;
 
@@ -24,6 +25,9 @@ public class NotificationServiceImpl implements NotificationService {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private FollowerService followerService;
 
 	@Override
 	public List<Notification> getAllForIdOwnerUser(int idOwnerUser) {
@@ -82,16 +86,22 @@ public class NotificationServiceImpl implements NotificationService {
 		
 		Notification event = new Notification();
 		
+		Follower follow = this.followerService.getFollowerById(idFollow);
+		
 		event.setIdActionUser(idActionUser);
 		event.setIdOwnerUser(idOwnerUser);
-		
 		event.setIdFollow(idFollow);
-		event.setRequest(true);
+		
+		if(follow.isAccepted()) {
+			event.setRequest(false);
+			event.setMessage("Te ha empezado a seguir");
+		}else {
+			event.setRequest(true);
+			event.setMessage("Te quiere seguir");
+		}
 		
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		event.setCreatedAt(timestamp.getTime());
-		
-		event.setMessage("Te quiere seguir");
 		
 		if(event.getIdActionUser() != event.getIdOwnerUser()) {
 			notificationRepository.save(event);
