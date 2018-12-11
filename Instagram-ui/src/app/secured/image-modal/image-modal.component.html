@@ -41,6 +41,7 @@
             <div class='react'>
                 <span *ngIf="!post.liked" (click)="sendLike()" class='love'></span>
                 <span *ngIf="post.liked" (click)="sendDislike()" class='loved'></span>
+                &nbsp;
                 <span style="cursor: pointer;" onclick="focusComment()" class='comment'></span>
                 <span style="float: right; cursor: pointer;"  onclick="toggleSaved(this)" class='save'></span>                   
             </div>
