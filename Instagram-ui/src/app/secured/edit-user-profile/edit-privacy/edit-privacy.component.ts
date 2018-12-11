@@ -15,17 +15,16 @@ export class EditPrivacyComponent implements OnInit {
   privacy: boolean;
   user: User;
   ngOnInit() {
-    this.privacy = true;
-    //this.privacy = this.authentiactionService.logUser.privacy;
+    this.privacy = this.authentiactionService.logUser.privacity;
   }
   changePrivacy(){
-    //this.user.privacy = !this.authenticationService.logUser.privacy;
-    //this.userService.changeUserData(this.user).subscribe(
-    //  response => {
-    //    this.authentiactionService.logUser = response;
-    //  }
-    //);
-    this.privacy = !this.privacy;
+    this.userService.updatePrivacity(this.authentiactionService.logUser.id).subscribe(
+      user=> {
+        this.authentiactionService.logUser = user;
+        sessionStorage.setItem('authenticatedUser',  btoa(JSON.stringify(this.authentiactionService.logUser)));
+        this.privacy = this.authentiactionService.logUser.privacity;
+      }
+    );
   }
 
 }

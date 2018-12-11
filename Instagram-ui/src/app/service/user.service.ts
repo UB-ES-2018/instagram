@@ -95,12 +95,12 @@ export class UserService {
       );
   }
 
-  updatePrivacity(idUser: number, privacity: boolean){
+  updatePrivacity(idUser: number): Observable<User>{
     const url = CONST.URL_PUT_UPDATE_PRIVACITY.replace('{idUser}', idUser.toString());
-    return this.httpClient.put<User>(url,privacity)
+    return this.httpClient.get<User>(url)
       .pipe(
         tap(user=> console.log('updated privacity')),
-        catchError(handleError('failed to update privacity'))
+        catchError(handleError('failed to update privacity', new User))
       );
   }
 
