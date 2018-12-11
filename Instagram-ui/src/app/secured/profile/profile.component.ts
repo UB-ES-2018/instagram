@@ -169,7 +169,10 @@ export class ProfileComponent implements OnInit {
         this.checkFollowedStatus(this.user.id);
         this.selfFollowedList();
         this.loadUserInfo();
-        this.follow_check.accepted = null;
+        if(followed_id == this.user.id){
+          this.follow_check.accepted = null;
+        }
+        
         this.loadFollowedStatus();
         this.loadFollowerStatus();
       }
