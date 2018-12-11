@@ -21,7 +21,7 @@ const components = [SecuredComponent, LayoutComponent, ProfileComponent, ImageMo
     NgbModule,
     SecuredRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [components, FeedComponent, ExploreComponent],
   exports: [components]
