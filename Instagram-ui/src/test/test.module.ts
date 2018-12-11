@@ -9,6 +9,8 @@ import { FollowService } from '../app/service/follow.service';
 import { FollowServiceTest } from './follow.service.test';
 import { PostService } from '../app/service/post.service';
 import { PostServiceTest } from './post.service.test';
+import { NotificationService } from '../app/service/notification.service';
+import { NotificationServiceTest } from './notification.service.test';
 
 @NgModule({
     imports: [
@@ -28,6 +30,9 @@ import { PostServiceTest } from './post.service.test';
         }, {
             provide: PostService,
             useClass: PostServiceTest
+        }, {
+            provide: NotificationService,
+            useClass: NotificationServiceTest
         },
         FormBuilder
     ],

@@ -12,6 +12,7 @@ import { PostServiceTest } from '../../../test/post.service.test';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { post } from 'selenium-webdriver/http';
 import { PostService } from '../../service/post.service';
+import { NotificationService } from '../../service/notification.service';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -20,6 +21,7 @@ describe('ProfileComponent', () => {
   let AuthService: authService;
   let userService: UserService;
   let postService: PostService;
+  let notificationService: NotificationService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,6 +39,7 @@ describe('ProfileComponent', () => {
     AuthService = fixture.debugElement.injector.get(authService);
     userService = fixture.debugElement.injector.get(UserService);
     postService = fixture.debugElement.injector.get(PostService);
+    notificationService = fixture.debugElement.injector.get(NotificationService);
     fixture.detectChanges();
   });
 

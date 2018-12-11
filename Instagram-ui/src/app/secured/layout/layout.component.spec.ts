@@ -8,6 +8,10 @@ import { authService } from '../../service/auth.service';
 import { of } from 'rxjs';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/User';
+import { NotificationService } from '../../service/notification.service';
+import { NgbPopover, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -15,11 +19,13 @@ describe('LayoutComponent', () => {
   let router: Router;
   let AuthService: authService;
   let userService: UserService;
+  let notificationService: NotificationService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [NgbPopover, NgbPopoverConfig],
       declarations: [LayoutComponent],
-      imports: [AppTestModule],
+      imports: [AppTestModule, NgbModule.forRoot()],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
@@ -31,6 +37,7 @@ describe('LayoutComponent', () => {
     router = fixture.debugElement.injector.get(Router);
     AuthService = fixture.debugElement.injector.get(authService);
     userService = fixture.debugElement.injector.get(UserService);
+    notificationService = fixture.debugElement.injector.get(NotificationService);
     fixture.detectChanges();
   });
 
