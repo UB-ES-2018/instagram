@@ -20,6 +20,7 @@ import instagram.controller.dto.CommentDto;
 import instagram.exception.BusinessException;
 import instagram.model.Comment;
 import instagram.service.CommentService;
+import instagram.service.NotificationService;
 
 @CrossOrigin
 @RestController
@@ -35,15 +36,18 @@ public class CommentController {
 		commentService = cs;
 	}
 
+  @Autowired
+	private NotificationService notificationService;
+
+  
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity<CommentDto> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
+	public ResponseEntity<Integer> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
 		logger.info("CommentController -> addComment");
+		int idComment = commentService.addComment(commentDto.getIdUser(), commentDto.getIdPost(), commentDto.getContent());
+		notificationService.addedCommentToPost(commentDto.getIdPost(), idComment, commentDto.getIdUser());
 
-		Comment comment = commentService.addComment(commentDto.getIdUser(), commentDto.getIdPost(), commentDto.getContent());
-		CommentDto result = new CommentDto();
-		result.loadFromModel(comment);
 
-		return new ResponseEntity<CommentDto>(result, HttpStatus.CREATED);
+		return new ResponseEntity<Integer>(idComment, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)

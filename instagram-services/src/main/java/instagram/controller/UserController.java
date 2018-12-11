@@ -1,6 +1,10 @@
 package instagram.controller;
 
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,7 @@ import instagram.controller.dto.PassChangerDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.controller.dto.UserDto;
 import instagram.exception.BusinessException;
+import instagram.model.Comment;
 import instagram.model.User;
 import instagram.service.UserService;
 import instagram.service.impl.UserServiceImpl;
@@ -30,6 +35,7 @@ import instagram.service.impl.UserServiceImpl;
 public class UserController {
 
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
+		
 
 	@Autowired
 	private UserService userService;
@@ -119,10 +125,30 @@ public class UserController {
 		User user = this.userService.updatePhoto(idUser, photo);
 		UserDto result = new UserDto();
 		result.loadFromModel(user);
+		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ResponseEntity<UserDto> test() throws BusinessException, SecurityException, IOException {
+		logger.info("UserController -> updatePhoto");
+		User user = this.userService.getUserById(1);
+		UserDto result = new UserDto();
+		result.loadFromModel(user);
 
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
+
+	@RequestMapping(value = "/update/privacity/{idUser}", method = RequestMethod.GET)
+    public ResponseEntity<UserDto> updatePrivacity(@PathVariable int idUser) throws BusinessException {
+        logger.info("UserController -> updatePrivacity");
+        User user = this.userService.changePrivacity(idUser);
+        UserDto result = new UserDto();
+        result.loadFromModel(user);
+
+        return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+    }
+
 	@RequestMapping(value = "/search/{query}", method = RequestMethod.GET)
 	public ResponseEntity<List<UserDto>> searchUser(@PathVariable String query) throws BusinessException {
 		logger.info("UserController -> getUser");
@@ -142,5 +168,5 @@ public class UserController {
 	public void setUserService(UserServiceImpl s) {
 		userService = s;
 	}
-	
+
 }

@@ -4,6 +4,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditUserProfileRoutingModule } from './edit-user-profile-routing.module';
 import { EditProfileDataComponent } from './edit-profile-data/edit-profile-data.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
+import { EditPrivacyComponent } from './edit-privacy/edit-privacy.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,6 +14,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FormsModule,
     CommonModule
   ],
-  declarations: [EditProfileComponent, EditProfileDataComponent, EditPasswordComponent]
+  declarations: [EditProfileComponent, EditProfileDataComponent, EditPasswordComponent, EditPrivacyComponent]
 })
 export class EditUserProfileModule { }

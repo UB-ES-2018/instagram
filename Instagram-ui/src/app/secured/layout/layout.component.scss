@@ -58,6 +58,44 @@ i:hover{
     cursor: pointer;
 }
 
+.notifications{
+    width: 500px;
+    height: 364px;
+    
+}
+
+:host /deep/ .popover{
+    width: 500px !important;
+    height: 300px !important;
+    max-width: 500px !important;
+    min-width: 500px !important;
+    top: 56px !important;
+    left: -340px !important;
+ }
+
+ :host /deep/ .popover .arrow{
+    left: 447px !important;
+ }
+
+ .requests_button {
+    background-image: url("/assets/images/insta_icons.png");
+    background-position: -321px -295px;
+    height: 30px;
+    width: 24px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
+
+.requests_back_button {
+    background-image: url("/assets/images/insta_icons.png");
+    background-position: -361px -295px;
+    height: 30px;
+    width: 24px;
+    display: inline-block;
+    cursor: pointer; 
+    outline-width: 0;
+}
 
 .XTCLo {
     border: solid 1px #dbdbdb;

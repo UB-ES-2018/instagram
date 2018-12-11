@@ -20,6 +20,8 @@ USE `instagram` ;
 -- -----------------------------------------------------
 -- Table `instagram`.`USER`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`USER` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`USER` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
@@ -42,6 +44,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `instagram`.`POST`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`POST` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`POST` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_user` INT(11) NOT NULL,
@@ -51,7 +55,12 @@ CREATE TABLE IF NOT EXISTS `instagram`.`POST` (
   `updated_at` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  INDEX `fk_user_idx` (`id_user` ASC))
+  INDEX `fk_user_idx` (`id_user` ASC),
+  CONSTRAINT `fk_user_post`
+    FOREIGN KEY (`id_user`)
+    REFERENCES `instagram`.`USER` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -59,6 +68,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `instagram`.`COMENTS`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`COMENTS` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`COMENTS` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_user` INT(11) NOT NULL,
@@ -87,6 +98,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `instagram`.`FOLLOWERS`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`FOLLOWERS` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`FOLLOWERS` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_follower` INT(11) NOT NULL,
@@ -113,6 +126,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `instagram`.`LIKES`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`LIKES` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`LIKES` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_user` INT(11) NOT NULL,
@@ -138,6 +153,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `instagram`.`HASHTAG`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`HASHTAG` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`HASHTAG` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `tag` VARCHAR(45) NOT NULL,
@@ -148,6 +165,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `instagram`.`POST_TAG`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`POST_TAG` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`POST_TAG` (
   `id_post` INT NOT NULL,
   `id_tag` INT NOT NULL,
@@ -171,6 +190,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `instagram`.`LIKESCOMENT`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`LIKESCOMENT` ;
+
 CREATE TABLE IF NOT EXISTS `instagram`.`LIKESCOMENT` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_user` INT(11) NOT NULL,
@@ -178,6 +199,7 @@ CREATE TABLE IF NOT EXISTS `instagram`.`LIKESCOMENT` (
   PRIMARY KEY (`id`),
   INDEX `fk_user_likescoment_idx` (`id_user` ASC),
   INDEX `fk_coments_likescoment_idx` (`id_coment` ASC),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_user_likescoment`
     FOREIGN KEY (`id_user`)
     REFERENCES `instagram`.`USER` (`id`)
@@ -188,6 +210,25 @@ CREATE TABLE IF NOT EXISTS `instagram`.`LIKESCOMENT` (
     REFERENCES `instagram`.`COMENTS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `instagram`.`NOTIFICATION`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `instagram`.`NOTIFICATION` ;
+
+CREATE TABLE IF NOT EXISTS `instagram`.`NOTIFICATION` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_owner_user` INT NOT NULL,
+  `id_action_user` INT NOT NULL,
+  `id_post` INT NULL DEFAULT 0,
+  `id_follow` INT NULL DEFAULT 0,
+  `id_coment` INT NULL DEFAULT 0,
+  `message` VARCHAR(45) NULL,
+  `is_follow_request` TINYINT NULL,
+  `created_at` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
