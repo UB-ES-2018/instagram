@@ -201,10 +201,10 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public User changePrivacity(int idUser, Boolean privacity) throws BusinessException {
-		User user = getUserById(idUser);
-		user.setPrivacity(privacity);
-		return this.userRepository.save(user);
-	}
+    public User changePrivacity(int idUser) throws BusinessException {
+        User user = getUserById(idUser);
+        user.setPrivacity(!user.getPrivacity());
+        return this.userRepository.save(user);
+    }
 
 }

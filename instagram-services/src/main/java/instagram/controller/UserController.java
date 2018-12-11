@@ -134,14 +134,14 @@ public class UserController {
 		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
 	}
 	
-	@RequestMapping(value = "/update/privacity/{idUser}", method = RequestMethod.PUT)
-	public ResponseEntity<UserDto> updatePrivacity(@PathVariable int idUser, @RequestBody Boolean privacity) throws BusinessException {
-		logger.info("UserController -> updatePrivacity");
-		User user = this.userService.changePrivacity(idUser, privacity);
-		UserDto result = new UserDto();
-		result.loadFromModel(user);
+	@RequestMapping(value = "/update/privacity/{idUser}", method = RequestMethod.GET)
+    public ResponseEntity<UserDto> updatePrivacity(@PathVariable int idUser) throws BusinessException {
+        logger.info("UserController -> updatePrivacity");
+        User user = this.userService.changePrivacity(idUser);
+        UserDto result = new UserDto();
+        result.loadFromModel(user);
 
-		return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
-	}
+        return new ResponseEntity<UserDto>(result, HttpStatus.ACCEPTED);
+    }
 	
 }
