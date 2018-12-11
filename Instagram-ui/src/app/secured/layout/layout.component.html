@@ -1,13 +1,12 @@
 <div id="layout" >
-  <div id="logo">
-    <img src="assets/images/logo.png" />
-    <!--logo-->
+  <div id="logo" routerLink="/" style="outline-width: 0;">
+    <img src="assets/images/logo.png" /><!--logo + feed-->
   </div>
   <div id="buscadorDiv">
     <!--<input value="Busca" id="buscador"/>buscador-->
 
     <input class="XTCLo x3qfX " type="text" autocapitalize="none" id="buscador"
-      placeholder="&#61442; Busca" [(ngModel)]="toSearch" (keypress)="loadUsersSearch()" value="">
+    placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" [(ngModel)]="toSearch" (keypress)="loadUsersSearch()" value="">
     <span class="mlrQa coreSpriteSearchIcon"></span>
     <div class="aIYm8 coreSpriteSearchClear" role="button" tabindex="0"></div>
     <div class="resultadoSearch" *ngIf="toSearch">
@@ -25,24 +24,87 @@
           {{user.name}}
         </div>
       </div>
-
     </div>
   </div>
 
 
 
   <div id="botones" *ngIf="authenticationService.logUser">
-    <i class="fa fa-compass fa-2x" id="primero" routerLink="/explore"></i>
-    <!--explore-->
-    <i class="fa fa-heart fa-2x" routerLink="/"></i>
-    <!--feed-->
-    <i class="fa fa-user fa-2x" [routerLink]="'/' + profilename"></i>
-    <!--profile-->
+    <i class="fa fa-compass fa-2x" id="primero" routerLink="/explore" style="outline-width: 0;"></i><!--explore-->
+
+
+    <i class="fa fa-heart fa-2x" style="outline-width: 0;" [ngbPopover]="popContent" placement="bottom" #p="ngbPopover" [closePopoverOnClickOutside]="p"></i><!--notifications-->
+
+    
+
+    <i class="fa fa-user fa-2x" [routerLink]="'/' + profilename" style="outline-width: 0;"></i><!--profile-->
   </div>
   <div id="botones" *ngIf="!authenticationService.logUser">
-    <button class="btn btn-primary" [routerLink]="[ '/login']">login</button>
+    <button class="btn btn-primary" [routerLink]="[ '/login']" style="outline-width: 0;">Conectarse</button>
     &nbsp;
-    <button class="btn btn-primary" [routerLink]="[ '/signup']">register</button>
+    <button class="btn btn-primary" [routerLink]="[ '/signup']" style="outline-width: 0;">Registrarse</button>
+  </div>
+  
+</div>
+
+
+<ng-template #popContent>
+    <div *ngIf="showRequests" id="requests_pop" class="popup_div">
+    <div id="requests_back" style="border-bottom: 1px solid #d8d8d8;">
+        <span class='requests_back_button' (click)="toggleRequests()"></span>
+        <b style="padding-left: 35px; padding-top: 5px; position: absolute; text-align: center;">Peticiones de seguimiento</b>
+    </div>
+    <div id="requests" class="popup_div">
+      <div *ngFor="let request of requests" class="column" style="line-height: 5em">
+        <img alt="" [src]="request.actionUser.photo" style="width: 10%;" />
+        <div style="display:inline-block; line-height: 1em">
+          <b (click)="d('Cross click')" [routerLink]="['/', request.actionUser.username]" style="cursor: pointer; outline-width: 0;">&nbsp;
+          {{request.actionUser.username}}</b>
+          <br>
+          <span style="font-size: 14px; color: gray; padding-left: 10px;">{{request.actionUser.name}}</span>
+        </div>
+        <span style="display:inline; float: right;">
+          <button (click)="acceptFollow(request.id)" class="btn btn-primary btn-sm" style="margin-right: 5px">Aprobar</button>
+          <button (click)="hideFollow(request.id)" class="btn btn-outline-secondary btn-sm">Ignorar</button>
+        </span>
+
+
+      </div>
+    </div>
   </div>
 
-</div>
+
+  <div *ngIf="!showRequests" id="content" style="overflow-y:scroll; max-height: 290px">
+    <div class="popup_div" id="follow_notifications" style="margin: 20px; margin-bottom: 0px; font-size: 14px; display: inline-block; height: 65px; border-bottom: 1px solid #d8d8d8;">
+        <img src="assets/images/circle.png" style="width: 10%; padding-bottom: 25px"/>
+        <b style="position: relative; top: -10px; left: -25px; color: white; font-size: 16px;">{{requestQuantity}}</b>
+        <span style="display: inline-block; width: 80%; overflow: hidden;">            
+            <b class="popup_div" style="margin-left: 20px; outline-width: 0;">Peticiones de seguimiento</b> 
+            <br>
+            <a style="margin-left: 20px; color:gray">Aprueba o ignora peticiones de seguimiento</a>
+        </span>
+        <span class='requests_button' (click)="toggleRequests()"></span>
+      </div>
+    
+      <div *ngFor="let notification of notifications" id="notifications">        
+        <div id={{notification.id}} (click)="imagePopUp(notification.post.id)" style="margin: 20px; margin-top: 0px; margin-bottom: 0px; padding-top: 20px; font-size: 14px; 
+              display: inline-block; height: 75px; border-bottom: 1px solid #d8d8d8; cursor:pointer; outline-width: 0;">
+            <img [src]="notification.actionUser.photo" style="float:left; width: 10%"/>
+            <span style="display: inline-block; width: 70%; overflow: hidden;">            
+                <b (click)="$event.stopPropagation()" [routerLink]="['/', notification.actionUser.name]" style="float:left; margin-left: 20px; margin-right: 10px; cursor: pointer; outline-width: 0;">{{notification.actionUser.name}}</b> 
+                <span *ngIf="notification.comment == null" style="display: table-cell;">
+                    {{notification.message}}. <a style="color: gray;">{{notification.createdString}}</a>
+                </span>
+                <span *ngIf="notification.comment != null" style="overflow:hidden; display: table-cell;">
+                    Ha comentado: {{notification.comment.content}} <a style="color: gray;">{{notification.createdString}}</a>
+                </span>
+            </span>
+            <img [src]="notification.post.photo" style="float: right; width: 10%"/>
+        </div>
+      </div>
+  </div>
+  </ng-template>
+
+  <ng-template #modalImage let-c="close" let-d="dismiss">
+    <app-image-modal postId={{clickedImageId}} [c]="this.c" [d]="this.d"></app-image-modal>
+</ng-template>

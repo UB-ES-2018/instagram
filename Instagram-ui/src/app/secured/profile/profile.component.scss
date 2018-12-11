@@ -103,6 +103,15 @@
     position: relative;
     width:100%;
 }
+#private{
+    margin-top: 100px;
+    float: left;
+    text-align: center;
+    position: relative;
+    width:100%;
+    height: 150px;
+    border: 1px solid #dedede;
+}
 
 #subirFoto:hover{
     cursor: pointer;

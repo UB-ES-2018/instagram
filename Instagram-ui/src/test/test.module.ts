@@ -14,7 +14,11 @@ import { LikeCommentServiceTest } from './likecomment.service.test';
 import { LikeServiceTest } from './like.service.test';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder } from '@angular/forms';
-import { PostService } from '../app/service/post.service';
+
+
+import { FollowService } from '../app/service/follow.service';
+import { FollowServiceTest } from './follow.service.test';;
+import { PostServiceTest } from './post.service.test';
 
 @NgModule({
     imports: [
@@ -34,6 +38,7 @@ import { PostService } from '../app/service/post.service';
         }, {
             provide: PostService,
             useClass: PostServiceTest
+
         }, {
             provide: CommentService,
             useClass: CommentServiceTest

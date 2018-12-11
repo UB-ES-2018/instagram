@@ -2,7 +2,7 @@ package instagram.service.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +62,26 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	public List<Post> getNinePostsFromUser(int idUser){
+		List<Post> llista = this.postRepository.findAllByUser(idUser);
+		if(llista.size() <= 9) {
+			return llista;
+		}else {
+			return llista.subList(0, 8);
+		}
+	}
+	
+	@Override
+	public List<Post> getFeedUser(List<Integer> usersIDList){
+		List<Post> llista = this.postRepository.findAllByFollowers(usersIDList);
+		Collections.reverse(llista);
+		return llista;
+	}
+	
+	@Override
 	public Post getPostById(int id) {
 		return this.postRepository.findOneById(id);
 	}
-	
 	@Override
 	public Post addPost(int idUser, String photo, String description, Date createdAt) {
 		
@@ -122,5 +138,14 @@ public class PostServiceImpl implements PostService {
 		}
 		
 		return postLoad;
+	}
+
+	@Override
+	public int getUserIdByPost(int idPost) {
+		Optional<Post> optional = this.postRepository.findById(idPost);
+		if(optional.isPresent()) {
+			return optional.get().getIdUser();
+		}
+		return 0;
 	}
 }

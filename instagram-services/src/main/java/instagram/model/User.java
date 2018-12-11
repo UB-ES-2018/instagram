@@ -45,6 +45,9 @@ public class User implements Serializable {
 	
 	@Column(name = "photo")
 	private String photo;
+	
+	@Column(name ="privacity")
+	private Boolean privacity;
 
 	public int getId() {
 		return id;
@@ -52,6 +55,14 @@ public class User implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Boolean getPrivacity() {
+		return privacity;
+	}
+
+	public void setPrivacity(Boolean privacity) {
+		this.privacity = privacity;
 	}
 
 	public String getUsername() {

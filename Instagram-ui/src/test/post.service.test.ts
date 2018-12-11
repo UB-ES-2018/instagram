@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PostLoad } from '../app/model/PostLoad';
@@ -14,8 +15,7 @@ export class PostServiceTest {
   }
 
   requestPhotosForPerfil(idUser: number) {
-    return null;
+    return of([]);
   }
 
 }
-

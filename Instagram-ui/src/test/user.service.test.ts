@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { PostDto } from '../app/model/Post';
 import { User } from '../app/model/User';
 
@@ -13,22 +13,22 @@ export class UserServiceTest {
         return null;
     }
     getProfile(name: String): Observable<User> {
-        return null;
+        return of(User.createDummy());
     }
     getAmountFollowers(id: number): Observable<number> {
-        return null;
+        return of(0);
     }
     getAmountFolloweds(id: number): Observable<number> {
-        return null;
+        return of(0);
     }
     getFollowers(id: number): Observable<User[]> {
-        return null;
+        return of([User.createDummy()]);
     }
     getFolloweds(id: number): Observable<User[]> {
-        return null;
+        return of([User.createDummy()]);
     }
     getAmountPost(id: number): Observable<number> {
-        return null;
+        return of(0);
     }
     modifyPass(oldpass: string, userName: string, newPass: string): Observable<boolean> {
         return null;

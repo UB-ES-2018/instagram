@@ -18,6 +18,7 @@ import { PostService } from './service/post.service';
 import { CommentService } from './service/CommentService';
 import { LikeCommentService } from './service/LikeComment';
 import { LikeService } from './service/LikeService';
+import { NotificationService } from './service/notification.service';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -55,7 +56,8 @@ export const createTranslateLoader = (http: HttpClient) => {
         PostService,
         CommentService,
         LikeCommentService,
-        LikeService
+        LikeService,
+        NotificationService
     ],
     bootstrap: [AppComponent]
 })
