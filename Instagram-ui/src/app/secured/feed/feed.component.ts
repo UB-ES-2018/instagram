@@ -44,7 +44,8 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
     this.userID = this.authenticationService.logUser.id;
-    this.loadPhotosForFeed(this.userID);
+    this.selfFollowedList();
+    console.log(this.posts);
   }
 
   formatDate(){
@@ -101,7 +102,13 @@ export class FeedComponent implements OnInit {
 
   }
 
-  
+  selfFollowedList() {
+    if (this.authenticationService.logStatus) {
+      this.userService.getFolloweds(this.authenticationService.logUser.id).subscribe(self_followed_list => {
+        if (self_followed_list.length > 0) this.loadPhotosForFeed(this.userID);
+      }, error => console.error('Error retrieving the self followed list ' + error));
+    }
+  }
 
   sendLikeComment(comment_id: number, idPost: number) {
     
