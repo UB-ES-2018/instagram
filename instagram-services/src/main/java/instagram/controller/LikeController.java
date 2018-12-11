@@ -21,6 +21,7 @@ import instagram.controller.dto.LikeDto;
 import instagram.exception.BusinessException;
 import instagram.model.Like;
 import instagram.service.LikeService;
+import instagram.service.NotificationService;
 import instagram.service.UserService;
 
 @CrossOrigin
@@ -36,12 +37,16 @@ public class LikeController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private NotificationService notificationService;
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<LikeDto> addLike(@RequestBody LikeDto likeDto) throws BusinessException {
 		logger.info("LikeController -> addLike");
 		
 		Like like = likeService.addLike(likeDto.getIdPost(), likeDto.getIdUser());
-
+		notificationService.addedLikeToPost(like.getIdPost(), like.getIdUser());
+		
 		LikeDto likedDto = new LikeDto();
 		likedDto.loadFromModel(like);
 

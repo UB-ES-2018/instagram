@@ -7,7 +7,7 @@ export class Follow {
         const follow = new Follow();
         follow.follower = -1;
         follow.followed = -1;
-        follow.accepted = false;
+        follow.accepted = null;
 
         return follow;
     }

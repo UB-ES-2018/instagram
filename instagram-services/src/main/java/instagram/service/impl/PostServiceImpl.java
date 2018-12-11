@@ -123,4 +123,13 @@ public class PostServiceImpl implements PostService {
 		
 		return postLoad;
 	}
+
+	@Override
+	public int getUserIdByPost(int idPost) {
+		Optional<Post> optional = this.postRepository.findById(idPost);
+		if(optional.isPresent()) {
+			return optional.get().getIdUser();
+		}
+		return 0;
+	}
 }
