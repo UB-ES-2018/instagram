@@ -5,7 +5,7 @@ import { PostPerfil } from '../app/model/PostPerfil';
 
 export class PostServiceTest {
     requestIdPostByIdPostAndLoggin(idPost: number, idLoggin: number): Observable<PostLoad> {
-        return of(null);
+        return of(PostLoad.createDummy());
     }
     requestPhotosForPerfil(idUser: number): Observable<any[] | PostPerfil[]> {
         return of([]);

@@ -12,6 +12,14 @@ import { PostServiceTest } from './post.service.test';
 import { NotificationService } from '../app/service/notification.service';
 import { NotificationServiceTest } from './notification.service.test';
 
+import { CommentServiceTest } from './comment.service.test';
+import { LikeCommentServiceTest } from './likecomment.service.test';
+import { LikeServiceTest } from './like.service.test';
+
+import { CommentService } from '../app/service/CommentService';
+import { LikeCommentService } from '../app/service/LikeComment';
+import { LikeService } from '../app/service/LikeService';
+
 @NgModule({
     imports: [
         RouterTestingModule
@@ -33,6 +41,15 @@ import { NotificationServiceTest } from './notification.service.test';
         }, {
             provide: NotificationService,
             useClass: NotificationServiceTest
+        }, {
+            provide: CommentService,
+            useClass: CommentServiceTest
+        }, {
+            provide: LikeCommentService,
+            useClass: LikeCommentServiceTest
+        }, {
+            provide: LikeService,
+            useClass: LikeServiceTest
         },
         FormBuilder
     ],
