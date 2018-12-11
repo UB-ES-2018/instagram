@@ -38,6 +38,10 @@ export class ProfileComponent implements OnInit {
   follower_list: User[];
   followed_list: User[];
   self_followed_list: User[];
+
+  followed_status: Follow[];
+  follower_status: Follow[];
+
   follow_check: Follow = Follow.createDummy();
   posts: number;
   image64: string;
@@ -111,7 +115,6 @@ export class ProfileComponent implements OnInit {
       this.checkFollowStatus(this.user.id);
       this.loadPhotosForPerfil(this.user.id);
       this.privacy = this.user.privacity;
-      console.log("JODER INUTIL" + this.privacy)
     }, error => {
       console.error('error retrieving user data ' + error);
       this.ruta.navigate(['not-found']);
@@ -155,6 +158,8 @@ export class ProfileComponent implements OnInit {
         this.checkFollowStatus(this.user.id);
         this.selfFollowedList();
         this.loadUserInfo();
+        this.loadFollowedStatus();
+        this.loadFollowerStatus();
       }
     );
   }
@@ -164,12 +169,16 @@ export class ProfileComponent implements OnInit {
         this.checkFollowedStatus(this.user.id);
         this.selfFollowedList();
         this.loadUserInfo();
+        this.follow_check.accepted = null;
+        this.loadFollowedStatus();
+        this.loadFollowerStatus();
       }
     );
   }
   followedPopUp() {
     if (this.authenticationService.logUser && this.user) {
       this.modalService.open(this.modalFollowed, { centered: true, size: 'sm', windowClass: 'modal-cs' });
+      this.loadFollowedStatus();
     } else {
       this.ruta.navigate(['login']);
     }
@@ -178,10 +187,30 @@ export class ProfileComponent implements OnInit {
   followersPopUp() {
     if (this.authenticationService.logUser && this.user) {
       this.modalService.open(this.modalFollowers, { centered: true, size: 'sm', windowClass: 'modal-cs' });
+      this.loadFollowerStatus();
     } else {
       this.ruta.navigate(['login']);
     }
   }
+
+    // load followed users requests status
+    loadFollowedStatus(){
+      this.followed_status = [];
+      for(let user of this.followed_list){
+        this.followService.checkFollow(user.id, this.authenticationService.logUser.id).subscribe(response => {
+          this.followed_status.push(response);
+        });
+      }
+    }
+  
+    loadFollowerStatus(){
+      this.follower_status = [];
+      for(let user of this.follower_list){
+        this.followService.checkFollow(user.id, this.authenticationService.logUser.id).subscribe(response => {
+          this.follower_status.push(response);
+        });
+      }
+    }
 
   uploadPopup() {
     this.modalService.open(this.modalUpload, { centered: true, size: 'sm', windowClass: 'modal-cs' });
@@ -204,6 +233,24 @@ export class ProfileComponent implements OnInit {
   // Follower status checking, will use auth-user followers
   checkFollowedStatus(followed_id: number) {
     return (this.self_followed_list.filter(user => (user.id === followed_id)).length > 0);
+  }
+
+  checkFollowedAcceptedStatus(followed_id: number){
+    var statusFilter = this.followed_status.filter(follow => (follow.followed === followed_id));
+    if(statusFilter.length > 0){
+      return statusFilter[0].accepted;
+    }else{
+      return null;
+    }
+  }
+
+  checkFollowerAcceptedStatus(follower_id: number){
+    var statusFilter = this.follower_status.filter(follow => (follow.followed === follower_id));
+    if(statusFilter.length > 0){
+      return statusFilter[0].accepted;
+    }else{
+      return null;
+    }
   }
 
   //

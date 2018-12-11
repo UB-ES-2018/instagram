@@ -4,9 +4,11 @@
         <div id="datostop">
             <div id="nick">{{user?.name}}</div>
             <div id="follow" *ngIf=self_followed_list>
-                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && !checkFollowedStatus(user?.id)" (click)="sendFollow(user?.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted == null" (click)="sendFollow(user?.id)"
                     class="btn btn-primary btn-sm">Seguir</button>
-                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && checkFollowedStatus(user?.id)" (click)="sendUnfollow(user?.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted == false"
+                    class="btn btn-outline-secondary btn-sm">Pendiente</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted == true" (click)="sendUnfollow(user?.id)"
                     class="btn btn-outline-secondary btn-sm">Seguido</button>
             </div>
             <div *ngIf="isAuthUser()" id="opciones">
@@ -76,9 +78,11 @@
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.name}}</span>
             </div>
             <span style="display:inline; float: right;">
-                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)"
-                    (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button>
-                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedAcceptedStatus(user_followed.id) == null" (click)="sendFollow(user_followed.id)"
+                    class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedAcceptedStatus(user_followed.id) == false"
+                    class="btn btn-outline-secondary btn-sm">Pendiente</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedAcceptedStatus(user_followed.id)"
                     (click)="sendUnfollow(user_followed.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
             </span>
 
@@ -134,9 +138,11 @@
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.name}}</span>
             </div>
             <span style="display:inline; float: right;">
-                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)"
-                    (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button>
-                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowerAcceptedStatus(user_following.id) == null" (click)="sendFollow(user_following.id)"
+                    class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowerAcceptedStatus(user_following.id) == false"
+                    class="btn btn-outline-secondary btn-sm">Pendiente</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowerAcceptedStatus(user_following.id)"
                     (click)="sendUnfollow(user_following.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
             </span>
         </div>
