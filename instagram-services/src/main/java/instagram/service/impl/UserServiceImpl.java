@@ -1,5 +1,6 @@
 package instagram.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -197,6 +198,11 @@ public class UserServiceImpl implements UserService {
 		user.setPhoto(photo);
 		this.userRepository.save(user);
 		return user;
+	}
+	
+	@Override
+	public List<User> searchUser(String query) {
+		return userRepository.findByUsernameIgnoreCaseContainingOrNameIgnoreCaseContaining(query, query);
 	}
 
 

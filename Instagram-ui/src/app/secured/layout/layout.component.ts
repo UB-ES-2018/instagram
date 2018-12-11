@@ -1,10 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { authService } from '../../service/auth.service';
+
 import { NgbPopover, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../service/notification.service';
 import { Notification } from '../../model/Notification';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
+import { UserService } from '../../service/user.service';
+import { User } from '../../model/User';
+
 
 @Component({
   selector: 'app-layout',
@@ -17,6 +22,7 @@ export class LayoutComponent implements OnInit {
   @ViewChild('modalImage') modalImage: ElementRef;
 
   profilename: string;
+
   notifications: Notification[];
   requests: Notification[];
   showRequests: boolean;
@@ -24,9 +30,15 @@ export class LayoutComponent implements OnInit {
   clickedImageId: number;
   imageRef: NgbModalRef;
 
+  searchResult: User[];
+  toSearch: string;
+  showSearch: boolean;
+  amountFound: number;
+
   constructor(private router: Router, public authenticationService: authService, private notificationService: NotificationService,
-    private modalService: NgbModal,) { 
+    private modalService: NgbModal, private userService: UserService) { 
   }
+
   ngOnInit() {
     if (this.authenticationService.logUser) {
       this.profilename = this.authenticationService.logUser.username;
@@ -36,9 +48,12 @@ export class LayoutComponent implements OnInit {
     } else {
       this.profilename = null;
     }
-
-
+    this.showSearch = false;
+    this.amountFound = 0;
   }
+
+
+  
 
   private getNotifications() {
     this.notificationService.getNotification(this.authenticationService.logUser.id).subscribe(
@@ -76,15 +91,26 @@ export class LayoutComponent implements OnInit {
       }else{
         notification.createdString = (Math.floor(time_diff/50400) + "w");
       }  
-    }  
+    } 
+  }
+  
+  loadUsersSearch() {
+    this.userService.searchUsers(this.toSearch).subscribe(val => {
+      this.searchResult = val;
+      this.amountFound = this.searchResult.length;
+    });
   }
 
-  onKeydown(event) {
-    this.router.navigate([event.target.value]);
+  changeUser(usuario: string) {
+    this.toSearch = '';
+    this.router.navigate([usuario]);
   }
 
-  logout() {
-    localStorage.removeItem('isLoggedin');
+  buscadorFocus() {
+    this.showSearch = true;
+  }
+  buscadorFree() {
+    this.showSearch = false;
   }
 
 
