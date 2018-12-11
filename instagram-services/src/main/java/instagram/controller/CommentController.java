@@ -38,8 +38,7 @@ public class CommentController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<Integer> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
 		logger.info("CommentController -> addComment");
-
-		int idComment = commentService.addComment(commentDto.getIdPost(), commentDto.getIdUser(), commentDto.getContent());
+		int idComment = commentService.addComment(commentDto.getIdUser(), commentDto.getIdPost(), commentDto.getContent());
 		notificationService.addedCommentToPost(commentDto.getIdPost(), idComment, commentDto.getIdUser());
 
 
