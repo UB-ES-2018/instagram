@@ -13,4 +13,20 @@ export class Notification {
     request: boolean;
     createdAt: number;
     createdString: string;
+
+    public static createDummy(): Notification {
+        const notification = new Notification();
+        notification.id = -1;
+        notification.OwnerUser = null;
+        notification.actionUser = null;
+        notification.post = null;
+        notification.idFollow = null;
+        notification.comment = CommentDto.createDummy();
+        notification.message = null;
+        notification.request = null;
+        notification.createdAt = null;
+        notification.createdString = null;
+
+        return notification;
+    }
 }
