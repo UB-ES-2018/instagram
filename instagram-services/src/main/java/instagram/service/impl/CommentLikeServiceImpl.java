@@ -57,4 +57,8 @@ public class CommentLikeServiceImpl implements CommentLikeService {
 		return commentLikeRepository.findByIdComment(idComment);
 	}
 
+	public void setCommentLikeRepository(CommentLikeRepository rMock) {
+		commentLikeRepository = rMock;
+	}
+
 }

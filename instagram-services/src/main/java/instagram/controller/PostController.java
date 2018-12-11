@@ -24,6 +24,7 @@ import instagram.controller.dto.PostLoadDto;
 import instagram.controller.dto.PostPerfilDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.service.PostService;
+import instagram.service.impl.PostServiceImpl;
 import instagram.exception.BusinessException;
 
 @CrossOrigin
@@ -128,5 +129,9 @@ public class PostController {
 		responseDto.setOk(true);
 		
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
+	}
+
+	public void setPostService(PostServiceImpl s) {
+		postService = s;
 	}
 }

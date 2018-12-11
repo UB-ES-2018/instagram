@@ -27,6 +27,7 @@ import instagram.exception.BusinessException;
 import instagram.model.Comment;
 import instagram.model.User;
 import instagram.service.UserService;
+import instagram.service.impl.UserServiceImpl;
 
 @CrossOrigin
 @RestController
@@ -164,5 +165,8 @@ public class UserController {
 		return new ResponseEntity<List<UserDto>>(result, HttpStatus.OK);
 	}
 
-	
+	public void setUserService(UserServiceImpl s) {
+		userService = s;
+	}
+
 }

@@ -140,6 +140,10 @@ public class PostServiceImpl implements PostService {
 		return postLoad;
 	}
 
+	public void setPostRepository(PostRepository rMock) {
+		postRepository = rMock;
+  }
+  
 	@Override
 	public int getUserIdByPost(int idPost) {
 		Optional<Post> optional = this.postRepository.findById(idPost);

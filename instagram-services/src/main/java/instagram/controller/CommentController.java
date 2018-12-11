@@ -32,9 +32,14 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@Autowired
+	public void setCommentService(CommentService cs) {
+		commentService = cs;
+	}
+
+  @Autowired
 	private NotificationService notificationService;
 
+  
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<Integer> addComment(@RequestBody CommentDto commentDto) throws BusinessException {
 		logger.info("CommentController -> addComment");

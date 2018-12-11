@@ -25,6 +25,7 @@ import instagram.model.Follower;
 import instagram.service.FollowerService;
 import instagram.service.NotificationService;
 import instagram.service.UserService;
+import instagram.service.impl.FollowerServiceImpl;
 
 @CrossOrigin
 @RestController
@@ -135,5 +136,9 @@ public class FollowerController {
 		follow.loadFromModel(newFollow);
 
 		return new ResponseEntity<FollowerDto>(follow, HttpStatus.ACCEPTED);
+	}
+
+	public void setFollowerService(FollowerServiceImpl s) {
+		followerService = s;
 	}
 }

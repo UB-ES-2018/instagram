@@ -28,6 +28,10 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentRepository commentRepository;
 
+	public void setCommentRepository(CommentRepository cr) {
+		commentRepository = cr;
+	}
+
 	@Override
 	public Comment getCommentById(int id) {
 		Optional<Comment> optional = commentRepository.findById(id);

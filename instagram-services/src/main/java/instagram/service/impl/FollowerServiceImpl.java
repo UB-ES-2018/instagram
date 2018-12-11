@@ -88,6 +88,10 @@ public class FollowerServiceImpl implements FollowerService {
 		return check;
 	}
 
+	public void setFollowerRepository(FollowerRepository rMock) {
+		followerRepository = rMock;
+  }
+  
 	@Override
 	public Follower getFollowerById(int idFollow) {
 		return this.followerRepository.findById(idFollow).get();
