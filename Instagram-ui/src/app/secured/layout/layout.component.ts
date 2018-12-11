@@ -40,6 +40,7 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.requestQuantity = 0;
     if (this.authenticationService.logUser) {
       this.profilename = this.authenticationService.logUser.username;
       this.getNotifications();
