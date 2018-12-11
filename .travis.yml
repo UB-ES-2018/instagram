@@ -19,3 +19,4 @@ script:
   - cd ../
   - cd instagram-services
   - gradle build
+  - gradle test
