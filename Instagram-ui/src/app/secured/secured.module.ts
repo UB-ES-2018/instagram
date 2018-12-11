@@ -17,7 +17,7 @@ const components = [SecuredComponent, LayoutComponent, ProfileComponent, ImageMo
     CommonModule,
     SecuredRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [components, FeedComponent, ExploreComponent],
   exports: [components]

@@ -16,6 +16,7 @@ import { PostPerfil } from '../../model/PostPerfil';
 import { CommentService } from '../../service/CommentService';
 import { LikeCommentService } from '../../service/LikeComment';
 import { LikeService } from '../../service/LikeService';
+import { PostDto } from '../../model/Post';
 
 @Component({
   selector: 'app-feed',
@@ -27,11 +28,11 @@ export class FeedComponent implements OnInit {
 
   userID: number;
   user: User = User.createDummy();
-  perfilPhotos: PostPerfil[];
-  feedPhotos: PostLoad[];
-  post1: PostLoad = PostLoad.createDummy();
-  post2: PostLoad = PostLoad.createDummy();;
-  post3: PostLoad = PostLoad.createDummy();;
+  feedPhotos: PostDto[];
+  posts: PostLoad[] = [];
+  postsSort: PostLoad[] = [];
+  array: PostLoad[] = [];
+  post: PostLoad;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
     private ruta: Router, private authenticationService: authService,
@@ -43,134 +44,146 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
     this.userID = this.authenticationService.logUser.id;
-    //this.loadPhotosForPerfil(this.userID);
     this.loadPhotosForFeed(this.userID);
   }
 
-  private loadPhotosForPerfil(idUser: number) {
-    this.postService.requestPhotosForPerfil(idUser).subscribe(
-      postPerfil => {
-        this.perfilPhotos = postPerfil;
-        this.perfilPhotos = this.perfilPhotos.slice().reverse();
-        console.log(this.perfilPhotos);
-      }
-    );
+  formatDate(){
+    let formattedDate = new Date(this.post.createdAt);
+
+    let options: Intl.DateTimeFormatOptions = {
+        day: "numeric", month: "long", year: "numeric"
+    };
+    this.post.createdAt = formattedDate.toLocaleDateString("en-GB", options);
   }
+
   
   private loadPhotosForFeed(idUser: number) {
-    /*
+    
+    
     this.postService.requestPhotosForFeed(idUser).subscribe( 
       postFeed =>{
           this.feedPhotos = postFeed;
-          this.feedPhotos = this.feedPhotos.slice().reverse();
           console.log(this.feedPhotos);
+          this.requestPostForFeed(this.feedPhotos);
+          console.log(this.posts);
       }
     );
-    */
-    this.feedPhotos = [this.post1, this.post2, this.post3];
   }
 
-  sendLikeComment(comment_id: number) {
-    /*  
+
+  private requestPostForFeed(photos: PostDto[]){
+    var i = 0;
+    for (let photo of photos){
+        this.postService.requestIdPostByIdPostAndLoggin(photo.id, this.authenticationService.logUser.id).subscribe(
+            postLoad =>{
+                this.post = postLoad;
+                i = photos.indexOf(photo);
+                this.formatDate();
+                this.posts[i] = this.post;
+            }
+        );
+    }
+
+    
+    
+  }
+
+  private updateFeed(idPost: number){
+    
+    this.postService.requestIdPostByIdPostAndLoggin(idPost, this.authenticationService.logUser.id).subscribe(
+        postLoad =>{
+            this.post = postLoad;
+            this.formatDate();
+            let p = this.posts.filter(postSearch => (postSearch.idPost === idPost));
+            this.posts[this.posts.indexOf(p[0])] = this.post;
+        }
+    );
+
+  }
+
+  
+
+  sendLikeComment(comment_id: number, idPost: number) {
+    
     if(this.authenticationService.logStatus){
           this.likeCommentService.submitNewLikeToComment(comment_id,this.authenticationService.logUser.id).subscribe(
               response =>{
-                  console.log('puta que oferton ' + response);
+                  console.log(response);
               }
           )
-          //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
-          //    response => {
-          //    this.AjotitaTest(this.post.idPost);
-          //    }
-          //);
-          //this.AjotitaTest(this.postId);
+          this.updateFeed(idPost);
+
       }else{
           this.ruta.navigate(['login']);
       }
-      */
+      
   }
 
   isLogged() {
     return (this.authenticationService.logUser);
   }
 
-  sendDislikeComment(comment_id: number) {
-    /*  
+  sendDislikeComment(comment_id: number,idPost: number) {
+     
     if(this.authenticationService.logStatus){
           this.likeCommentService.deleteLikeToComment(comment_id,this.authenticationService.logUser.id).subscribe(
               response => {
                   console.log(response);
               }
           )
-          //this.likeService.dislikeComment(this.authenticationService.logUser.id, comment_id).subscribe(
-          //    response => {
-          //    this.AjotitaTest(this.post.idPost);
-          //    }
-          //);
-          //this.AjotitaTest(this.postId);
+          this.updateFeed(idPost);
       }else{
           this.ruta.navigate(['login']);
       }
-      */
+      
   }
 
-  sendLike() {
-    /*  
+  sendLike(idPost: number) {
+     
       if(this.authenticationService.logStatus){
-          this.likeService.submitLikeToImage(this.post.idPost,this.authenticationService.logUser.id).subscribe(
+          this.likeService.submitLikeToImage(idPost,this.authenticationService.logUser.id).subscribe(
               response => {
                   console.log(response);
               }
           )
-          //this.likeService.likePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
-          //    response => {
-          //    this.AjotitaTest(this.post.idPost);
-          //    }
-          //);
-          //this.AjotitaTest(this.postId);
+          this.updateFeed(idPost);
       }else{
           this.ruta.navigate(['login']);
       }
-      */
+      
   }
 
-  sendDislike() {
-    /*  
+  sendDislike(idPost: number) {
+     
       if(this.authenticationService.logStatus){
-          this.likeService.deleteLike(this.post.idPost,this.authenticationService.logUser.id).subscribe(
+          this.likeService.deleteLike(idPost,this.authenticationService.logUser.id).subscribe(
               response => {
                   console.log(response);
               }
           )
-          //this.likeService.dislikePost(this.authenticationService.logUser.id, this.post.idPost).subscribe(
-          //    response => {
-          //    this.AjotitaTest(this.post.idPost);
-          //    }
-          //);
-          //this.AjotitaTest(this.postId);
+          this.updateFeed(idPost);
       }else{
           this.ruta.navigate(['login']);            
       }
-      */
+      
   }
 
-  sendComment(text: string){
-    /*  
+  sendComment(idPost: number, text: string){
+      
       if(this.authenticationService.logStatus){
-          this.commentService.submitNewComment(this.post.idPost,this.authenticationService.logUser.id,text).subscribe(
+          this.commentService.submitNewComment(idPost,this.authenticationService.logUser.id,text).subscribe(
               response => {
-                  //podria solicitar de nuevo todo que me da pereza hacer de una manera eficiente :D
-                  //this.ngOnInit();
+                  
                   console.log(response);
               }
           )
           console.log('sending comment: ' + text);
           this.cmnt.nativeElement.value = '';
-          //this.AjotitaTest(this.postId);
+          this.updateFeed(idPost);
       }else{
           this.ruta.navigate(['login']);
       }
-      */
+      
   }
   //no se si hace falta pero esta implementado
   deleteComment(idComment: number){
