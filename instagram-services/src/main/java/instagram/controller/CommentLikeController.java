@@ -22,6 +22,7 @@ import instagram.exception.BusinessException;
 import instagram.model.CommentLike;
 import instagram.service.CommentLikeService;
 import instagram.service.UserService;
+import instagram.service.impl.CommentLikeServiceImpl;
 
 @CrossOrigin
 @RestController
@@ -119,5 +120,9 @@ public class CommentLikeController {
 		
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 				
+	}
+
+	public void setCommentLikeService(CommentLikeServiceImpl s) {
+		commentLikeService = s;
 	}
 }

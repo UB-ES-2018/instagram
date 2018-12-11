@@ -20,6 +20,10 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentRepository commentRepository;
 
+	public void setCommentRepository(CommentRepository cr) {
+		commentRepository = cr;
+	}
+
 	@Override
 	public Comment getCommentById(int id) throws BusinessException {
 		return commentRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCodes.COMMENT_NOT_FOUND));

@@ -204,4 +204,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUsernameIgnoreCaseContainingOrNameIgnoreCaseContaining(query, query);
 	}
 
+
+	public void setUserRepository(UserRepository rMock) {
+		userRepository = rMock;
+	}
+
 }

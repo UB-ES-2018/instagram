@@ -123,4 +123,8 @@ public class PostServiceImpl implements PostService {
 		
 		return postLoad;
 	}
+
+	public void setPostRepository(PostRepository rMock) {
+		postRepository = rMock;
+	}
 }

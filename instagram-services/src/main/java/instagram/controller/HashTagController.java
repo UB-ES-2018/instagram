@@ -19,7 +19,8 @@ import instagram.controller.dto.ResponseDto;
 import instagram.controller.dto.HashTagDto; 
 import instagram.exception.BusinessException;
 import instagram.model.HashTag; 
-import instagram.service.HashTagService; 
+import instagram.service.HashTagService;
+import instagram.service.impl.HashTagServicelmpl; 
 
 @CrossOrigin
 @RestController
@@ -70,6 +71,10 @@ public class HashTagController {
 		
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 				
+	}
+
+	public void setHashTagService(HashTagServicelmpl s) {
+		hashTagService = s;
 	}
 	
 }

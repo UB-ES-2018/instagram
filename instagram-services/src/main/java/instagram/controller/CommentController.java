@@ -30,6 +30,10 @@ public class CommentController {
 
 	@Autowired
 	private CommentService commentService;
+	
+	public void setCommentService(CommentService cs) {
+		commentService = cs;
+	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<CommentDto> addComment(@RequestBody CommentDto commentDto) throws BusinessException {

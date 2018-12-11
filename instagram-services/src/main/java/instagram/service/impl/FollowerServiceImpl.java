@@ -86,6 +86,10 @@ public class FollowerServiceImpl implements FollowerService {
 		}
 		return check;
 	}
+
+	public void setFollowerRepository(FollowerRepository rMock) {
+		followerRepository = rMock;
+	}
 	
 
 }
