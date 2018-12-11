@@ -95,11 +95,21 @@ export class UserService {
       );
   }
 
+
   searchUsers(text: string) {
     return this.httpClient.get<User[]>(CONST.URL_GET_USERS_BY_TEXT + text)
       .pipe(
         tap(searchResult => console.log('requested users')),
         catchError(handleError('failed to load photos for perfil', []))
+      );
+  }
+  
+  updatePrivacity(idUser: number): Observable<User>{
+    const url = CONST.URL_PUT_UPDATE_PRIVACITY.replace('{idUser}', idUser.toString());
+    return this.httpClient.get<User>(url)
+      .pipe(
+        tap(user=> console.log('updated privacity')),
+        catchError(handleError('failed to update privacity', new User))
       );
   }
 

@@ -2,11 +2,13 @@
     <div id="logo"><img alt="profile image" [src]="user.photo" width="200px" height="200px"/></div>
     <div id="datosusuario">
         <div id="datostop">
-            <div id="nick">{{user?.username}}</div>
+            <div id="nick">{{user?.name}}</div>
             <div id="follow" *ngIf=self_followed_list>
-                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && !checkFollowedStatus(user?.id)" (click)="sendFollow(user?.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted == null" (click)="sendFollow(user?.id)"
                     class="btn btn-primary btn-sm">Seguir</button>
-                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && checkFollowedStatus(user?.id)" (click)="sendUnfollow(user?.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted == false"
+                    class="btn btn-outline-secondary btn-sm">Pendiente</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user?.id) && follow_check.accepted == true" (click)="sendUnfollow(user?.id)"
                     class="btn btn-outline-secondary btn-sm">Seguido</button>
             </div>
             <div *ngIf="isAuthUser()" id="opciones">
@@ -15,17 +17,25 @@
             </div>
         </div>
         <div id="datosmid">
-            <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;">{{followers}}
-                Followers</div>
-            <div id="publications">{{perfilPhotos?.length}} publications</div>
-            <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;">{{followeds}}
-                Following</div>
+            <div id="publications"><b>{{perfilPhotos?.length}}</b> publicaciones</div>
+            <div (click)="followersPopUp()" id="followers" style="cursor: pointer; outline-width: 0;"><b>{{followers}}</b>
+                    Seguidores</div>
+            <div (click)="followedPopUp()" id="following" style="cursor: pointer; outline-width: 0;"><b>{{followeds}}</b>
+                Seguidos</div>
         </div>
+        <br>
         <br>
         <div id="name"><b>{{user?.name}}</b></div>
         <div id="bio">{{user?.bio}}</div>
     </div>
-    <div id="fotos">
+    <div *ngIf="privacy && !followed" style="background:white;" id="private">
+        <br>
+        <b style="text-align: center;">Este perfil es privado.</b>
+        <br>
+        <a style="text-align: center;">Sigue a este usuario para ver sus fotos.</a>
+    </div>
+    
+    <div *ngIf="!privacy || privacy && followed" id="fotos">
         <div class="quadradoTabla">
             <div id="subirFoto" (click)="uploadPopup()" class="celda" *ngIf="isAuthUser()">
             </div>
@@ -50,7 +60,7 @@
 
 <ng-template #modalFollowed let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" style="padding-left: 5em">Following</h4>
+        <h4 class="modal-title" style="padding-left: 5em">Seguidos</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -68,9 +78,11 @@
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_followed.name}}</span>
             </div>
             <span style="display:inline; float: right;">
-                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && !checkFollowedStatus(user_followed.id)"
-                    (click)="sendFollow(user_followed.id)" class="btn btn-primary btn-sm">Seguir</button>
-                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedStatus(user_followed.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedAcceptedStatus(user_followed.id) == null" (click)="sendFollow(user_followed.id)"
+                    class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedAcceptedStatus(user_followed.id) == false"
+                    class="btn btn-outline-secondary btn-sm">Pendiente</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_followed.id) && checkFollowedAcceptedStatus(user_followed.id)"
                     (click)="sendUnfollow(user_followed.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
             </span>
 
@@ -95,7 +107,7 @@
             <img id="fotoSubir" alt="" [src]="foto" />
         </div>
         <div id="descFoto" *ngIf="imagePresent">
-            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descipcion</textarea>
+            <textarea [(ngModel)]="descripcionFoto" id="textAreaFoto">Descripcion</textarea>
         </div>
         <div *ngIf="imagePresent" id="enviarFoto">
             <input type="button" value="Enviar" (click)="enviarFoto()" class="btn btn-primary btn-sm" />
@@ -108,7 +120,7 @@
 
 <ng-template #modalFollowers let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" style="padding-left: 5em">Followers</h4>
+        <h4 class="modal-title" style="padding-left: 5em">Seguidores</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -126,9 +138,11 @@
                 <span style="font-size: 14px; color: gray; padding-left: 1em">{{user_following.name}}</span>
             </div>
             <span style="display:inline; float: right;">
-                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && !checkFollowedStatus(user_following.id)"
-                    (click)="sendFollow(user_following.id)" class="btn btn-primary btn-sm">Seguir</button>
-                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowedStatus(user_following.id)"
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowerAcceptedStatus(user_following.id) == null" (click)="sendFollow(user_following.id)"
+                    class="btn btn-primary btn-sm">Seguir</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowerAcceptedStatus(user_following.id) == false"
+                    class="btn btn-outline-secondary btn-sm">Pendiente</button>
+                <button *ngIf="isLogged() && selfFollowCheck(user_following.id) && checkFollowerAcceptedStatus(user_following.id)"
                     (click)="sendUnfollow(user_following.id)" class="btn btn-outline-secondary btn-sm">Seguido</button>
             </span>
         </div>
@@ -155,7 +169,7 @@
         <div style="outline-width: 0;" class="botonOpt">
             <button >Notificaciones</button>
         </div>
-        <div style="outline-width: 0;" class="botonOpt">
+        <div style="outline-width: 0;" routerLink="/accounts/privacy" (click)="d('Cross click')" class="botonOpt">
             <button >Privacidad y seguridad</button>
         </div>
         <div style="outline-width: 0;" class="botonOpt">

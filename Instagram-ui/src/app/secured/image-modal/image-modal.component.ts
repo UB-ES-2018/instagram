@@ -129,7 +129,7 @@ export class ImageModalComponent implements OnInit {
         if(this.authenticationService.logStatus){
             this.likeCommentService.submitNewLikeToComment(comment_id,this.authenticationService.logUser.id).subscribe(
                 response =>{
-                    console.log('puta que oferton ' + response);
+                    console.log("Send likeComment" + response);
                 }
             )
             //this.likeService.likeComment(this.authenticationService.logUser.id, comment_id).subscribe(
