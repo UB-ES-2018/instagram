@@ -23,7 +23,7 @@ export class User {
         user.phoneNumber = 0;
         user.gender = '';
         user.photo = '';
-        user.privacity = false;
+        user.privacity = null;
         
         return user;
     }
