@@ -1,0 +1,22 @@
+sudo: required
+addons:
+  chrome: stable
+
+language: node_js
+node_js:
+  - "8"
+
+before_script:
+  - cd Instagram-ui
+  - npm install
+  - npm ci
+  - cd ..
+
+script:
+  - cd Instagram-ui
+  #- ng build --prod --aot
+  - npm run test-ci
+  - cd ../
+  - cd instagram-services
+  - gradle build
+  - gradle test

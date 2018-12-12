@@ -15,36 +15,36 @@ export class FollowService {
 
   constructor(private httpClient: HttpClient) { }
 
-  requestFollow(follower:number,followed:number): Observable<Follow> {
-    var follow = new Follow();
-    follow.followed=followed;
-    follow.follower=follower;
-    return this.httpClient.post<Follow>(CONST.URL_FOLLOWER_REQUEST,follow)
-    .pipe(
-      tap(users => console.log(`Follow requested`)),
-      catchError(handleError('getUsers', new Follow()))
-    );
+  requestFollow(follower: number, followed: number): Observable<Follow> {
+    const follow = new Follow();
+    follow.followed = followed;
+    follow.follower = follower;
+    return this.httpClient.post<Follow>(CONST.URL_FOLLOWER_REQUEST, follow)
+      .pipe(
+        tap(users => console.log(`Follow requested`)),
+        catchError(handleError('getUsers', new Follow()))
+      );
   }
 
-  unFollow(follower:number,followed:number){
-    var follow = new Follow();
+  unFollow(follower: number, followed: number) {
+    const follow = new Follow();
     follow.accepted = false;
     follow.followed = followed;
     follow.follower = follower;
-    return this.httpClient.post<Follow>(CONST.URL_DELETE_FOLLOW,follow)
+    return this.httpClient.post<Follow>(CONST.URL_DELETE_FOLLOW, follow)
       .pipe(
-        tap(follow => console.log('follow has been delete')),
+        tap(follow => console.log('Follow has been deleted')),
         catchError(handleError('unFollow', new Follow()))
       );
 
   }
 
-  checkFollow(followed:number, follower:number):  Observable<Follow> {
+  checkFollow(followed: number, follower: number): Observable<Follow> {
     return this.httpClient.get<Follow>(CONST.URL_FOLLOW_CHECK + followed + '/' + follower)
       .pipe(tap(
         val => console.log(val)),
-        catchError(handleError('checkFollow',Follow.createDummy())));
+        catchError(handleError('checkFollow', Follow.createDummy())));
 
   }
- 
+
 }

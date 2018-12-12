@@ -21,7 +21,9 @@ import instagram.controller.dto.CommentLikeDto;
 import instagram.exception.BusinessException;
 import instagram.model.CommentLike;
 import instagram.service.CommentLikeService;
+import instagram.service.NotificationService;
 import instagram.service.UserService;
+import instagram.service.impl.CommentLikeServiceImpl;
 
 @CrossOrigin
 @RestController
@@ -34,6 +36,9 @@ public class CommentLikeController {
 	private CommentLikeService commentLikeService;
 	
 	@Autowired
+	private NotificationService notificationService;
+	
+	@Autowired
 	private UserService userService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -41,7 +46,7 @@ public class CommentLikeController {
 		logger.info("CommentLikeController -> addCommentLike");
 		
 		CommentLike commentLike = commentLikeService.addCommentLike(commentLikeDto.getIdComment(), commentLikeDto.getIdUser());
-
+		this.notificationService.addedLikeToComment(commentLike.getId(), commentLike.getIdUser());
 		CommentLikeDto likedDto = new CommentLikeDto();
 		likedDto.loadFromModel(commentLike);
 
@@ -119,5 +124,9 @@ public class CommentLikeController {
 		
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 				
+	}
+
+	public void setCommentLikeService(CommentLikeServiceImpl s) {
+		commentLikeService = s;
 	}
 }

@@ -2,9 +2,14 @@ package instagram.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import instagram.controller.CommentController;
 
 //import com.google.common.collect.Lists;
 
@@ -16,19 +21,30 @@ import instagram.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
+	
+	private Logger logger = LoggerFactory.getLogger(CommentController.class);
+
 
 	@Autowired
 	private CommentRepository commentRepository;
 
-	@Override
-	public Comment getCommentById(int id) throws BusinessException {
-		return commentRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorCodes.COMMENT_NOT_FOUND));
+	public void setCommentRepository(CommentRepository cr) {
+		commentRepository = cr;
 	}
 
 	@Override
-	public Comment addComment(int idUser, int idPost, String content) throws BusinessException {
+	public Comment getCommentById(int id) {
+		Optional<Comment> optional = commentRepository.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
+
+	@Override
+	public int addComment(int idUser, int idPost, String content) throws BusinessException {
 		Comment comment = new Comment();
-		
+		Comment comen = new Comment();
 		comment.setIdUser(idUser);
 		comment.setIdPost(idPost);
 		comment.setContent(content);
@@ -36,8 +52,8 @@ public class CommentServiceImpl implements CommentService {
 		comment.setUpdatedAt(null);
 		
 		commentRepository.save(comment);
-		
-		return comment;
+		List<Comment> list = this.getCommentsByUser(idUser);
+		return list.get(list.size()-1).getId();
 	}
 
 	@Override

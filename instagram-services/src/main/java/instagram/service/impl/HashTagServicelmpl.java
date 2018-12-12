@@ -58,4 +58,8 @@ public class HashTagServicelmpl implements HashTagService {
 		this.hashTagRepository.delete(hashTag);
 	}
 
+	public void setHashTagRepository(HashTagRepository rMock) {
+		hashTagRepository = rMock;
+	}
+
 }

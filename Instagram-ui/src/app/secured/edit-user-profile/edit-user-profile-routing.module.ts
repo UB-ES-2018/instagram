@@ -4,6 +4,7 @@ import { Profile } from 'selenium-webdriver/firefox';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditProfileDataComponent } from './edit-profile-data/edit-profile-data.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
+import { EditPrivacyComponent } from './edit-privacy/edit-privacy.component';
 
 
 
@@ -14,7 +15,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'edit'},
             { path: 'edit', component: EditProfileDataComponent},
-            { path: 'password', component: EditPasswordComponent}
+            { path: 'password', component: EditPasswordComponent},
+            { path: 'privacy', component: EditPrivacyComponent}
         ]
     }
 ];

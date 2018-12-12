@@ -24,6 +24,7 @@ import instagram.controller.dto.PostLoadDto;
 import instagram.controller.dto.PostPerfilDto;
 import instagram.controller.dto.ResponseDto;
 import instagram.service.PostService;
+import instagram.service.impl.PostServiceImpl;
 import instagram.exception.BusinessException;
 
 @CrossOrigin
@@ -66,6 +67,20 @@ public class PostController {
 			result.add(checkedPost);
 		}
 		return new ResponseEntity<List<PostPerfilDto>>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getNinePostsIDUser/{id_user}", method = RequestMethod.GET)
+	public ResponseEntity<List<PostDto>> getNinePostsFromUser(@PathVariable int id_user) throws BusinessException{
+		logger.info("PostController -> getNinePostsFromUser");
+		
+		List<Post> posts = this.postService.getNinePostsFromUser(id_user);
+		List<PostDto> result = new ArrayList<PostDto>();
+		for(Post post : posts) {
+			PostDto checkedPost = new PostDto();
+			checkedPost.loadFromModel(post);
+			result.add(checkedPost);
+		}
+		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getPost", method = RequestMethod.GET)
@@ -114,5 +129,9 @@ public class PostController {
 		responseDto.setOk(true);
 		
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
+	}
+
+	public void setPostService(PostServiceImpl s) {
+		postService = s;
 	}
 }

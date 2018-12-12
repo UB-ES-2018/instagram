@@ -1,0 +1,14 @@
+<div id="contenidoPass">
+    <div id="nameTitle">
+        <div><a>Privacidad de la cuenta</a></div>
+    </div>
+    
+    <div style="float:left; margin-left: 40px; border-bottom: 1px solid #d8d8d8;">
+        <div (click)="changePrivacy()">
+            <input type="checkbox" [checked]="privacy" value="private" style="outline-width: 0;" disabled> <b>Cuenta privada</b>
+        </div>        
+        <br>
+        <a style="color: gray; ">Cuando tu cuenta es privada, solo las personas que tu apruevas pueden ver tus fotos y videos en Instagram. 
+            Tus seguidores existentes no serán afectados.</a>
+    </div>
+</div>

@@ -14,6 +14,10 @@ public interface PostService {
 	
 	List<PostPerfil> getAllPostsFromUser(int idUser);
 	
+	List<Post> getNinePostsFromUser(int idUser);
+	
+	List<Post> getFeedUser(List<Integer> usersIDList);
+	
 	Post getPostById(int id);
 	
 	Post addPost(int idUser, String photo, String description, Date createdAt);
@@ -21,4 +25,6 @@ public interface PostService {
 	void deletePost(int id) throws BusinessException;
 	
 	PostLoad getPostByIdAndLoggedUser(int idPost, int idUser) throws BusinessException;
+	
+	int getUserIdByPost(int idPost);
 }

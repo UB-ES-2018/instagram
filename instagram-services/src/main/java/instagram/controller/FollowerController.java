@@ -23,7 +23,9 @@ import instagram.controller.dto.UserDto;
 import instagram.exception.BusinessException;
 import instagram.model.Follower;
 import instagram.service.FollowerService;
+import instagram.service.NotificationService;
 import instagram.service.UserService;
+import instagram.service.impl.FollowerServiceImpl;
 
 @CrossOrigin
 @RestController
@@ -36,6 +38,10 @@ public class FollowerController {
 	private FollowerService followerService;
 	
 	@Autowired
+	private NotificationService notificationService;
+	
+	
+	@Autowired
 	private UserService userService;
 	
 	@RequestMapping(value = "/request", method = RequestMethod.POST)
@@ -43,7 +49,8 @@ public class FollowerController {
 		logger.info("FollowerController -> addFollow");
 		
 		Follower newFollow = this.followerService.requestNewFollower(followerDto.getFollower(), followerDto.getFollowed());
-
+		notificationService.addedFollowRequest(newFollow.getFollow(), newFollow.getFollowed(), newFollow.getId());
+		
 		FollowerDto follow = new FollowerDto();
 		follow.loadFromModel(newFollow);
 
@@ -129,5 +136,9 @@ public class FollowerController {
 		follow.loadFromModel(newFollow);
 
 		return new ResponseEntity<FollowerDto>(follow, HttpStatus.ACCEPTED);
+	}
+
+	public void setFollowerService(FollowerServiceImpl s) {
+		followerService = s;
 	}
 }
