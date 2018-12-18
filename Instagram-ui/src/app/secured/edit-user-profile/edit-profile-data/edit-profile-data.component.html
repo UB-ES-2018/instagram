@@ -3,7 +3,8 @@
         <div>
             <div id="nameTitle">
                 <div class="left" id="cambiarFotoPerfil" (click)="changePhotoProfilePopup()" style="cursor: pointer;">
-                    <img alt="Profile image" [src]="fotoPerfil" width="40px" />
+                    <img *ngIf="fotoPerfil" alt="Profile image" [src]="fotoPerfil" width="40px" />
+                    <img  *ngIf="!fotoPerfil" src="assets/images/defaultlogo.png" width="40px"/>
                 </div>
                 <div class="right">
                     <div><a id="nombUsu">{{name}}</a></div>

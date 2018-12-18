@@ -15,7 +15,8 @@
       </div>
       <div class="user" (click)="changeUser(user.username)" [routerLink]="'/'+user.username" *ngFor="let user of searchResult">
         <div class="fotoUserSearch">
-          <img [src]="user.photo" />
+          <img *ngIf="user.photo" [src]="user.photo" />
+          <img  *ngIf="!user.photo" src="assets/images/defaultlogo.png" />
         </div>
         <div class="nameUserSearch">
           {{user.username}}
